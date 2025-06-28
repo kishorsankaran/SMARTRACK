@@ -324,16 +324,17 @@
             background-color: #1f2937; /* Dark background color */
             color: #fff;
             display: flex;
-            align-items: flex-start; /* Aligned to the top */
-            justify-content: center;
+            flex-direction: column; /* Added for vertical centering of items */
+            align-items: center; /* Centered horizontally */
+            justify-content: center; /* Centered vertically */
             padding: 2rem;
-            padding-top: 8rem; /* Pushes content up */
             text-align: center;
         }
         .auth-left-pane h1 {
             font-size: 3.5rem; /* Large font for SMARTTRACK */
             font-weight: 800; /* Extra bold */
             letter-spacing: 0.1em; /* Slight letter spacing */
+            margin-bottom: 1rem; /* Space between title and logo */
         }
 
         .auth-right-pane {
@@ -454,9 +455,11 @@
 
     <!-- Authentication Container -->
     <div id="authContainer">
-        <!-- Left Pane for SMARTTRACK Logo/Name -->
+        <!-- Left Pane for SMARTTRACK Logo/Name and Logo -->
         <div class="auth-left-pane">
             <h1>SMARTTRACK</h1>
+            <!-- Company Logo -->
+            <img src="https://raw.githubusercontent.com/kishorsankaran/SMARTTRACK/main/my_logo.png" alt="Company Logo" class="w-36 h-36 object-contain rounded-full mx-auto mt-8 shadow-lg">
         </div>
 
         <!-- Right Pane for Authentication Card -->
