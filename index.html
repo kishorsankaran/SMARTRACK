@@ -436,6 +436,22 @@
         </div>
     </div>
 
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3 class="text-2xl font-semibold mb-4 text-gray-700">Reset Password</h3>
+            <p class="text-gray-600 mb-6">Enter your email address to receive a password reset link.</p>
+            <div class="form-group">
+                <label for="resetEmail" class="sr-only">Email</label>
+                <input type="email" id="resetEmail" placeholder="your.email@example.com" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <div class="flex justify-end space-x-4 mt-6">
+                <button type="button" class="action-button" onclick="sendPasswordReset()">Send Reset Email</button>
+                <button type="button" class="secondary-button" onclick="hideForgotPasswordModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Authentication Container -->
     <div id="authContainer">
         <!-- Left Pane for SMARTTRACK Logo/Name -->
@@ -458,6 +474,9 @@
                 <button id="authSubmitButton" class="action-button" onclick="handleAuthSubmit()">Sign In</button>
                 <p class="toggle-mode-link">
                     Don't have an account? <button onclick="toggleAuthMode()" class="text-blue-600 hover:underline">Sign Up</button>
+                </p>
+                <p class="mt-4 text-sm">
+                    <button onclick="showForgotPasswordModal()" class="text-blue-600 hover:underline">Forgot Password?</button>
                 </p>
                 <button class="secondary-button mt-4" onclick="signInAnonymouslyUser()">Continue Anonymously</button>
 
@@ -1427,7 +1446,7 @@
     <script type="module">
         // Import Firebase modules
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, doc, getDoc, addDoc, setDoc, deleteDoc, onSnapshot, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // --- Global Variables ---
@@ -1661,6 +1680,51 @@
         function hideMessageModal() {
             const modal = document.getElementById('messageModal');
             if (modal) modal.classList.add('hidden');
+        }
+
+        // Forgot Password Modal functions
+        function showForgotPasswordModal() {
+            document.getElementById('forgotPasswordModal').classList.remove('hidden');
+            document.getElementById('resetEmail').value = document.getElementById('authEmail').value; // Pre-fill with login email
+        }
+
+        function hideForgotPasswordModal() {
+            document.getElementById('forgotPasswordModal').classList.add('hidden');
+            document.getElementById('resetEmail').value = ''; // Clear email field
+        }
+
+        async function sendPasswordReset() {
+            const email = document.getElementById('resetEmail').value;
+            if (!email) {
+                showMessageModal("Please enter your email address to reset your password.", "Missing Email");
+                return;
+            }
+            if (!auth) {
+                showMessageModal("Firebase Authentication is not ready. Please wait a moment and try again.", "Initialization Error");
+                return;
+            }
+
+            showLoadingOverlay('Sending password reset email...');
+            try {
+                await sendPasswordResetEmail(auth, email);
+                hideForgotPasswordModal(); // Close the reset modal
+                showMessageModal("A password reset link has been sent to your email address.", "Password Reset Sent");
+            } catch (error) {
+                console.error("Password reset error:", error);
+                let errorMessage = "Failed to send password reset email.";
+                if (error.code === 'auth/user-not-found') {
+                    errorMessage = "No user found with that email address. Please check your email or sign up.";
+                } else if (error.code === 'auth/invalid-email') {
+                    errorMessage = "The email address is not valid.";
+                } else if (error.code === 'auth/network-request-failed') {
+                    errorMessage = "Network error. Please check your internet connection.";
+                } else {
+                    errorMessage += " " + error.message;
+                }
+                showMessageModal(errorMessage, "Password Reset Failed");
+            } finally {
+                hideLoadingOverlay();
+            }
         }
 
         // Toggle table visibility
@@ -4242,6 +4306,9 @@
         window.handleAuthSubmit = handleAuthSubmit;
         window.handleSignOut = handleSignOut;
         window.signInAnonymouslyUser = signInAnonymouslyUser;
+        window.showForgotPasswordModal = showForgotPasswordModal; // Expose new function
+        window.hideForgotPasswordModal = hideForgotPasswordModal; // Expose new function
+        window.sendPasswordReset = sendPasswordReset; // Expose new function
 
         // Inspections
         window.addUpdateInspectionDocument = addUpdateInspectionDocument;
