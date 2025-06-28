@@ -459,7 +459,7 @@
         <div class="auth-left-pane">
             <h1>SMARTTRACK</h1>
             <!-- Company Logo -->
-            <img src="https://raw.githubusercontent.com/kishorsankaran/SMARTTRACK/main/my_logo.png" alt="Company Logo" class="w-36 h-36 object-contain rounded-full mx-auto mt-8 shadow-lg">
+            <img src="https://raw.githubusercontent.com/kishorsankaran/SMARTTRACK/main/my_logo.png" alt="Company Logo" class="w-36 h-36 object-contain mx-auto mt-4">
         </div>
 
         <!-- Right Pane for Authentication Card -->
@@ -481,7 +481,7 @@
                 <p class="mt-4 text-sm">
                     <button onclick="showForgotPasswordModal()" class="text-blue-600 hover:underline">Forgot Password?</button>
                 </p>
-                <button class="secondary-button mt-4" onclick="signInAnonymouslyUser()">Continue Anonymously</button>
+                <!-- Removed "Continue Anonymously" button as requested -->
 
                 <!-- Application Status: Hidden by default to reduce form height -->
                 <!-- To show, remove `display: none;` from `.status-indicators` in style block -->
@@ -1903,7 +1903,7 @@
             }
         }
 
-        // Anonymous Sign In
+        // Anonymous Sign In (Removed from UI, keeping function for completeness if needed elsewhere)
         async function signInAnonymouslyUser() {
             showLoadingOverlay('Signing in anonymously...');
             // Ensure auth object is initialized
@@ -3006,6 +3006,58 @@
             window.scrollTo(0, 0); // Scroll to top of form
             console.log(`[NCR] Form filled for ${docId ? 'editing' : 'new revision'}.`);
         }
+
+        async function autoFillNcrDetails() {
+            console.log("[NCR] Starting autoFillNcrDetails...");
+            const ncrRefNumber = document.getElementById('ncrRefNumber').value.trim();
+            const ncrDiscipline = document.getElementById('ncrDiscipline').value; // Get selected discipline
+
+            if (!ncrRefNumber || !ncrDiscipline) {
+                // If ref number or discipline is empty, ensure form is clear for new entry
+                clearNcrForm(); // Clears Part B rev to '0'
+                document.getElementById('ncrRefNumber').value = ncrRefNumber; // Retain entered value
+                document.getElementById('ncrDiscipline').value = ncrDiscipline; // Retain selected value
+                console.log("[NCR] NCR Ref Number or Discipline is empty. Form cleared for new entry.");
+                return;
+            }
+
+            if (!db || !userId || typeof appId === 'undefined' || appId === 'default-app-id') {
+                console.warn("Firebase, User ID, or App ID not ready for auto-fill.");
+                showMessageModal("Application not fully loaded or Firebase not connected. Cannot auto-fill.", "Error");
+                return;
+            }
+
+            // Find all NCRs matching the entered reference number AND discipline
+            const matchingNCRS = ncrData.filter(doc =>
+                doc.ncrRefNumber === ncrRefNumber &&
+                doc.ncrDiscipline === ncrDiscipline
+            );
+
+            if (matchingNCRS.length > 0) {
+                // Sort to find the latest revision based on Part B Rev
+                matchingNCRS.sort((a, b) => compareRevisions(a.ncrRev_PartB, b.ncrRev_PartB));
+                const latestNcr = matchingNCRS[matchingNCRS.length - 1]; // Latest is the last after sorting
+
+                // Populate the form for a NEW REVISION
+                fillNcrForm(latestNcr, null, true); // Pass true for forNewRevision
+                showMessageModal("Latest NCR revision loaded automatically. Part B Rev. incremented for new entry. Fill new details to add new revision.", "New NCR Revision");
+                console.log("[NCR] Latest NCR revision found and loaded for new revision entry.");
+            } else {
+                // No existing NCR found for this Ref Number and Discipline
+                const originalNcrRefNumber = document.getElementById('ncrRefNumber').value;
+                const originalNcrDiscipline = document.getElementById('ncrDiscipline').value;
+
+                clearNcrForm(); // Clears all fields and resets button text, sets Part B Rev to '0'
+
+                // Restore the entered NCR Ref. Number and Discipline
+                document.getElementById('ncrRefNumber').value = originalNcrRefNumber;
+                document.getElementById('ncrDiscipline').value = originalNcrDiscipline;
+
+                showMessageModal("This NCR Ref. Number for the selected discipline is new. Please fill details to add. Part B Revision defaults to '0'.", "New NCR");
+                console.log("[NCR] No existing NCR found. Form reset for new NCR entry.");
+            }
+        }
+
 
         async function editNcr(docId) {
             showLoadingOverlay('Loading NCR data...');
@@ -4203,7 +4255,7 @@
             link.href = URL.createObjectURL(blob);
             link.setAttribute('download', 'submission_pivot_table.csv');
             document.body.appendChild(link);
-            document.body.removeChild(link);
+            link.removeChild(link);
         }
 
 
