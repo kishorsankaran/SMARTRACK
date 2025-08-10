@@ -4,15 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMARTRACK</title>
-    <!-- Tailwind CSS CDN for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Custom styles can be added here or in a separate file if preferred, but Tailwind is primary */
         body {
-            font-family: 'Inter', sans-serif; /* Using Inter font as per existing page */
-            background-color: #f3f4f6; /* Light gray background */
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
             color: #333;
             line-height: 1.6;
         }
@@ -22,7 +20,7 @@
             padding: 20px;
         }
         .header {
-            background-color: #1f2937; /* Darker gray for header */
+            background-color: #1f2937;
             color: #fff;
             padding: 15px 20px;
             border-radius: 8px;
@@ -53,7 +51,7 @@
         }
         .tab-button.active {
             background-color: #fff;
-            border-bottom: 2px solid #3b82f6; /* Blue indicator for active tab */
+            border-bottom: 2px solid #3b82f6;
             color: #1f2937;
             font-weight: 600;
         }
@@ -103,7 +101,7 @@
             box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
         }
         .action-button {
-            background-color: #3b82f6; /* Blue */
+            background-color: #3b82f6;
             color: #fff;
             padding: 10px 20px;
             border: none;
@@ -121,7 +119,7 @@
             transform: translateY(0);
         }
         .secondary-button {
-            background-color: #6b7280; /* Gray */
+            background-color: #6b7280;
             color: #fff;
             padding: 10px 20px;
             border: none;
@@ -130,7 +128,7 @@
             font-size: 16px;
             transition: background-color 0.3s ease, transform 0.1s ease;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-left: 10px; /* Space between buttons */
+            margin-left: 10px;
         }
         .secondary-button:hover {
             background-color: #4b5563;
@@ -140,7 +138,7 @@
             transform: translateY(0);
         }
         .danger-button {
-            background-color: #ef4444; /* Red */
+            background-color: #ef4444;
             color: #fff;
             padding: 8px 15px;
             border: none;
@@ -154,7 +152,7 @@
             transform: translateY(-1px);
         }
         .edit-button {
-            background-color: #10b981; /* Green */
+            background-color: #10b981;
             color: #fff;
             padding: 8px 15px;
             border: none;
@@ -168,7 +166,7 @@
             transform: translateY(-1px);
         }
         .table-container {
-            overflow-x: auto; /* Enable horizontal scrolling for tables */
+            overflow-x: auto;
             margin-top: 20px;
         }
         table {
@@ -183,7 +181,7 @@
             border: 1px solid #e5e7eb;
             padding: 12px 15px;
             text-align: left;
-            white-space: nowrap; /* Prevent text wrapping in table cells */
+            white-space: nowrap;
         }
         th {
             background-color: #f3f4f6;
@@ -273,7 +271,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 2000; /* Higher than modals */
+            z-index: 2000;
             color: white;
             font-size: 1.5rem;
             text-align: center;
@@ -295,118 +293,137 @@
         }
 
         /* Auth Container Specific Styles */
-        /* Changed to flex for two columns on medium+ screens */
         #authContainer {
             display: flex;
-            flex-direction: column; /* Default to column for mobile */
+            flex-direction: column;
             min-height: 100vh;
             background-color: #f3f4f6;
-            width: 100%; /* Ensure it takes full width */
-            align-items: stretch; /* Stretch children to fill height */
+            width: 100%;
+            align-items: stretch;
         }
 
-        @media (min-width: 768px) { /* Medium screens and up */
+        @media (min-width: 768px) {
             #authContainer {
-                flex-direction: row; /* Two columns */
+                flex-direction: row;
             }
             .auth-left-pane {
-                display: flex !important; /* Ensure it's shown as flex */
-                width: 50%; /* Half width */
+                display: flex !important;
+                width: 50%;
             }
             .auth-right-pane {
-                width: 50%; /* Half width */
+                width: 50%;
             }
         }
 
         .auth-left-pane {
-            /* Hide by default on mobile, show on medium+ */
             display: none;
-            background-color: #1f2937; /* Dark background color */
+            background-color: #1f2937;
             color: #fff;
             display: flex;
-            flex-direction: column; /* Added for vertical centering of items */
-            align-items: center; /* Centered horizontally */
-            justify-content: center; /* Centered vertically */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             padding: 2rem;
             text-align: center;
         }
         .auth-left-pane h1 {
-            font-size: 3.5rem; /* Large font for SMARTRACK */
-            font-weight: 800; /* Extra bold */
-            letter-spacing: 0.1em; /* Slight letter spacing */
-            margin-bottom: 1rem; /* Space between title and logo */
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
         }
 
         .auth-right-pane {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1rem; /* Smaller padding for mobile */
-            flex-grow: 1; /* Allow it to grow on mobile */
+            padding: 1rem;
+            flex-grow: 1;
         }
         @media (min-width: 768px) {
             .auth-right-pane {
-                padding: 2rem; /* Larger padding on desktop */
+                padding: 2rem;
             }
         }
 
         .auth-card {
             background-color: #fff;
-            padding: 20px; /* Reduced padding */
+            padding: 20px;
             border-radius: 10px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            width: 100%; /* Take full width of its pane */
-            max-width: 320px; /* Smaller max-width for the card itself */
+            width: 100%;
+            max-width: 320px;
             text-align: center;
         }
         .auth-card h2 {
-            font-size: 24px; /* Slightly reduced font size for h2 */
+            font-size: 24px;
             font-weight: 700;
-            margin-bottom: 20px; /* Reduced margin */
+            margin-bottom: 20px;
             color: #1f2937;
         }
         .auth-card .form-group {
-            margin-bottom: 15px; /* Reduced margin */
+            margin-bottom: 15px;
             text-align: left;
         }
         .auth-card input[type="email"],
         .auth-card input[type="password"] {
-            padding: 8px 12px; /* Smaller padding for inputs */
+            padding: 8px 12px;
         }
         .auth-card button {
             width: 100%;
-            margin-top: 15px; /* Reduced margin */
-            padding: 8px 15px; /* Smaller padding for buttons */
+            margin-top: 15px;
+            padding: 8px 15px;
         }
         .auth-card .toggle-mode-link {
-            margin-top: 15px; /* Reduced margin */
-            font-size: 0.875rem; /* Smaller font size */
+            margin-top: 15px;
+            font-size: 0.875rem;
             color: #6b7280;
         }
         .status-indicators {
-            margin-top: 15px; /* Reduced margin */
-            font-size: 0.8rem; /* Smaller font size */
+            margin-top: 15px;
+            font-size: 0.8rem;
             color: #555;
             text-align: left;
-            padding: 10px; /* Smaller padding */
-            /* Hide by default as requested */
+            padding: 10px;
             display: none;
         }
         .status-indicators span {
             display: block;
-            margin-bottom: 3px; /* Reduced margin */
+            margin-bottom: 3px;
         }
         .status-indicators .ok {
-            color: #10b981; /* Green */
+            color: #10b981;
         }
         .status-indicators .error {
-            color: #ef4444; /* Red */
+            color: #ef4444;
+        }
+        
+        /* New custom style for the email modal */
+        #emailModal .modal-content {
+            max-width: 500px;
+            text-align: left;
+        }
+        .email-list {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 10px;
+        }
+        .email-list label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        .email-list input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
         }
     </style>
 </head>
 <body class="bg-gray-100">
 
-    <!-- Loading Overlay -->
     <div id="loadingOverlay" class="hidden">
         <div class="flex flex-col items-center">
             <div class="spinner"></div>
@@ -414,7 +431,6 @@
         </div>
     </div>
 
-    <!-- Custom Message Modal -->
     <div id="messageModal" class="modal-overlay hidden">
         <div class="modal-content">
             <h3 id="messageModalTitle"></h3>
@@ -425,7 +441,6 @@
         </div>
     </div>
 
-    <!-- Custom Confirm Modal -->
     <div id="customConfirmModal" class="modal-overlay hidden">
         <div class="modal-content">
             <h3 id="customConfirmTitle">Confirm Action</h3>
@@ -436,8 +451,7 @@
             </div>
         </div>
     </div>
-
-    <!-- Forgot Password Modal -->
+    
     <div id="forgotPasswordModal" class="modal-overlay hidden">
         <div class="modal-content">
             <h3 class="text-2xl font-semibold mb-4 text-gray-700">Reset Password</h3>
@@ -453,16 +467,30 @@
         </div>
     </div>
 
-    <!-- Authentication Container -->
+    <div id="emailModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3 id="emailModalTitle" class="text-2xl font-semibold mb-4 text-gray-700">Send Email</h3>
+            <p id="emailModalMessage" class="text-gray-600 mb-4">Select staff to email the document link.</p>
+            
+            <div class="form-group">
+                <label class="block font-medium mb-2">Recipients:</label>
+                <div id="staffEmailCheckboxes" class="email-list">
+                    </div>
+            </div>
+            <p class="text-sm text-gray-500 mt-2">Note: This will open a new Outlook email draft. The document URL will be a placeholder and must be manually provided.</p>
+            
+            <div class="flex justify-end space-x-4 mt-6">
+                <button type="button" class="action-button" id="sendEmailButton" onclick="sendEmailViaOutlook()">Send via Outlook</button>
+                <button type="button" class="secondary-button" onclick="hideEmailModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <div id="authContainer">
-        <!-- Left Pane for SMARTRACK Logo/Name and Logo -->
         <div class="auth-left-pane">
             <h1>SMARTRACK</h1>
-            <!-- Company Logo -->
             <img src="https://raw.githubusercontent.com/kishorsankaran/SMARTTRACK/main/my_logo.png" alt="Company Logo" class="w-36 h-36 object-contain mx-auto mt-4">
         </div>
-
-        <!-- Right Pane for Authentication Card -->
         <div class="auth-right-pane">
             <div class="auth-card">
                 <h2 id="authTitle">Sign In</h2>
@@ -481,10 +509,6 @@
                 <p class="mt-4 text-sm">
                     <button onclick="showForgotPasswordModal()" class="text-blue-600 hover:underline">Forgot Password?</button>
                 </p>
-                <!-- Removed "Continue Anonymously" button as requested -->
-
-                <!-- Application Status: Hidden by default to reduce form height -->
-                <!-- To show, remove `display: none;` from `.status-indicators` in style block -->
                 <div class="status-indicators">
                     <p>Application Status:</p>
                     <span>User ID: <span id="displayUserId">N/A</span></span>
@@ -496,7 +520,6 @@
         </div>
     </div>
 
-    <!-- Main Application Container -->
     <div id="appContainer" class="container hidden">
         <header class="header">
             <h1 class="text-3xl font-bold">Document Control Register</h1>
@@ -512,13 +535,12 @@
             <button class="tab-button" onclick="showPage('ncrPage')">NCR Register</button>
             <button class="tab-button" onclick="showPage('submissionPage')">Submission Register</button>
             <button class="tab-button" onclick="showPage('correspondencePage')">Correspondence Register</button>
+            <button class="tab-button" onclick="showPage('staffEmailsPage')">Staff Emails</button>
         </nav>
 
-        <!-- Inspections Register Page -->
         <div id="inspectionsPage" class="page-content">
             <h2 class="text-2xl font-bold mb-4 text-gray-800">Inspections Register</h2>
 
-            <!-- Form for Inspections -->
             <div class="form-section">
                 <h3 class="text-xl font-semibold mb-4 text-gray-700">Add/Edit Inspection</h3>
                 <form id="inspectionForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -530,7 +552,6 @@
                         <label for="discipline">Discipline:</label>
                         <select id="discipline" required>
                             <option value="">--Select--</option>
-                            <!-- Options populated by JS from disciplinePrefixMap -->
                         </select>
                     </div>
                     <div class="form-group">
@@ -546,7 +567,6 @@
                         <label for="location">Location:</label>
                         <input type="text" id="location" placeholder="e.g., Area 1">
                     </div>
-                    <!-- Removed Submission Type from form -->
                     <div class="form-group">
                         <label for="workToBeInspected">Work To Be Inspected:</label>
                         <textarea id="workToBeInspected" rows="2" placeholder="Description of work"></textarea>
@@ -583,12 +603,15 @@
                         <label for="documentStatus">Document Status:</label>
                         <select id="documentStatus" required>
                             <option value="">--Select--</option>
-                            <!-- Options populated by JS from inspectionStatusOptions -->
                         </select>
                     </div>
-                     <div class="form-group">
+                    <div class="form-group">
                         <label for="revStatus">Lifecycle Status:</label>
                         <input type="text" id="revStatus" readonly class="bg-gray-100 text-gray-500">
+                    </div>
+                    <div class="form-group">
+                        <label for="inspectionsDocumentUrl">Document URL (Optional):</label>
+                        <input type="url" id="inspectionsDocumentUrl" placeholder="https://your-server.com/doc.pdf">
                     </div>
                     <div class="form-group col-span-full flex justify-end space-x-2">
                         <button type="button" id="addUpdateButton" class="action-button" onclick="addUpdateInspectionDocument()">Add Document</button>
@@ -597,7 +620,6 @@
                 </form>
             </div>
 
-            <!-- Inspections Table -->
             <div class="table-section mt-8">
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-xl font-semibold text-gray-700">All Inspections</h3>
@@ -607,7 +629,6 @@
                     </div>
                 </div>
 
-                <!-- Search and Filter -->
                 <div class="flex flex-wrap items-end gap-4 mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
                     <div class="form-group m-0 flex-grow">
                         <label for="inspectionsSearchField" class="text-sm">Search Field:</label>
@@ -618,7 +639,6 @@
                             <option value="insNumber">INS Number</option>
                             <option value="revision">Revision</option>
                             <option value="location">Location</option>
-                            <!-- Removed Submission Type from search filter -->
                             <option value="workToBeInspected">Work To Be Inspected</option>
                             <option value="inspectionDate">Inspection Date</option>
                             <option value="inspectionTime">Inspection Time</option>
@@ -651,7 +671,6 @@
                                 <th>INS No.</th>
                                 <th>Rev.</th>
                                 <th>Location</th>
-                                <!-- Removed Sub. Type from table header -->
                                 <th>Work to be Inspected</th>
                                 <th>Insp. Date</th>
                                 <th>Insp. Time</th>
@@ -666,18 +685,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Inspection rows will be rendered here by JS -->
-                        </tbody>
+                            </tbody>
                     </table>
                 </div>
             </div>
         </div>
 
-        <!-- MIR Register Page -->
         <div id="mirPage" class="page-content hidden">
             <h2 class="text-2xl font-bold mb-4 text-gray-800">Material Inspection Request (MIR) Register</h2>
 
-            <!-- Form for MIR -->
             <div class="form-section">
                 <h3 class="text-xl font-semibold mb-4 text-gray-700">Add/Edit MIR</h3>
                 <form id="mirForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -689,7 +705,6 @@
                         <label for="mirDiscipline">Discipline:</label>
                         <select id="mirDiscipline" required>
                             <option value="">--Select--</option>
-                            <!-- Options populated by JS from disciplinePrefixMap -->
                         </select>
                     </div>
                     <div class="form-group">
@@ -749,12 +764,15 @@
                         <label for="mirApprovalStatus">Approval Status:</label>
                         <select id="mirApprovalStatus" required>
                             <option value="">--Select--</option>
-                            <!-- Options populated by JS from mirApprovalStatusOptions -->
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="mirRevStatus">Lifecycle Status:</label>
                         <input type="text" id="mirRevStatus" readonly class="bg-gray-100 text-gray-500">
+                    </div>
+                    <div class="form-group">
+                        <label for="mirDocumentUrl">Document URL (Optional):</label>
+                        <input type="url" id="mirDocumentUrl" placeholder="https://your-server.com/doc.pdf">
                     </div>
                     <div class="form-group col-span-full flex justify-end space-x-2">
                         <button type="button" id="addUpdateMirButton" class="action-button" onclick="addUpdateMirDocument()">Add Document</button>
@@ -763,7 +781,6 @@
                 </form>
             </div>
 
-            <!-- MIR Table -->
             <div class="table-section mt-8">
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-xl font-semibold text-gray-700">All MIRs</h3>
@@ -773,7 +790,6 @@
                     </div>
                 </div>
 
-                <!-- Search and Filter -->
                 <div class="flex flex-wrap items-end gap-4 mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
                     <div class="form-group m-0 flex-grow">
                         <label for="mirSearchField" class="text-sm">Search Field:</label>
@@ -834,28 +850,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- MIR rows will be rendered here by JS -->
-                        </tbody>
+                            </tbody>
                     </table>
                 </div>
             </div>
         </div>
 
-        <!-- NCR Register Page -->
         <div id="ncrPage" class="page-content hidden">
             <h2 class="text-2xl font-bold mb-4 text-gray-800">Non-Conformance Report (NCR) Register</h2>
 
-            <!-- Form for NCR -->
             <div class="form-section">
                 <h3 class="text-xl font-semibold mb-4 text-gray-700">Add/Edit NCR</h3>
                 <form id="ncrForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <!-- Part A -->
                     <h4 class="col-span-full text-lg font-semibold text-blue-700 mt-2 mb-2">Part A: Non-Conformance Details</h4>
                     <div class="form-group">
                         <label for="ncrDiscipline">Discipline:</label>
                         <select id="ncrDiscipline" required onchange="autoFillNcrDetails()">
                             <option value="">--Select--</option>
-                            <!-- Options populated by JS from disciplinePrefixMap -->
                         </select>
                     </div>
                     <div class="form-group">
@@ -870,8 +881,11 @@
                         <label for="partAReceivedDate">Part A Received Date:</label>
                         <input type="date" id="partAReceivedDate">
                     </div>
+                    <div class="form-group">
+                        <label for="ncrDocumentUrl">Document URL (Optional):</label>
+                        <input type="url" id="ncrDocumentUrl" placeholder="https://your-server.com/doc.pdf">
+                    </div>
 
-                    <!-- Part B -->
                     <h4 class="col-span-full text-lg font-semibold text-blue-700 mt-4 mb-2">Part B: Root Cause & Corrective Action</h4>
                     <div class="form-group">
                         <label for="ncrRev_PartB">Part B Revision:</label>
@@ -898,7 +912,6 @@
                         <input type="date" id="partBSubmittedDate">
                     </div>
 
-                    <!-- Part C -->
                     <h4 class="col-span-full text-lg font-semibold text-blue-700 mt-4 mb-2">Part C: GEC Review</h4>
                     <div class="form-group">
                         <label for="partCReceivedDate">Part C Received Date:</label>
@@ -917,7 +930,6 @@
                         <input type="text" id="ifPartBAccepted" readonly class="bg-gray-100 text-gray-500">
                     </div>
 
-                    <!-- Part D -->
                     <h4 class="col-span-full text-lg font-semibold text-blue-700 mt-4 mb-2">Part D: Proposed Corrective Action Implementation</h4>
                     <div class="form-group">
                         <label for="partDRev">Part D Revision:</label>
@@ -932,7 +944,6 @@
                         <input type="date" id="partDSubmittedDate">
                     </div>
 
-                    <!-- Part E -->
                     <h4 class="col-span-full text-lg font-semibold text-blue-700 mt-4 mb-2">Part E: Verification of Corrective Action Effectiveness</h4>
                     <div class="form-group">
                         <label for="partEReceivedDate">Part E Received Date:</label>
@@ -946,7 +957,6 @@
                         <label for="ncrCurrentStatus">NCR Current Status:</label>
                         <select id="ncrCurrentStatus">
                             <option value="">--Select--</option>
-                            <!-- Options populated by JS from ncrStatuses -->
                         </select>
                     </div>
 
@@ -957,7 +967,6 @@
                 </form>
             </div>
 
-            <!-- NCR Table -->
             <div class="table-section mt-8">
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-xl font-semibold text-gray-700">All NCRs</h3>
@@ -967,7 +976,6 @@
                     </div>
                 </div>
 
-                <!-- Search and Filter -->
                 <div class="flex flex-wrap items-end gap-4 mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
                     <div class="form-group m-0 flex-grow">
                         <label for="ncrSearchField" class="text-sm">Search Field:</label>
@@ -1033,18 +1041,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- NCR rows will be rendered here by JS -->
-                        </tbody>
+                            </tbody>
                     </table>
                 </div>
             </div>
         </div>
 
-        <!-- Submission Register Page -->
         <div id="submissionPage" class="page-content hidden">
             <h2 class="text-2xl font-bold mb-4 text-gray-800">Submission Register</h2>
 
-            <!-- Form for Submissions -->
             <div class="form-section">
                 <h3 class="text-xl font-semibold mb-4 text-gray-700">Add/Edit Submission Document</h3>
                 <form id="submissionForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -1060,14 +1065,12 @@
                         <label for="newDiscipline">Discipline:</label>
                         <select id="newDiscipline" required>
                             <option value="">--Select--</option>
-                            <!-- Options populated by JS from disciplinePrefixMap -->
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="newDocType">Document Type:</label>
                         <select id="newDocType" required>
                             <option value="">--Select--</option>
-                            <!-- Options populated by JS from submissionDocumentTypeOptions -->
                         </select>
                     </div>
                     <div class="form-group">
@@ -1115,7 +1118,10 @@
                         <label for="daysOverdue">Days Overdue:</label>
                         <input type="text" id="daysOverdue" readonly class="bg-gray-100 text-gray-500">
                     </div>
-
+                    <div class="form-group">
+                        <label for="documentUrl">Document URL (Optional):</label>
+                        <input type="url" id="documentUrl" placeholder="https://your-server.com/doc.pdf">
+                    </div>
                     <div class="form-group col-span-full flex justify-end space-x-2">
                         <button type="button" class="action-button" onclick="addNewSubmissionDocument()">Add Document</button>
                         <button type="button" class="secondary-button" onclick="clearNewSubmissionDocumentForm()">Clear Form</button>
@@ -1123,7 +1129,6 @@
                 </form>
             </div>
 
-            <!-- Submission Documents Table -->
             <div id="submissionTableContainer" class="table-section mt-8">
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-xl font-semibold text-gray-700">All Submissions</h3>
@@ -1134,7 +1139,6 @@
                     </div>
                 </div>
 
-                <!-- Search and Filter -->
                 <div class="flex flex-wrap items-end gap-4 mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
                     <div class="form-group m-0 flex-grow">
                         <label for="submissionSearchInput" class="text-sm">Search All Fields:</label>
@@ -1159,7 +1163,7 @@
                     </div>
                 </div>
 
-                <div class="table-container">
+                <div id="submissionTableContainer" class="table-container">
                     <table id="submissionDocumentTable">
                         <thead>
                             <tr>
@@ -1180,13 +1184,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Submission rows will be rendered here by JS -->
-                        </tbody>
+                            </tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- Pivot Table Container (initially hidden) -->
             <div id="pivotTableContainer" class="form-section mt-8 hidden">
                 <h3 class="text-xl font-semibold mb-4 text-gray-700">Submission Status Pivot Table</h3>
                 <div class="form-group flex items-center gap-4 mb-4">
@@ -1202,17 +1204,14 @@
                 <div class="table-container">
                     <table id="pivotTable">
                         <thead>
-                            <!-- Pivot table headers will be rendered here by JS -->
-                        </thead>
+                            </thead>
                         <tbody>
-                            <!-- Pivot table rows will be rendered here by JS -->
-                        </tbody>
+                            </tbody>
                     </table>
                 </div>
             </div>
         </div>
 
-        <!-- Correspondence Register Page -->
         <div id="correspondencePage" class="page-content hidden">
             <h2 class="text-2xl font-bold mb-4 text-gray-800">Correspondence Register</h2>
 
@@ -1221,7 +1220,6 @@
                 <button class="tab-button" onclick="showCorrespondenceSection('incomingCorrespondenceSection')">Incoming</button>
             </div>
 
-            <!-- Outgoing Correspondence Section -->
             <div id="outgoingCorrespondenceSection" class="correspondence-section">
                 <h3 class="text-xl font-semibold mb-4 text-gray-700">Add/Edit Outgoing Correspondence</h3>
                 <form id="outgoingCorrespondenceForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -1253,7 +1251,6 @@
                         <label for="newOutgoingKeyword">Keyword:</label>
                         <select id="newOutgoingKeyword">
                             <option value="">--Select--</option>
-                            <!-- Options populated by JS from correspondenceKeywordOptions -->
                         </select>
                     </div>
                     <div class="form-group">
@@ -1267,6 +1264,10 @@
                     <div class="form-group">
                         <label for="newOutgoingDateSent">Date Sent:</label>
                         <input type="date" id="newOutgoingDateSent">
+                    </div>
+                    <div class="form-group">
+                        <label for="outgoingDocumentUrl">Document URL (Optional):</label>
+                        <input type="url" id="outgoingDocumentUrl" placeholder="https://your-server.com/letter.pdf">
                     </div>
                     <div class="form-group col-span-full flex justify-end space-x-2">
                         <button type="button" class="action-button" onclick="addNewOutgoingCorrespondence()">Add Outgoing</button>
@@ -1283,7 +1284,6 @@
                         </div>
                     </div>
 
-                    <!-- Search and Filter -->
                     <div class="flex flex-wrap items-end gap-4 mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
                         <div class="form-group m-0 flex-grow">
                             <label for="outgoingSearchInput" class="text-sm">Search All Fields:</label>
@@ -1301,7 +1301,6 @@
                             <label for="outgoingKeywordFilter" class="text-sm">Filter by Keyword:</label>
                             <select id="outgoingKeywordFilter" onchange="filterOutgoingByKeyword(this.value)" class="w-full">
                                 <option value="">All Keywords</option>
-                                <!-- Options populated by JS from correspondenceKeywordOptions -->
                             </select>
                         </div>
                         <div class="flex space-x-2">
@@ -1328,14 +1327,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Outgoing correspondence rows will be rendered here by JS -->
-                            </tbody>
+                                </tbody>
                         </table>
                     </div>
                 </div>
             </div>
 
-            <!-- Incoming Correspondence Section -->
             <div id="incomingCorrespondenceSection" class="correspondence-section hidden">
                 <h3 class="text-xl font-semibold mb-4 text-gray-700">Add/Edit Incoming Correspondence</h3>
                 <form id="incomingCorrespondenceForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -1367,7 +1364,6 @@
                         <label for="newIncomingKeyword">Keyword:</label>
                         <select id="newIncomingKeyword">
                             <option value="">--Select--</option>
-                            <!-- Options populated by JS from correspondenceKeywordOptions -->
                         </select>
                     </div>
                     <div class="form-group">
@@ -1377,6 +1373,10 @@
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="incomingDocumentUrl">Document URL (Optional):</label>
+                        <input type="url" id="incomingDocumentUrl" placeholder="https://your-server.com/letter.pdf">
                     </div>
                     <div class="form-group col-span-full flex justify-end space-x-2">
                         <button type="button" class="action-button" onclick="addNewIncomingCorrespondence()">Add Incoming</button>
@@ -1393,7 +1393,6 @@
                         </div>
                     </div>
 
-                    <!-- Search and Filter -->
                     <div class="flex flex-wrap items-end gap-4 mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
                         <div class="form-group m-0 flex-grow">
                             <label for="incomingSearchInput" class="text-sm">Search All Fields:</label>
@@ -1411,7 +1410,6 @@
                             <label for="incomingKeywordFilter" class="text-sm">Filter by Keyword:</label>
                             <select id="incomingKeywordFilter" onchange="filterIncomingByKeyword(this.value)" class="w-full">
                                 <option value="">All Keywords</option>
-                                <!-- Options populated by JS from correspondenceKeywordOptions -->
                             </select>
                         </div>
                         <div class="flex space-x-2">
@@ -1431,22 +1429,59 @@
                                     <th>Letter Subject</th>
                                     <th>Reply To Ref.</th>
                                     <th>Keyword</th>
-                                    <th>Reply Required?</th>
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Incoming correspondence rows will be rendered here by JS -->
-                            </tbody>
+                                </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div id="staffEmailsPage" class="page-content hidden">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">Staff Emails Management</h2>
+            <div class="form-section">
+                <h3 class="text-xl font-semibold mb-4 text-gray-700">Add/Edit Staff Email</h3>
+                <form id="staffEmailForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="form-group">
+                        <label for="staffEmailName">Staff Name:</label>
+                        <input type="text" id="staffEmailName" placeholder="e.g., John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="staffEmailAddress">Email Address:</label>
+                        <input type="email" id="staffEmailAddress" placeholder="e.g., john.doe@company.com" required>
+                    </div>
+                    <div class="form-group col-span-full flex justify-end space-x-2">
+                        <button type="button" id="addUpdateStaffButton" class="action-button" onclick="addUpdateStaffEmail()">Save Staff</button>
+                        <button type="button" class="secondary-button" onclick="clearStaffForm()">Clear Form</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="table-section mt-8">
+                <h3 class="text-xl font-semibold text-gray-700">All Staff Emails</h3>
+                <div class="table-container">
+                    <table id="staffEmailsTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email Address</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <script type="module">
+   <script type="module">
         // Import Firebase modules
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
@@ -1459,34 +1494,38 @@
         let submissionData = [];
         let outgoingCorrespondenceData = [];
         let incomingCorrespondenceData = [];
-
+        let staffEmailsData = [];
+        
         // Stores unsubscribe functions for Firestore listeners
         const firestoreUnsubscribes = {};
-
-        // Not currently used for global state management with forms, can be removed if not needed
+        
         let inspectionsEditingDocumentId = null;
         let mirEditingDocumentId = null;
         let ncrEditingDocumentId = null;
         let submissionCurrentlyEditingRowIndex = -1;
         let correspondenceCurrentlyEditingRowId = null;
         let correspondenceCurrentEditingTableType = '';
-
+        let staffEditingEmailId = null;
+        
         let submissionCurrentFilterStatus = '';
         let outgoingCurrentStatusFilter = '';
         let outgoingCurrentKeywordFilter = '';
         let incomingCurrentStatusFilter = '';
         let incomingCurrentKeywordFilter = '';
+        
+        let customConfirmResolve;
+        let authMode = 'signIn';
 
-        let customConfirmResolve; // To hold the resolve function for the custom confirm Promise
-        let authMode = 'signIn'; // 'signIn' or 'signUp'
+        let emailModalDocData = null;
+        let emailModalDocType = '';
 
         // Mapping for discipline prefixes in document numbering
         const disciplinePrefixMap = {
             'Architectural': 'ARC', 'Civil': 'CIV', 'Structural': 'STR',
             'Electrical': 'ELE', 'Mechanical': 'MEC', 'Instrumentation': 'INS', 'Process': 'PRO',
-            'Automation': 'AUT', 'Piping': 'PIP', 'Operations': 'OPE' // Added for submission disciplines
+            'Automation': 'AUT', 'Piping': 'PIP', 'Operations': 'OPE'
         };
-
+        
         const submissionStatusOptions = [
             { value: "A", text: "A - Approved as Submitted" },
             { value: "B", text: "B - Approved with Comments" },
@@ -1496,7 +1535,9 @@
             { value: "E", text: "E - For Information" },
             { value: "X", text: "X - Cancelled" }
         ];
+
         const submissionDocumentTypeOptions = ["MAR", "REP", "MST", "DOC", "DWG", "ASB", "ITP", "CAL", "PRQ"];
+        
         const correspondenceKeywordOptions = [
             { value: "Audit", text: "Audit" },
             { value: "Civil", text: "Civil" },
@@ -1545,7 +1586,6 @@
             { value: "Workmanship", text: "Workmanship" }
         ];
 
-        // Define new status options for dropdowns
         const inspectionStatusOptions = [
             { value: "A", text: "A - Approved" },
             { value: "B", text: "B - Approved with Comments" },
@@ -1554,11 +1594,11 @@
             { value: "UR", text: "UR - Under Review" },
             { value: "X", text: "X - Cancelled" }
         ];
-
+        
         const mirApprovalStatusOptions = [
             { value: "A", text: "A - Approved" },
             { value: "B", text: "B - Approved with Comments" },
-            { value: "C", text: "C - Rejected" }, // Standard for MIR rejection
+            { value: "C", text: "C - Rejected" },
             { value: "UR", text: "UR - Under Review" },
             { value: "X", text: "X - Cancelled" }
         ];
@@ -1568,20 +1608,15 @@
             { code: 'Closed', description: 'Closed' },
             { code: 'Under Review', description: 'Under Review' },
             { code: 'Pending Correction', description: 'Pending Correction' },
-            { code: 'Check Latest Revision', description: 'Check Latest Revision' } // Added new option
+            { code: 'Check Latest Revision', description: 'Check Latest Revision' }
         ];
 
-
-        // Define app and database variables globally.
         let app;
         let db;
         let auth;
         let userId;
-        let appId; // This will be assigned from __app_id or firebaseConfig.appId
+        let appId;
 
-
-        // --- Functions defined globally for immediate access from HTML ---
-        // Tab switching logic
         function showPage(pageId) {
             document.querySelectorAll('.page-content').forEach(page => {
                 page.classList.add('hidden');
@@ -1594,39 +1629,34 @@
             document.querySelector(`.tab-buttons button[onclick="showPage('${pageId}')"]`).classList.add('active');
         }
 
-        // Function to show the loading overlay with a message
         function showLoadingOverlay(message = 'Loading...') {
             const loadingOverlay = document.getElementById('loadingOverlay');
             const loadingMessage = document.getElementById('loadingMessage');
             if (loadingOverlay && loadingMessage) {
                 loadingMessage.textContent = message;
-                loadingOverlay.classList.remove('hidden'); // Show by removing 'hidden'
+                loadingOverlay.classList.remove('hidden');
             }
         }
 
-        // Function to hide the loading overlay
         function hideLoadingOverlay() {
             const loadingOverlay = document.getElementById('loadingOverlay');
             if (loadingOverlay) {
-                loadingOverlay.classList.add('hidden'); // Hide by adding 'hidden'
+                loadingOverlay.classList.add('hidden');
             }
         }
 
-        // Populates fixed dropdowns
         function populateFixedDropdowns() {
             function populateSelect(selectId, options) {
                 const selectElement = document.getElementById(selectId);
                 if (selectElement) {
-                    // Preserve the initial "--Select--" or similar option if it exists
                     let initialHtml = selectElement.querySelector('option[value=""]') ? '<option value="">--Select--</option>' : '';
                     selectElement.innerHTML = initialHtml;
                     options.forEach(option => {
                         const opt = document.createElement('option');
-                        // Handle options that are objects (e.g., { value: "A", text: "..." })
                         if (typeof option === 'object' && option !== null) {
                             opt.value = option.value;
                             opt.textContent = option.text;
-                        } else { // Handle options that are simple strings
+                        } else {
                             opt.value = option;
                             opt.textContent = option;
                         }
@@ -1636,29 +1666,26 @@
             }
 
             populateSelect('newDocType', submissionDocumentTypeOptions);
-            populateSelect('newDiscipline', Object.keys(disciplinePrefixMap)); // Use keys for discipline select
+            populateSelect('newDiscipline', Object.keys(disciplinePrefixMap));
             populateSelect('outgoingKeywordFilter', correspondenceKeywordOptions);
             populateSelect('newOutgoingKeyword', correspondenceKeywordOptions);
             populateSelect('incomingKeywordFilter', correspondenceKeywordOptions);
             populateSelect('newIncomingKeyword', correspondenceKeywordOptions);
-
-            // Populate new dropdowns for Inspections and MIR
-            populateSelect('documentStatus', inspectionStatusOptions); // For Inspections Register
-            populateSelect('mirApprovalStatus', mirApprovalStatusOptions); // For MIR Register
-            populateSelect('ncrCurrentStatus', ncrStatuses.map(s => ({ value: s.code, text: s.description }))); // For NCR Register
-            populateSelect('discipline', Object.keys(disciplinePrefixMap)); // For Inspections Register Discipline
-            populateSelect('mirDiscipline', Object.keys(disciplinePrefixMap)); // For MIR Register Discipline
-            populateSelect('ncrDiscipline', Object.keys(disciplinePrefixMap)); // For NCR Register Discipline
+            populateSelect('documentStatus', inspectionStatusOptions);
+            populateSelect('mirApprovalStatus', mirApprovalStatusOptions);
+            populateSelect('ncrCurrentStatus', ncrStatuses.map(s => ({ value: s.code, text: s.description })));
+            populateSelect('discipline', Object.keys(disciplinePrefixMap));
+            populateSelect('mirDiscipline', Object.keys(disciplinePrefixMap));
+            populateSelect('ncrDiscipline', Object.keys(disciplinePrefixMap));
         }
 
-        // Custom Confirm Modal Handler - Returns a Promise
         function showCustomConfirm(message) {
             return new Promise((resolve) => {
                 const modal = document.getElementById('customConfirmModal');
                 const messageElement = document.getElementById('customConfirmMessage');
                 if (messageElement) messageElement.textContent = message;
                 if (modal) modal.classList.remove('hidden');
-                customConfirmResolve = resolve; // Store the resolve function
+                customConfirmResolve = resolve;
             });
         }
 
@@ -1666,11 +1693,10 @@
             document.getElementById('customConfirmModal').classList.add('hidden');
             if (customConfirmResolve) {
                 customConfirmResolve(response);
-                customConfirmResolve = null; // Clear the resolve function
+                customConfirmResolve = null;
             }
         }
 
-        // Custom Message Modal (for alerts)
         function showMessageModal(message, title = 'Notification') {
             const modal = document.getElementById('messageModal');
             const titleElement = document.getElementById('messageModalTitle');
@@ -1685,15 +1711,24 @@
             if (modal) modal.classList.add('hidden');
         }
 
-        // Forgot Password Modal functions
         function showForgotPasswordModal() {
             document.getElementById('forgotPasswordModal').classList.remove('hidden');
-            document.getElementById('resetEmail').value = document.getElementById('authEmail').value; // Pre-fill with login email
+            document.getElementById('resetEmail').value = document.getElementById('authEmail').value;
         }
 
         function hideForgotPasswordModal() {
             document.getElementById('forgotPasswordModal').classList.add('hidden');
-            document.getElementById('resetEmail').value = ''; // Clear email field
+            document.getElementById('resetEmail').value = '';
+        }
+        
+        function escapeHtml(unsafe) {
+            if (!unsafe) return '';
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
         }
 
         async function sendPasswordReset() {
@@ -1710,7 +1745,7 @@
             showLoadingOverlay('Sending password reset email...');
             try {
                 await sendPasswordResetEmail(auth, email);
-                hideForgotPasswordModal(); // Close the reset modal
+                hideForgotPasswordModal();
                 showMessageModal("A password reset link has been sent to your email address.", "Password Reset Sent");
             } catch (error) {
                 console.error("Password reset error:", error);
@@ -1730,7 +1765,143 @@
             }
         }
 
-        // Toggle table visibility
+        function showEmailModal(docData, docType) {
+            emailModalDocData = docData;
+            emailModalDocType = docType;
+
+            let docId = docData.id;
+            let docDetails;
+            let docUrl;
+
+            // Retrieve the correct document data based on the type and ID
+            switch(docType) {
+                case 'inspections':
+                    docDetails = inspectionsData.find(d => d.id === docId);
+                    if (docDetails) {
+                        document.getElementById('emailModalTitle').textContent = `Email: ${docDetails.workToBeInspected}`;
+                        docUrl = docDetails.inspectionsDocumentUrl;
+                    }
+                    break;
+                case 'mir':
+                    docDetails = mirData.find(d => d.id === docId);
+                    if (docDetails) {
+                        document.getElementById('emailModalTitle').textContent = `Email: ${docDetails.descriptionMaterial}`;
+                        docUrl = docDetails.mirDocumentUrl;
+                    }
+                    break;
+                case 'ncr':
+                    docDetails = ncrData.find(d => d.id === docId);
+                    if (docDetails) {
+                        document.getElementById('emailModalTitle').textContent = `Email: ${docDetails.ncrDescription}`;
+                        docUrl = docDetails.ncrDocumentUrl;
+                    }
+                    break;
+                case 'submissions':
+                    docDetails = submissionData.find(d => d.id === docId);
+                    if (docDetails) {
+                        document.getElementById('emailModalTitle').textContent = `Email: ${docDetails.docTitle}`;
+                        docUrl = docDetails.documentUrl;
+                    }
+                    break;
+                case 'outgoing_correspondences':
+                    docDetails = outgoingCorrespondenceData.find(d => d.id === docId);
+                    if (docDetails) {
+                        document.getElementById('emailModalTitle').textContent = `Email: ${docDetails.letterSubject}`;
+                        docUrl = docDetails.outgoingDocumentUrl;
+                    }
+                    break;
+                case 'incoming_correspondences':
+                    docDetails = incomingCorrespondenceData.find(d => d.id === docId);
+                    if (docDetails) {
+                        document.getElementById('emailModalTitle').textContent = `Email: ${docDetails.letterSubject}`;
+                        docUrl = docDetails.incomingDocumentUrl;
+                    }
+                    break;
+            }
+
+            emailModalDocData = docDetails;
+            
+            const checkboxesContainer = document.getElementById('staffEmailCheckboxes');
+            checkboxesContainer.innerHTML = '';
+            if (staffEmailsData.length === 0) {
+                checkboxesContainer.innerHTML = '<p class="text-sm text-gray-500">No staff emails saved. Please add some in the "Staff Emails" tab.</p>';
+                document.getElementById('sendEmailButton').disabled = true;
+            } else {
+                staffEmailsData.forEach(staff => {
+                    const label = document.createElement('label');
+                    label.innerHTML = `
+                        <input type="checkbox" value="${staff.email}" class="form-checkbox h-4 w-4 text-blue-600">
+                        <span class="ml-2 text-gray-700">${staff.name} (${staff.email})</span>
+                    `;
+                    checkboxesContainer.appendChild(label);
+                });
+                document.getElementById('sendEmailButton').disabled = false;
+            }
+
+            document.getElementById('emailModal').classList.remove('hidden');
+        }
+
+        function hideEmailModal() {
+            document.getElementById('emailModal').classList.add('hidden');
+            emailModalDocData = null;
+            emailModalDocType = '';
+        }
+
+        function sendEmailViaOutlook() {
+            const selectedEmails = Array.from(document.querySelectorAll('#staffEmailCheckboxes input[type="checkbox"]:checked')).map(cb => cb.value);
+            if (selectedEmails.length === 0) {
+                showMessageModal("Please select at least one recipient.", "Missing Recipient");
+                return;
+            }
+
+            let subject = "Document Review Request";
+            let body = "Please review the document here: [link]";
+            let docUrl = "[link]";
+            let docInfo = "Document";
+
+            if (emailModalDocData) {
+                if (emailModalDocType === 'inspections') {
+                    subject = `Review Request: Inspection ${emailModalDocData.insNumber}`;
+                    docInfo = `Inspection: ${emailModalDocData.insNumber} - ${emailModalDocData.workToBeInspected}`;
+                    docUrl = emailModalDocData.inspectionsDocumentUrl || docUrl;
+                } else if (emailModalDocType === 'mir') {
+                    subject = `Review Request: MIR ${emailModalDocData.mirNumber}`;
+                    docInfo = `Material Inspection Request: ${emailModalDocData.mirNumber} - ${emailModalDocData.descriptionMaterial}`;
+                    docUrl = emailModalDocData.mirDocumentUrl || docUrl;
+                } else if (emailModalDocType === 'ncr') {
+                    subject = `Review Request: NCR ${emailModalDocData.ncrRefNumber}`;
+                    docInfo = `Non-Conformance Report: ${emailModalDocData.ncrRefNumber} - ${emailModalDocData.ncrDescription}`;
+                    docUrl = emailModalDocData.ncrDocumentUrl || docUrl;
+                } else if (emailModalDocType === 'submissions') {
+                    subject = `Review Request: Submission ${emailModalDocData.docNumber} - ${emailModalDocData.docTitle}`;
+                    docInfo = `Submission Document: ${emailModalDocData.docNumber}`;
+                    docUrl = emailModalDocData.documentUrl || docUrl;
+                } else if (emailModalDocType === 'outgoing_correspondences') {
+                    subject = `Review Request: Outgoing Correspondence ${emailModalDocData.letterRef}`;
+                    docInfo = `Outgoing Correspondence: ${emailModalDocData.letterRef}`;
+                    docUrl = emailModalDocData.outgoingDocumentUrl || docUrl;
+                } else if (emailModalDocType === 'incoming_correspondences') {
+                    subject = `Review Request: Incoming Correspondence ${emailModalDocData.incomingRef}`;
+                    docInfo = `Incoming Correspondence: ${emailModalDocData.incomingRef}`;
+                    docUrl = emailModalDocData.incomingDocumentUrl || docUrl;
+                }
+            }
+            body = `Please review the following document:\n\n${docInfo}\n\nLink: ${docUrl}\n\nBest regards,\nSMARTRACK`;
+            
+            // Special handling for UNC paths. The file:// protocol is often required for these.
+            let fullDocUrl = docUrl;
+            if (docUrl.startsWith('\\\\')) {
+                // Encode the path for use in a mailto link.
+                // The `file:` protocol may not work in all browsers/clients, but it's the standard for this.
+                fullDocUrl = `file:///${docUrl.replace(/\\/g, '/')}`;
+            }
+
+            const mailtoLink = `mailto:${selectedEmails.join(';')}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body.replace('[link]', fullDocUrl))}`;
+            window.open(mailtoLink, '_blank');
+
+            hideEmailModal();
+        }
+
         function toggleTableVisibility(tableContainerId, buttonId) {
             const tableContainer = document.getElementById(tableContainerId);
             const button = document.getElementById(buttonId);
@@ -1743,7 +1914,6 @@
             }
         }
 
-        // Function to switch between Outgoing/Incoming correspondence forms and tables
         function showCorrespondenceSection(sectionId) {
             document.querySelectorAll('.correspondence-section').forEach(section => {
                 section.classList.add('hidden');
@@ -1756,10 +1926,6 @@
             document.querySelector(`#correspondencePage .tab-buttons button[onclick="showCorrespondenceSection('${sectionId}')"]`).classList.add('active');
         }
 
-
-        // --- UI State Management (Enable/Disable Firestore-related elements) ---
-        // This function targets specific elements for disabling interactivity.
-        // It now applies to elements within #appContainer that are meant to be controlled.
         function disableFirestoreUI() {
             const appContentElements = document.querySelectorAll('#appContainer input, #appContainer select, #appContainer textarea, #appContainer button, #appContainer .tab-button');
             appContentElements.forEach(element => {
@@ -1776,9 +1942,6 @@
             });
         }
 
-        // --- Firebase Initialization and Authentication ---
-
-        // Function to show/hide the main app and authentication container
         function toggleAppUI(isAuthenticated) {
             const authContainer = document.getElementById('authContainer');
             const appContainer = document.getElementById('appContainer');
@@ -1786,20 +1949,18 @@
             if (isAuthenticated) {
                 if (authContainer) authContainer.classList.add('hidden');
                 if (appContainer) appContainer.classList.remove('hidden');
-                enableFirestoreUI(); // Enable main app UI when authenticated
+                enableFirestoreUI();
             } else {
                 if (authContainer) authContainer.classList.remove('hidden');
                 if (appContainer) appContainer.classList.add('hidden');
-                // We don't disable authContainer inputs here; they should always be active
-                disableFirestoreUI(); // Disable main app UI when not authenticated
+                disableFirestoreUI();
             }
         }
 
-        // Toggle between Sign In and Sign Up modes
         function toggleAuthMode() {
             const authTitle = document.getElementById('authTitle');
             const authSubmitButton = document.getElementById('authSubmitButton');
-            const toggleAuthMessage = document.querySelector('.toggle-mode-link'); // Select the paragraph element
+            const toggleAuthMessage = document.querySelector('.toggle-mode-link');
 
             if (authMode === 'signIn') {
                 authMode = 'signUp';
@@ -1814,12 +1975,10 @@
             }
         }
 
-        // Handle Sign In / Sign Up submission
         async function handleAuthSubmit() {
             const email = document.getElementById('authEmail').value;
             const password = document.getElementById('authPassword').value;
 
-            // Ensure auth object is initialized
             if (!auth) {
                 showMessageModal("Firebase Authentication is not ready. Please wait a moment and try again.", "Initialization Error");
                 return;
@@ -1837,13 +1996,11 @@
             }
         }
 
-        // Handle Email/Password Sign Up
         async function handleSignUp(email, password) {
             showLoadingOverlay('Signing up...');
             try {
                 await createUserWithEmailAndPassword(auth, email, password);
                 showMessageModal("Account created successfully! You are now signed in.", "Success");
-                // onAuthStateChanged will handle UI update
             } catch (error) {
                 console.error("Sign Up Error:", error);
                 let errorMessage = "Failed to create account.";
@@ -1862,13 +2019,11 @@
             }
         }
 
-        // Handle Email/Password Sign In
         async function handleSignIn(email, password) {
             showLoadingOverlay('Signing in...');
             try {
                 await signInWithEmailAndPassword(auth, email, password);
                 showMessageModal("Signed in successfully!", "Success");
-                // onAuthStateChanged will handle UI update
             } catch (error) {
                 console.error("Sign In Error:", error);
                 let errorMessage = "Failed to sign in.";
@@ -1885,16 +2040,13 @@
             }
         }
 
-        // Handle Sign Out
         async function handleSignOut() {
             showLoadingOverlay('Signing out...');
             try {
                 await signOut(auth);
-                // Clear the auth form fields after successful sign-out
                 document.getElementById('authEmail').value = '';
                 document.getElementById('authPassword').value = '';
                 showMessageModal("Signed out successfully. You can sign in again or continue anonymously.", "Signed Out");
-                // onAuthStateChanged will handle UI update
             } catch (error) {
                 console.error("Sign Out Error:", error);
                 showMessageModal("Failed to sign out: " + error.message, "Error");
@@ -1903,17 +2055,14 @@
             }
         }
 
-        // Anonymous Sign In (Removed from UI, keeping function for completeness if needed elsewhere)
         async function signInAnonymouslyUser() {
             showLoadingOverlay('Signing in anonymously...');
-            // Ensure auth object is initialized
             if (!auth) {
                 showMessageModal("Firebase Authentication is not ready. Please wait a moment and try again.", "Initialization Error");
                 return;
             }
             try {
                 await signInAnonymously(auth);
-                // onAuthStateChanged will handle UI update
             } catch (error) {
                 console.error("Anonymous Sign In Error:", error);
                 let errorMessage = "Failed to sign in anonymously. ";
@@ -1938,16 +2087,13 @@
             const displayUserIdSpan = document.getElementById('displayUserId');
             const appIdStatusSpan = document.getElementById('appIdStatus');
             const firebaseConfigStatusSpan = document.getElementById('firebaseConfigStatus');
-
-            // Set initial statuses
             if (displayUserIdSpan) displayUserIdSpan.textContent = 'Authenticating...';
             if (appIdStatusSpan) appIdStatusSpan.textContent = 'Checking...';
             if (firebaseConfigStatusSpan) firebaseConfigStatusSpan.textContent = 'Checking...';
 
             let firebaseConfigParsed;
-            let configSource = 'Hardcoded (Fallback)'; // Default source
+            let configSource = 'Hardcoded (Fallback)';
 
-            // Use the __firebase_config from the Canvas environment, or fallback to the hardcoded config for local testing
             if (typeof __firebase_config !== 'undefined' && __firebase_config) {
                 try {
                     firebaseConfigParsed = JSON.parse(__firebase_config);
@@ -1955,37 +2101,32 @@
                 } catch (e) {
                     console.error("Error parsing __firebase_config from Canvas environment:", e);
                     firebaseConfigParsed = {
-                        apiKey: "AIzaSyA8oy4qdXi8Us_wPvAVMv0pR46qbh2B3LM", // <-- REPLACE WITH YOUR ACTUAL API KEY
-                        authDomain: "document-control-register.firebaseapp.com", // <-- REPLACE WITH YOUR ACTUAL AUTH DOMAIN
-                        projectId: "document-control-register", // <-- REPLACE WITH YOUR ACTUAL PROJECT ID
-                        storageBucket: "document-control-register.firebasestorage.app", // <-- REPLACE WITH YOUR ACTUAL STORAGE BUCKET
-                        messagingSenderId: "1073131236663", // <-- REPLACE WITH YOUR ACTUAL MESSAGING SENDER ID
-                        appId: "1:1073131236663:web:0c72a5ab59e23e30c3feb2", // <-- REPLACE WITH YOUR ACTUAL APP ID
-                        measurementId: "G-SGJPX3X791" // <-- REPLACE WITH YOUR ACTUAL MEASUREMENT ID
+                        apiKey: "AIzaSyA8oy4qdXi8Us_wPvAVMv0pR46qbh2B3LM",
+                        authDomain: "document-control-register.firebaseapp.com",
+                        projectId: "document-control-register",
+                        storageBucket: "document-control-register.firebasestorage.app",
+                        messagingSenderId: "1073131236663",
+                        appId: "1:1073131236663:web:0c72a5ab59e23e30c3feb2",
+                        measurementId: "G-SGJPX3X791"
                     };
                     console.warn("Falling back to hardcoded firebaseConfig due to Canvas config parsing error. IMPORTANT: Please replace this with your actual Firebase project config from the Firebase Console if you encounter authentication issues.");
                 }
             } else {
                 console.warn("__firebase_config is undefined or empty. Falling back to hardcoded firebaseConfig for local testing. IMPORTANT: Please replace this with your actual Firebase project config from the Firebase Console if you encounter authentication issues.");
                 firebaseConfigParsed = {
-                    apiKey: "AIzaSyA8oy4qdXi8Us_wPvAVMv0pR46qbh2B3LM", // <-- REPLACE WITH YOUR ACTUAL API KEY
-                    authDomain: "document-control-register.firebaseapp.com", // <-- REPLACE WITH YOUR ACTUAL AUTH DOMAIN
-                    projectId: "document-control-register", // <-- REPLACE WITH YOUR ACTUAL PROJECT ID
-                    storageBucket: "document-control-register.firebasestorage.app", // <-- REPLACE WITH YOUR ACTUAL STORAGE BUCKET
-                    messagingSenderId: "1073131236663", // <-- REPLACE WITH YOUR ACTUAL MESSAGING SENDER ID
-                    appId: "1:1073131236663:web:0c72a5ab59e23e30c3feb2", // <-- REPLACE WITH YOUR ACTUAL APP ID
-                    measurementId: "G-SGJPX3X791" // <-- REPLACE WITH YOUR ACTUAL MEASUREMENT ID
+                    apiKey: "AIzaSyA8oy4qdXi8Us_wPvAVMv0pR46qbh2B3LM",
+                    authDomain: "document-control-register.firebaseapp.com",
+                    projectId: "document-control-register",
+                    storageBucket: "document-control-register.firebasestorage.app",
+                    messagingSenderId: "1073131236663",
+                    appId: "1:1073131236663:web:0c72a5ab59e23e30c3feb2",
+                    measurementId: "G-SGJPX3X791"
                 };
             }
 
-            // Log the Firebase config being used for verification
             console.log("Firebase config being used:", firebaseConfigParsed);
-
-            // The __app_id variable is provided by the Canvas environment for the Firestore path.
-            // This is distinct from the appId property within the firebaseConfig object itself.
             appId = typeof __app_id !== 'undefined' ? __app_id : firebaseConfigParsed.appId;
 
-            // Update App ID Status
             if (appId && appId !== 'default-app-id' && !appId.includes('YOUR_APP_ID')) {
                 if (appIdStatusSpan) {
                     appIdStatusSpan.textContent = `Set: ${appId}`;
@@ -2004,12 +2145,11 @@
 
             if (firebaseConfigStatusSpan) {
                 firebaseConfigStatusSpan.textContent = `Using: ${configSource}`;
-                firebaseConfigStatusSpan.classList.add('ok'); // Assume OK unless initialization fails
+                firebaseConfigStatusSpan.classList.add('ok');
                 firebaseConfigStatusSpan.classList.remove('error');
             }
 
             try {
-                // Initialize Firebase app and services using the parsed config
                 app = initializeApp(firebaseConfigParsed);
                 auth = getAuth(app);
                 db = getFirestore(app);
@@ -2021,34 +2161,26 @@
                     firebaseConfigStatusSpan.classList.remove('error');
                 }
 
-                // Set up the onAuthStateChanged listener first
                 onAuthStateChanged(auth, async (user) => {
                     if (user) {
-                        // User is signed in.
                         userId = user.uid;
                         console.log(`[Auth State] User signed in with UID: ${userId} (Auth type: ${user.isAnonymous ? 'Anonymous' : 'Email/Password'})`);
                         if (displayUserIdSpan) displayUserIdSpan.textContent = userId;
                         console.log(`Current userId: ${userId}, Current appId: ${appId}`);
-                        toggleAppUI(true); // Show main app UI and enable its interactive elements
+                        toggleAppUI(true);
                         await loadAllDataListeners();
-                        // Provide more specific guidance about anonymous sessions and data persistence
                         let persistenceMessage = "Welcome! Your data is being loaded.";
                         if (user.isAnonymous) {
                             persistenceMessage += " Please note that data saved under an anonymous session might be lost if you clear 'All Site Data' or 'Cookies and other site data' in your browser.";
-                            // For anonymous users, prompt them to consider signing up
                             showMessageModal(persistenceMessage + " For permanent data, please sign up with email and password.", "Welcome Back (Anonymous)");
                         } else {
                             showMessageModal(persistenceMessage, "Welcome Back!");
                         }
                     } else {
-                        // User is signed out or not yet signed in.
                         console.log("[Auth State] No user found or signed out. Displaying authentication options.");
-                        toggleAppUI(false); // Hide main app UI, show auth UI and disable main app interactive elements
+                        toggleAppUI(false);
                         if (displayUserIdSpan) displayUserIdSpan.textContent = 'Not Authenticated';
-                        // Detach all Firestore listeners when no user is authenticated
                         detachAllFirestoreListeners();
-                        // The auth inputs are not disabled by disableFirestoreUI()
-                        // Attempt to sign in with custom token only if provided by Canvas
                         const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
                         if (initialAuthToken) {
                             console.log("Attempting sign-in with custom token...");
@@ -2060,9 +2192,8 @@
                             }
                         }
                     }
-                    hideLoadingOverlay(); // Hide overlay after the auth state is processed
+                    hideLoadingOverlay();
                 });
-
             } catch (error) {
                 console.error("Critical error during Firebase app or service initialization:", error);
                 if (displayUserIdSpan) displayUserIdSpan.textContent = 'Error: Firebase Init Failed';
@@ -2076,56 +2207,40 @@
                     'and ensure your Firebase setup is correct. Data persistence will not work.',
                     'Critical Error'
                 );
-                disableFirestoreUI(); // Ensure app UI is disabled on critical init failure
-                hideLoadingOverlay(); // Ensure overlay is hidden even on critical init failure
+                disableFirestoreUI();
+                hideLoadingOverlay();
             }
         }
 
-        // Function to detach all active Firestore real-time listeners
         function detachAllFirestoreListeners() {
             for (const collectionName in firestoreUnsubscribes) {
                 if (typeof firestoreUnsubscribes[collectionName] === 'function') {
-                    firestoreUnsubscribes[collectionName](); // Call the unsubscribe function
+                    firestoreUnsubscribes[collectionName]();
                     console.log(`[Firestore] Detached listener for ${collectionName}`);
                 }
             }
-            // Optionally, clear the data arrays if they should be empty on sign-out
             inspectionsData = [];
             mirData = [];
             ncrData = [];
             submissionData = [];
             outgoingCorrespondenceData = [];
             incomingCorrespondenceData = [];
-
-            // Re-render tables to show empty state
+            staffEmailsData = [];
             performInspectionsSearch();
             performMirSearch();
             performNcrSearch();
             searchSubmissionDocuments();
             searchOutgoingCorrespondences();
             searchIncomingCorrespondences();
+            renderStaffEmails();
         }
 
-        // --- Utility Functions ---
-
-        /**
-         * Helper to compare revisions (e.g., "0" < "1", "A" < "B", "1" < "1A").
-         * This function attempts numerical comparison first, then falls back to string comparison
-         * with a locale-aware, numeric-sensitive approach.
-         * Returns:
-         * -1 if rev1 is less than rev2
-         * 0 if rev1 is equal to rev2
-         * 1 if rev1 is greater than rev2
-         */
         function compareRevisions(rev1, rev2) {
-            // Treat empty/null revisions as the earliest possible
             if (!rev1 && !rev2) return 0;
-            if (!rev1) return -1; // rev1 is earlier
-            if (!rev2) return 1;  // rev2 is earlier
+            if (!rev1) return -1;
+            if (!rev2) return 1;
 
             if (rev1 === rev2) return 0;
-
-            // Try numerical comparison first if both are purely numerical
             const num1 = parseInt(rev1, 10);
             const num2 = parseInt(rev2, 10);
 
@@ -2133,47 +2248,35 @@
                 if (num1 !== num2) return num1 - num2;
             }
 
-            // Fallback to localeCompare with numeric and sensitivity options
             return rev1.localeCompare(rev2, undefined, { numeric: true, sensitivity: 'base' });
         }
 
-        /**
-         * Calculates the next logical revision based on the current one.
-         * Handles numerical (e.g., "0" -> "1", "9" -> "10") and alphabetical (e.g., "A" -> "B", "Z" -> "AA") increments.
-         * Specifically for NCR Part B, starts with '0' if no prior revision.
-         * @param {string} currentRev The current revision string (e.g., "0", "1", "A", "Z", "AA"). Can be empty/null.
-         * @returns {string} The next logical revision.
-         */
         function getNextRevision(currentRev) {
             if (!currentRev) {
-                return '0'; // Default starting revision for Part B
+                return '0';
             }
 
-            // Try numerical increment
             const numRev = parseInt(currentRev, 10);
-            if (!isNaN(numRev) && String(numRev) === currentRev) { // Ensure it's purely numerical
+            if (!isNaN(numRev) && String(numRev) === currentRev) {
                 return String(numRev + 1);
             }
 
-            // Try alphabetical increment (A -> B, Z -> AA)
             const lastChar = currentRev.slice(-1);
             const prefix = currentRev.slice(0, -1);
 
             if (lastChar.match(/[A-Z]/i)) {
                 const charCode = lastChar.toUpperCase().charCodeAt(0);
-                if (charCode === 90) { // 'Z'
-                    // Recurse for the prefix and append 'A' for carry-over
+                if (charCode === 90) {
                     if (prefix) {
                         return getNextRevision(prefix) + 'A';
                     } else {
-                        return 'AA'; // Z -> AA
+                        return 'AA';
                     }
                 } else {
                     return prefix + String.fromCharCode(charCode + 1);
                 }
             }
 
-            // Fallback for mixed or unhandled formats (e.g., "1A" -> "1B")
             const mixedMatch = currentRev.match(/^(\d+)([A-Z]+)$/i);
             if (mixedMatch) {
                 const numPart = mixedMatch[1];
@@ -2188,7 +2291,7 @@
                 }
             }
 
-            return currentRev + '-next'; // Fallback if no clear pattern
+            return currentRev + '-next';
         }
 
 
@@ -2209,7 +2312,6 @@
                         const parts = String(data[numberField]).split('-');
                         if (parts.length > 0) {
                             const lastPart = parts[parts.length - 1];
-                            // Extract numeric part from revision, e.g., "0001" from "CP837-INS-CIV-0001"
                             const num = parseInt(lastPart, 10);
                             if (!isNaN(num) && num > maxNumber) {
                                 maxNumber = num;
@@ -2225,11 +2327,9 @@
             const nextNumber = maxNumber + 1;
             const formattedNumber = String(nextNumber).padStart(4, '0');
             if (discipline && disciplinePrefixMap[discipline]) {
-                // Example: CP837-INS-CIV-0001
                 return `${prefix}-${disciplinePrefixMap[discipline]}-${formattedNumber}`;
             }
-            // Fallback for cases where discipline is not selected or not in map
-            if (prefix.includes('-')) { // If prefix already has discipline part like CP837-MIR
+            if (prefix.includes('-')) {
                 return `${prefix.substring(0, prefix.lastIndexOf('-')+1)}${formattedNumber}`;
             }
             return `${prefix}-${formattedNumber}`;
@@ -2238,17 +2338,15 @@
 
         function calculateDaysOverdue(submittedDate, respondedDate) {
             if (!submittedDate) return '';
-
             const subDate = new Date(submittedDate);
             const dueDate = new Date(subDate);
-            dueDate.setDate(subDate.getDate() + 14); // GEC due date is 14 days after submission
+            dueDate.setDate(subDate.getDate() + 14);
 
             const today = new Date();
             today.setHours(0, 0, 0, 0);
 
             let actualResponseDate = respondedDate ? new Date(respondedDate) : today;
             actualResponseDate.setHours(0, 0, 0, 0);
-
             if (actualResponseDate > dueDate) {
                 const diffTime = Math.abs(actualResponseDate.getTime() - dueDate.getTime());
                 const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
@@ -2257,117 +2355,75 @@
             return 0;
         }
 
-        /**
-         * Formats a date string into MM/DD/YYYY format for display in tables and CSV.
-         * Handles ISO (YYYY-MM-DD), MM/DD/YYYY, and DD-MM-YYYY inputs.
-         * Returns an empty string if the date is invalid or null.
-         * @param {string} dateString The date string to format.
-         * @returns {string} The formatted date string (MM/DD/YYYY) or an empty string.
-         */
         function formatDateForDisplay(dateString) {
             if (!dateString) {
                 return '';
             }
 
             let date;
-            // Try parsing as ISO format (YYYY-MM-DD) first, as it's common from input fields or storage
             if (dateString.match(/^\d{4}-\d{2}-\d{2}$/)) {
-                date = new Date(dateString + 'T00:00:00'); // Add T00:00:00 to avoid timezone issues
-            }
-            // Try parsing as DD-MM-YYYY
-            else if (dateString.match(/^\d{2}-\d{2}-\d{4}$/)) {
+                date = new Date(dateString + 'T00:00:00');
+            } else if (dateString.match(/^\d{2}-\d{2}-\d{4}$/)) {
                 const parts = dateString.split('-');
-                // Note: Month is 0-indexed in JavaScript Date object
                 date = new Date(parseInt(parts[2]), parseInt(parts[1]) - 1, parseInt(parts[0]));
-            }
-            // Try parsing as MM/DD/YYYY
-            else if (dateString.match(/^\d{1,2}\/\d{1,2}\/\d{4}$/)) {
+            } else if (dateString.match(/^\d{1,2}\/\d{1,2}\/\d{4}$/)) {
                 date = new Date(dateString);
-            }
-            // Fallback for any other string format Date constructor might handle
-            else {
+            } else {
                 date = new Date(dateString);
             }
 
-            // Check if the date is valid after parsing
             if (isNaN(date.getTime())) {
                 console.warn("Invalid date string encountered in formatDateForDisplay:", dateString);
-                return ''; // Return empty string for invalid dates
+                return '';
             }
 
             const day = String(date.getDate()).padStart(2, '0');
-            const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed
+            const month = String(date.getMonth() + 1).padStart(2, '0');
             const year = date.getFullYear();
-
-            // Ensure MM/DD/YYYY format
             return `${month}/${day}/${year}`;
         }
 
-        /**
-         * Formats a date string into YYYY-MM-DD format for HTML date input fields.
-         * Handles ISO (YYYY-MM-DD), MM/DD/YYYY, and DD-MM-YYYY inputs.
-         * Returns an empty string if the date is invalid or null.
-         * @param {string} dateString The date string to format.
-         * @returns {string} The formatted date string (YYYY-MM-DD) or an empty string.
-         */
         function formatDateForInput(dateString) {
             if (!dateString) {
                 return '';
             }
 
             let date;
-            // Try parsing as ISO format (YYYY-MM-DD) first, as it's common from storage
             if (dateString.match(/^\d{4}-\d{2}-\d{2}$/)) {
-                date = new Date(dateString + 'T00:00:00'); // Add T00:00:00 to avoid timezone issues
-            }
-            // Try parsing as DD-MM-YYYY
-            else if (dateString.match(/^\d{2}-\d{2}-\d{4}$/)) {
+                date = new Date(dateString + 'T00:00:00');
+            } else if (dateString.match(/^\d{2}-\d{2}-\d{4}$/)) {
                 const parts = dateString.split('-');
                 date = new Date(parseInt(parts[2]), parseInt(parts[1]) - 1, parseInt(parts[0]));
-            }
-            // Try parsing as MM/DD/YYYY
-            else if (dateString.match(/^\d{1,2}\/\d{1,2}\/\d{4}$/)) {
+            } else if (dateString.match(/^\d{1,2}\/\d{1,2}\/\d{4}$/)) {
                 date = new Date(dateString);
-            }
-            // Fallback for any other string format Date constructor might handle
-            else {
+            } else {
                 date = new Date(dateString);
             }
 
-            // Check if the date is valid after parsing
             if (isNaN(date.getTime())) {
                 console.warn("Invalid date string encountered in formatDateForInput:", dateString);
-                return ''; // Return empty string for invalid dates
+                return '';
             }
 
             const day = String(date.getDate()).padStart(2, '0');
-            const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed
+            const month = String(date.getMonth() + 1).padStart(2, '0');
             const year = date.getFullYear();
-
-            // Return YYYY-MM-DD format
             return `${year}-${month}-${day}`;
         }
 
-
-        // calculateRevStatus needs to be reframed as it now calculates the "Latest, Approved" style summary,
-        // while `revStatus` field itself will hold the "Latest"/"Superseded" lifecycle status.
-        // Let's create a new function `getApprovalSummaryText` for the text summary.
         function getApprovalSummaryText(statusCode) {
             const statusMap = {
                 "A": "Approved",
                 "B": "Approved with Comments",
                 "C": "Revised & Resubmit",
-                "D": "Returned", // Inspections, Submissions
+                "D": "Returned",
                 "UR": "Under Review",
-                "E": "For Information", // Submissions
+                "E": "For Information",
                 "X": "Cancelled",
-                // For MIR specific statuses
                 "Hold": "Hold"
             };
             return statusMap[statusCode] || statusCode || '';
         }
-
-        // --- Data Management (Firestore) ---
 
         async function saveDocument(collectionName, docId, data) {
             if (!db || !userId || typeof appId === 'undefined' || appId === 'default-app-id') {
@@ -2378,11 +2434,10 @@
             showLoadingOverlay('Saving document...');
             const docRefPath = `/artifacts/${appId}/users/${userId}/${collectionName}`;
             console.log(`[Firestore] Attempting to save document to path: ${docRefPath} with ID: ${docId}`);
-
             try {
                 const savePromise = setDoc(doc(db, docRefPath, docId), data, { merge: true });
                 const timeoutPromise = new Promise((_, reject) =>
-                    setTimeout(() => reject(new Error('Firestore save operation timed out')), 15000) // 15 seconds
+                    setTimeout(() => reject(new Error('Firestore save operation timed out')), 15000)
                 );
                 await Promise.race([savePromise, timeoutPromise]);
 
@@ -2410,9 +2465,9 @@
             try {
                 const addPromise = addDoc(collection(db, colRefPath), data);
                 const timeoutPromise = new Promise((_, reject) =>
-                    setTimeout(() => reject(new Error('Firestore add operation timed out')), 15000) // 15 seconds
+                    setTimeout(() => reject(new Error('Firestore add operation timed out')), 15000)
                 );
-                const docRef = await Promise.race([addPromise, timeoutPromise]);
+                await Promise.race([addPromise, timeoutPromise]);
 
                 console.log(`[Firestore] New document added to ${collectionName} with ID: ${docRef.id}`);
                 return { success: true, id: docRef.id };
@@ -2425,9 +2480,7 @@
             }
         }
 
-        // CORRECTED: The `deleteDocument` function
         async function deleteDocument(collectionName, docId) {
-            // Use the custom confirmation modal
             const confirmDelete = await showCustomConfirm('Are you sure you want to delete this document? This action cannot be undone.');
             if (!confirmDelete) {
                 showMessageModal("Document deletion cancelled.", "Cancelled");
@@ -2446,7 +2499,7 @@
 
                 const deletePromise = deleteDoc(doc(db, docPath, docId));
                 const timeoutPromise = new Promise((_, reject) =>
-                    setTimeout(() => reject(new Error('Firestore delete operation timed out')), 15000) // 15 seconds
+                    setTimeout(() => reject(new Error('Firestore delete operation timed out')), 15000)
                 );
                 await Promise.race([deletePromise, timeoutPromise]);
 
@@ -2471,22 +2524,20 @@
             const colRefPath = `/artifacts/${appId}/users/${userId}/${collectionName}`;
             const colRef = collection(db, colRefPath);
             console.log(`[Firestore] Setting up real-time listener for: ${colRefPath}`);
-
-            // Store the unsubscribe function
             firestoreUnsubscribes[collectionName] = onSnapshot(colRef, (snapshot) => {
                 let documents = [];
                 snapshot.forEach(docSnap => {
                     documents.push({ id: docSnap.id, ...docSnap.data() });
                 });
 
-                // Update the global data array and re-render the corresponding table
                 switch(collectionName) {
                     case 'inspections': inspectionsData = documents; performInspectionsSearch(); break;
                     case 'mir': mirData = documents; performMirSearch(); break;
-                    case 'ncr': ncrData = documents; performNcrSearch(); break; // NCR logic updated here
+                    case 'ncr': ncrData = documents; performNcrSearch(); break;
                     case 'submissions': submissionData = documents; searchSubmissionDocuments(); break;
                     case 'outgoing_correspondences': outgoingCorrespondenceData = documents; searchOutgoingCorrespondences(); break;
                     case 'incoming_correspondences': incomingCorrespondenceData = documents; searchIncomingCorrespondences(); break;
+                    case 'staff_emails': staffEmailsData = documents; renderStaffEmails(); break;
                 }
 
                 console.log(`[Firestore] Loaded ${documents.length} documents for ${collectionName}`);
@@ -2509,7 +2560,6 @@
                 revision: document.getElementById('revision').value,
                 discipline: document.getElementById('discipline').value,
                 location: document.getElementById('location').value,
-                // Removed submissionType
                 workToBeInspected: document.getElementById('workToBeInspected').value,
                 inspectionDate: document.getElementById('inspectionDate').value,
                 inspectionTime: document.getElementById('inspectionTime').value,
@@ -2518,14 +2568,11 @@
                 approvedMethodStatementRef: document.getElementById('approvedMethodStatementRef').value,
                 qcsReference: document.getElementById('qcsReference').value,
                 commentReceivedDate: document.getElementById('commentReceivedDate').value,
-                // These are the selected status from the dropdown
                 documentStatus: document.getElementById('documentStatus').value,
-                // This is the lifecycle status: 'Latest' or 'Superseded'
-                revStatus: '', // Will be determined by logic below
-                // This is the approval text for display, not directly stored as 'revStatus'
-                approvalSummaryStatus: getApprovalSummaryText(document.getElementById('documentStatus').value)
+                revStatus: '',
+                approvalSummaryStatus: getApprovalSummaryText(document.getElementById('documentStatus').value),
+                inspectionsDocumentUrl: document.getElementById('inspectionsDocumentUrl').value,
             };
-
             if (!data.date || !data.insNumber || !data.revision || !data.discipline || !data.documentStatus) {
                 showMessageModal("Please fill in all required fields: Date, INS Number, Revision, Discipline, and Document Status.", "Missing Information");
                 console.warn("[Inspections] Required fields missing. Operation aborted.");
@@ -2535,44 +2582,33 @@
             try {
                 let result;
                 if (docId) {
-                    // If editing an existing document, just update its content.
-                    // Its lifecycle status ('Latest'/'Superseded') should not change here.
                     console.log(`[Inspections] Updating existing document with ID: ${docId}`, data);
-                    // Retain the existing revStatus (lifecycle status)
                     const currentDoc = inspectionsData.find(d => d.id === docId);
                     if (currentDoc) {
                         data.revStatus = currentDoc.revStatus;
                     }
                     result = await saveDocument('inspections', docId, data);
                 } else {
-                    // Adding a new document or a new revision
                     console.log("[Inspections] Adding new document or new revision:", data);
-
-                    // Find any existing "Latest" inspection for this INS Number and Discipline
                     const existingLatestInspections = inspectionsData.filter(d =>
                         d.insNumber === data.insNumber &&
                         d.discipline === data.discipline &&
-                        d.revStatus === 'Latest' // Only consider documents explicitly marked 'Latest'
+                        d.revStatus === 'Latest'
                     );
-
                     let previousLatestDoc = null;
                     if (existingLatestInspections.length > 0) {
-                        // Sort by revision to ensure we get the absolute latest if multiple 'Latest' somehow exist
                         existingLatestInspections.sort((a, b) => compareRevisions(a.revision, b.revision));
                         previousLatestDoc = existingLatestInspections[existingLatestInspections.length - 1];
                     }
 
                     if (previousLatestDoc && compareRevisions(data.revision, previousLatestDoc.revision) > 0) {
-                        // If a previous 'Latest' exists and the new revision is indeed higher, supersede the old one.
                         console.log(`[Inspections] Marking previous latest inspection (${previousLatestDoc.id}) as Superseded.`);
                         await saveDocument('inspections', previousLatestDoc.id, { revStatus: 'Superseded' });
                     } else if (previousLatestDoc && compareRevisions(data.revision, previousLatestDoc.revision) < 0) {
-                        // Handle case where new revision is older than existing latest
                         showMessageModal("The revision you are adding is older than an existing 'Latest' revision for this INS Number and Discipline. Please check the revision number.", "Warning: Older Revision");
-                        data.revStatus = 'Superseded'; // Treat older revisions as superseded by default
+                        data.revStatus = 'Superseded';
                     }
 
-                    // The newly added document is always the new 'Latest' or the first document in its series.
                     data.revStatus = 'Latest';
 
                     result = await addDocument('inspections', data);
@@ -2596,8 +2632,8 @@
             document.getElementById('inspectionForm').reset();
             document.getElementById('inspectionForm').removeAttribute('data-doc-id');
             document.getElementById('addUpdateButton').textContent = 'Add Document';
-            // Explicitly clear the display field that now holds lifecycle status
             document.getElementById('revStatus').value = '';
+            document.getElementById('inspectionsDocumentUrl').value = '';
             updateNextInsNumber();
             console.log("[Inspections] Form cleared.");
         }
@@ -2613,13 +2649,11 @@
                 const docSnap = await getDoc(doc(db, `/artifacts/${appId}/users/${userId}/inspections`, docId));
                 if (docSnap.exists()) {
                     const data = docSnap.data();
-                    // Populate date input fields with YYYY-MM-DD format
                     document.getElementById('date').value = formatDateForInput(data.date) || '';
                     document.getElementById('insNumber').value = data.insNumber || '';
                     document.getElementById('revision').value = data.revision || '';
                     document.getElementById('discipline').value = data.discipline || '';
                     document.getElementById('location').value = data.location || '';
-                    // Removed submissionType from edit form
                     document.getElementById('workToBeInspected').value = data.workToBeInspected || '';
                     document.getElementById('inspectionDate').value = formatDateForInput(data.inspectionDate) || '';
                     document.getElementById('inspectionTime').value = data.inspectionTime || '';
@@ -2628,10 +2662,9 @@
                     document.getElementById('approvedMethodStatementRef').value = data.approvedMethodStatementRef || '';
                     document.getElementById('qcsReference').value = data.qcsReference || '';
                     document.getElementById('commentReceivedDate').value = formatDateForInput(data.commentReceivedDate) || '';
-                    // Set the dropdown value
                     document.getElementById('documentStatus').value = data.documentStatus || '';
-                    // Display the actual lifecycle status (Latest/Superseded) in the read-only field
                     document.getElementById('revStatus').value = data.revStatus || '';
+                    document.getElementById('inspectionsDocumentUrl').value = data.inspectionsDocumentUrl || '';
 
                     document.getElementById('inspectionForm').dataset.docId = docId;
                     document.getElementById('addUpdateButton').textContent = 'Update Document';
@@ -2670,14 +2703,11 @@
                 countryOrigin: document.getElementById('countryOrigin').value,
                 mirSubmissionDate: document.getElementById('mirSubmissionDate').value,
                 mirResponseDate: document.getElementById('mirResponseDate').value,
-                // These are the selected status from the dropdown
                 mirApprovalStatus: document.getElementById('mirApprovalStatus').value,
-                // This is the lifecycle status: 'Latest' or 'Superseded'
-                mirRevStatus: '', // Will be determined by logic below
-                // This is the approval text for display, not directly stored as 'mirRevStatus'
-                mirApprovalSummaryStatus: getApprovalSummaryText(document.getElementById('mirApprovalStatus').value)
+                mirRevStatus: '',
+                mirApprovalSummaryStatus: getApprovalSummaryText(document.getElementById('mirApprovalStatus').value),
+                mirDocumentUrl: document.getElementById('mirDocumentUrl').value,
             };
-
             if (!data.mirDate || !data.mirNumber || !data.mirRevision || !data.mirDiscipline || !data.mirApprovalStatus) {
                 showMessageModal("Please fill in all required fields: Date, MIR Number, Revision, Discipline, and Approval Status.", "Missing Information");
                 console.warn("[MIR] Required fields missing. Operation aborted.");
@@ -2686,44 +2716,33 @@
             try {
                 let result;
                 if (docId) {
-                    // If editing an existing document, just update its content.
-                    // Its lifecycle status ('Latest'/'Superseded') should not change here.
                     console.log(`[MIR] Updating existing document with ID: ${docId}`, data);
-                    // Retain the existing mirRevStatus (lifecycle status)
                     const currentDoc = mirData.find(d => d.id === docId);
                     if (currentDoc) {
                         data.mirRevStatus = currentDoc.mirRevStatus;
                     }
                     result = await saveDocument('mir', docId, data);
                 } else {
-                    // Adding a new document or a new revision
-                    console.log("[MIR] Adding new document or new revision:", data);
-
-                    // Find any existing "Latest" MIR for this MIR Number and Discipline
+                    console.log("[MIR] Adding new document or a new revision:", data);
                     const existingLatestMir = mirData.filter(d =>
                         d.mirNumber === data.mirNumber &&
                         d.mirDiscipline === data.mirDiscipline &&
-                        d.mirRevStatus === 'Latest' // Only consider documents explicitly marked 'Latest'
+                        d.mirRevStatus === 'Latest'
                     );
-
                     let previousLatestDoc = null;
                     if (existingLatestMir.length > 0) {
-                        // Sort by revision to ensure we get the absolute latest if multiple 'Latest' somehow exist
                         existingLatestMir.sort((a, b) => compareRevisions(a.mirRevision, b.mirRevision));
                         previousLatestDoc = existingLatestMir[existingLatestMir.length - 1];
                     }
 
                     if (previousLatestDoc && compareRevisions(data.mirRevision, previousLatestDoc.mirRevision) > 0) {
-                        // If a previous 'Latest' exists and the new revision is indeed higher, supersede the old one.
                         console.log(`[MIR] Marking previous latest MIR (${previousLatestDoc.id}) as Superseded.`);
                         await saveDocument('mir', previousLatestDoc.id, { mirRevStatus: 'Superseded' });
                     } else if (previousLatestDoc && compareRevisions(data.mirRevision, previousLatestDoc.mirRevision) < 0) {
-                        // Handle case where new revision is older than existing latest
                         showMessageModal("The revision you are adding is older than an existing 'Latest' revision for this MIR Number and Discipline. Please check the revision number.", "Warning: Older Revision");
-                        data.mirRevStatus = 'Superseded'; // Treat older revisions as superseded by default
+                        data.mirRevStatus = 'Superseded';
                     }
 
-                    // The newly added document is always the new 'Latest' or the first document in its series.
                     data.mirRevStatus = 'Latest';
 
                     result = await addDocument('mir', data);
@@ -2747,8 +2766,8 @@
             document.getElementById('mirForm').reset();
             document.getElementById('mirForm').removeAttribute('data-doc-id');
             document.getElementById('addUpdateMirButton').textContent = 'Add Document';
-            // Explicitly clear the display field that now holds lifecycle status
             document.getElementById('mirRevStatus').value = '';
+            document.getElementById('mirDocumentUrl').value = '';
             updateNextMirNumber();
             console.log("[MIR] Form cleared.");
         }
@@ -2764,7 +2783,6 @@
                 const docSnap = await getDoc(doc(db, `/artifacts/${appId}/users/${userId}/mir`, docId));
                 if (docSnap.exists()) {
                     const data = docSnap.data();
-                    // Populate date input fields with YYYY-MM-DD format
                     document.getElementById('mirDate').value = formatDateForInput(data.mirDate) || '';
                     document.getElementById('mirNumber').value = data.mirNumber || '';
                     document.getElementById('mirRevision').value = data.mirRevision || '';
@@ -2780,10 +2798,9 @@
                     document.getElementById('countryOrigin').value = data.countryOrigin || '';
                     document.getElementById('mirSubmissionDate').value = formatDateForInput(data.mirSubmissionDate) || '';
                     document.getElementById('mirResponseDate').value = formatDateForInput(data.mirResponseDate) || '';
-                    // Set the dropdown value
                     document.getElementById('mirApprovalStatus').value = data.mirApprovalStatus || '';
-                    // Display the actual lifecycle status (Latest/Superseded) in the read-only field
                     document.getElementById('mirRevStatus').value = data.mirRevStatus || '';
+                    document.getElementById('mirDocumentUrl').value = data.mirDocumentUrl || '';
 
                     document.getElementById('mirForm').dataset.docId = docId;
                     document.getElementById('addUpdateMirButton').textContent = 'Update Document';
@@ -2831,17 +2848,17 @@
             }
         }
 
-        // NCR Register - handleNcrFormSubmission already handles Latest/Superseded logic
         async function handleNcrFormSubmission() {
             console.log("[NCR] Starting handleNcrFormSubmission...");
             const form = document.getElementById('ncrForm');
-            const docId = form.dataset.docId; // This will only be set if 'Edit' button was clicked
+            const docId = form.dataset.docId;
 
             const data = {
                 ncrDiscipline: document.getElementById('ncrDiscipline').value,
                 ncrRefNumber: document.getElementById('ncrRefNumber').value,
                 ncrDescription: document.getElementById('ncrDescription').value,
                 partAReceivedDate: document.getElementById('partAReceivedDate').value,
+                ncrDocumentUrl: document.getElementById('ncrDocumentUrl').value,
 
                 ncrRev_PartB: document.getElementById('ncrRev_PartB').value,
                 ncrRevisedParts_PartB: document.getElementById('ncrRevisedParts_PartB').value,
@@ -2862,7 +2879,6 @@
                 partEStatus: document.getElementById('partEStatus').value,
                 ncrCurrentStatus: document.getElementById('ncrCurrentStatus').value,
             };
-
             if (!data.ncrDiscipline || !data.ncrRefNumber || (data.ncrRev_PartB === null || data.ncrRev_PartB === undefined || data.ncrRev_PartB === '')) {
                 showMessageModal("Please fill in required fields: Discipline, NCR Ref. Number, and Part B Revision.", "Missing Information");
                 console.warn("[NCR] Required fields missing. Operation aborted.");
@@ -2871,23 +2887,19 @@
 
             try {
                 let result;
-                if (docId) { // If docId is present, it means we are editing an EXISTING specific row
+                if (docId) {
                     console.log(`[NCR] Updating existing NCR document with ID: ${docId}`, data);
                     result = await saveDocument('ncr', docId, data);
                     if (result.success) {
                         showMessageModal("NCR document updated successfully!", "Success");
                     }
-                } else { // This is a new record, either brand new NCR or new revision for an existing NCR Ref.
-                    // Find if there's an existing "Latest" NCR for this Ref Number and Discipline
+                } else {
                     const existingLatestNCRS = ncrData.filter(d =>
                         d.ncrRefNumber === data.ncrRefNumber &&
                         d.ncrDiscipline === data.ncrDiscipline &&
                         d.ncrLifecycleStatus === 'Latest'
                     );
-
-                    // If there's an existing 'Latest' NCR, mark it as 'Superseded'
                     if (existingLatestNCRS.length > 0) {
-                        // Sort to ensure we get the absolute latest if multiple somehow exists (shouldn't happen with correct logic)
                         existingLatestNCRS.sort((a, b) => compareRevisions(a.ncrRev_PartB, b.ncrRev_PartB));
                         const previousLatestNcr = existingLatestNCRS[existingLatestNCRS.length - 1];
 
@@ -2895,9 +2907,8 @@
                         await saveDocument('ncr', previousLatestNcr.id, { ncrLifecycleStatus: 'Superseded' });
                     }
 
-                    // Add the new NCR/revision as a new document and mark it as 'Latest'
-                    data.ncrLifecycleStatus = 'Latest'; // The newly added document is always the latest of its series
-                    if (!data.ncrRev_PartB) { // Ensure Part B Rev is '0' for the very first entry if not explicitly set
+                    data.ncrLifecycleStatus = 'Latest';
+                    if (!data.ncrRev_PartB) {
                         data.ncrRev_PartB = '0';
                     }
                     console.log("[NCR] Adding new NCR (or revision) document:", data);
@@ -2909,7 +2920,7 @@
 
                 if (result.success) {
                     clearNcrForm();
-                    showPage('ncrPage'); // Ensure we are on the NCR page
+                    showPage('ncrPage');
                     console.log("[NCR] Operation successful. Form cleared and page re-shown.");
                 } else {
                     console.error("[NCR] Document operation failed:", result.error);
@@ -2923,40 +2934,30 @@
         function clearNcrForm() {
             const form = document.getElementById('ncrForm');
             form.reset();
-            form.removeAttribute('data-doc-id'); // Clear docId for new entry/new revision
-            document.getElementById('addUpdateNcrButton').textContent = 'Add Document'; // Reset button text
-            document.getElementById('ifPartBAccepted').value = ''; // Clear derived field
-            document.getElementById('ncrRev_PartB').value = '0'; // Default new Part B Rev to 0
-            // Clear Part D fields explicitly
+            form.removeAttribute('data-doc-id');
+            document.getElementById('addUpdateNcrButton').textContent = 'Add Document';
+            document.getElementById('ifPartBAccepted').value = '';
+            document.getElementById('ncrRev_PartB').value = '0';
             document.getElementById('partDRev').value = '';
             document.getElementById('partDRevisedParts').value = '';
+            document.getElementById('ncrDocumentUrl').value = '';
             console.log("[NCR] Form cleared.");
         }
 
-        /**
-         * Fills the NCR form with data from a given NCR document.
-         * @param {Object} data The NCR document data.
-         * @param {string|null} docId The document ID if editing a specific row. If null, it's a new entry/revision.
-         * @param {boolean} forNewRevision If true, it means we are preparing the form to add a *new revision* based on `data`.
-         */
         function fillNcrForm(data, docId = null, forNewRevision = false) {
-            // Part A fields - always populate from provided data
-            // Assuming these are <input type="date"> fields, which expect YYYY-MM-DD format
             document.getElementById('ncrDiscipline').value = data.ncrDiscipline || '';
             document.getElementById('ncrRefNumber').value = data.ncrRefNumber || '';
             document.getElementById('ncrDescription').value = data.ncrDescription || '';
             document.getElementById('partAReceivedDate').value = formatDateForInput(data.partAReceivedDate) || '';
-
-            // Part B fields logic
+            document.getElementById('ncrDocumentUrl').value = data.ncrDocumentUrl || '';
             if (forNewRevision) {
                 document.getElementById('ncrRev_PartB').value = getNextRevision(data.ncrRev_PartB || '0');
-                document.getElementById('ncrRevisedParts_PartB').value = ''; // Clear for new input
-                document.getElementById('immediateAction').value = ''; // Clear for new input
-                document.getElementById('rootCause').value = '';    // Clear for new input
-                document.getElementById('correctiveAction').value = ''; // Clear for new input
-                document.getElementById('partBSubmittedDate').value = ''; // Clear for new input
+                document.getElementById('ncrRevisedParts_PartB').value = '';
+                document.getElementById('immediateAction').value = '';
+                document.getElementById('rootCause').value = '';
+                document.getElementById('correctiveAction').value = '';
+                document.getElementById('partBSubmittedDate').value = '';
             } else {
-                // If not for new revision (i.e., for direct edit), fill from data
                 document.getElementById('ncrRev_PartB').value = data.ncrRev_PartB || '';
                 document.getElementById('ncrRevisedParts_PartB').value = data.ncrRevisedParts_PartB || '';
                 document.getElementById('immediateAction').value = data.immediateAction || '';
@@ -2965,58 +2966,50 @@
                 document.getElementById('partBSubmittedDate').value = formatDateForInput(data.partBSubmittedDate) || '';
             }
 
-            // Part C fields - always populate from provided data (for display/reference if it exists)
-            // Assuming these are <input type="date"> fields, which expect YYYY-MM-DD format
             document.getElementById('partCReceivedDate').value = formatDateForInput(data.partCReceivedDate) || '';
             document.getElementById('partBAcceptedByGEC').value = data.partBAcceptedByGEC || '';
 
-            // Part D and E fields - always clear if creating new revision, otherwise fill from data
             if (forNewRevision) {
                 document.getElementById('partDRev').value = '';
                 document.getElementById('partDRevisedParts').value = '';
-                document.getElementById('partDSubmittedDate').value = ''; // Should be YYYY-MM-DD
-                document.getElementById('partEReceivedDate').value = ''; // Should be YYYY-MM-DD
+                document.getElementById('partDSubmittedDate').value = '';
+                document.getElementById('partEReceivedDate').value = '';
                 document.getElementById('partEStatus').value = '';
                 document.getElementById('ncrCurrentStatus').value = '';
             } else {
                 document.getElementById('partDRev').value = data.partDRev || '';
                 document.getElementById('partDRevisedParts').value = data.partDRevisedParts || '';
-                document.getElementById('partDSubmittedDate').value = formatDateForInput(data.partDSubmittedDate) || ''; // Should be YYYY-MM-DD
-                document.getElementById('partEReceivedDate').value = formatDateForInput(data.partEReceivedDate) || ''; // Should be YYYY-MM-DD
+                document.getElementById('partDSubmittedDate').value = formatDateForInput(data.partDSubmittedDate) || '';
+                document.getElementById('partEReceivedDate').value = formatDateForInput(data.partEReceivedDate) || '';
                 document.getElementById('partEStatus').value = data.partEStatus || '';
                 document.getElementById('ncrCurrentStatus').value = data.ncrCurrentStatus || '';
             }
 
-
-            // Set docId and button text based on whether it's a direct edit
             const formElement = document.getElementById('ncrForm');
             const addButton = document.getElementById('addUpdateNcrButton');
 
-            if (docId) { // Direct edit of an existing record
+            if (docId) {
                 formElement.dataset.docId = docId;
                 addButton.textContent = 'Update Document';
-            } else { // New entry or new revision
+            } else {
                 formElement.removeAttribute('data-doc-id');
                 addButton.textContent = 'Add Document';
             }
 
-            // Trigger change event for derived fields (like ifPartBAccepted)
             document.getElementById('partBAcceptedByGEC').dispatchEvent(new Event('change'));
-
-            window.scrollTo(0, 0); // Scroll to top of form
+            window.scrollTo(0, 0);
             console.log(`[NCR] Form filled for ${docId ? 'editing' : 'new revision'}.`);
         }
 
         async function autoFillNcrDetails() {
             console.log("[NCR] Starting autoFillNcrDetails...");
             const ncrRefNumber = document.getElementById('ncrRefNumber').value.trim();
-            const ncrDiscipline = document.getElementById('ncrDiscipline').value; // Get selected discipline
+            const ncrDiscipline = document.getElementById('ncrDiscipline').value;
 
             if (!ncrRefNumber || !ncrDiscipline) {
-                // If ref number or discipline is empty, ensure form is clear for new entry
-                clearNcrForm(); // Clears Part B rev to '0'
-                document.getElementById('ncrRefNumber').value = ncrRefNumber; // Retain entered value
-                document.getElementById('ncrDiscipline').value = ncrDiscipline; // Retain selected value
+                clearNcrForm();
+                document.getElementById('ncrRefNumber').value = ncrRefNumber;
+                document.getElementById('ncrDiscipline').value = ncrDiscipline;
                 console.log("[NCR] NCR Ref Number or Discipline is empty. Form cleared for new entry.");
                 return;
             }
@@ -3027,29 +3020,23 @@
                 return;
             }
 
-            // Find all NCRs matching the entered reference number AND discipline
             const matchingNCRS = ncrData.filter(doc =>
                 doc.ncrRefNumber === ncrRefNumber &&
                 doc.ncrDiscipline === ncrDiscipline
             );
-
             if (matchingNCRS.length > 0) {
-                // Sort to find the latest revision based on Part B Rev
                 matchingNCRS.sort((a, b) => compareRevisions(a.ncrRev_PartB, b.ncrRev_PartB));
-                const latestNcr = matchingNCRS[matchingNCRS.length - 1]; // Latest is the last after sorting
+                const latestNcr = matchingNCRS[matchingNCRS.length - 1];
 
-                // Populate the form for a NEW REVISION
-                fillNcrForm(latestNcr, null, true); // Pass true for forNewRevision
+                fillNcrForm(latestNcr, null, true);
                 showMessageModal("Latest NCR revision loaded automatically. Part B Rev. incremented for new entry. Fill new details to add new revision.", "New NCR Revision");
                 console.log("[NCR] Latest NCR revision found and loaded for new revision entry.");
             } else {
-                // No existing NCR found for this Ref Number and Discipline
                 const originalNcrRefNumber = document.getElementById('ncrRefNumber').value;
                 const originalNcrDiscipline = document.getElementById('ncrDiscipline').value;
 
-                clearNcrForm(); // Clears all fields and resets button text, sets Part B Rev to '0'
+                clearNcrForm();
 
-                // Restore the entered NCR Ref. Number and Discipline
                 document.getElementById('ncrRefNumber').value = originalNcrRefNumber;
                 document.getElementById('ncrDiscipline').value = originalNcrDiscipline;
 
@@ -3070,8 +3057,7 @@
                 const docSnap = await getDoc(doc(db, `/artifacts/${appId}/users/${userId}/ncr`, docId));
                 if (docSnap.exists()) {
                     const data = docSnap.data();
-                    // Populate the form for DIRECT EDIT of this specific document
-                    fillNcrForm(data, docSnap.id, false); // Pass false for forNewRevision
+                    fillNcrForm(data, docSnap.id, false);
                     console.log(`[NCR] Data for ${docId} loaded into form for editing.`);
                 } else {
                     console.error("No such NCR document!");
@@ -3089,7 +3075,7 @@
         async function addNewSubmissionDocument() {
             console.log("[Submission] Starting addNewSubmissionDocument...");
             const form = document.getElementById('submissionForm');
-            const docId = form.dataset.docId; // Will be defined if editing an existing record
+            const docId = form.dataset.docId;
 
             const data = {
                 docNumber: document.getElementById('newDocNumber').value,
@@ -3101,14 +3087,12 @@
                 subRef: document.getElementById('newSubRef').value,
                 submittedDate: document.getElementById('newSubmittedDate').value,
                 respondedDate: document.getElementById('newRespondedDate').value,
-                // GEC Due Date is calculated and stored as YYYY-MM-DD
                 gecDueDate: document.getElementById('newSubmittedDate').value ? new Date(new Date(document.getElementById('newSubmittedDate').value).setDate(new Date(document.getElementById('newSubmittedDate').value).getDate() + 14)).toISOString().split('T')[0] : '',
-                status: document.getElementById('newStatus').value, // This is the approval status (A,B,C,UR etc)
-                verifyRev: 'Latest', // Default to Latest for new submissions, will be adjusted below
+                status: document.getElementById('newStatus').value,
+                verifyRev: 'Latest',
                 daysOverdue: calculateDaysOverdue(document.getElementById('newSubmittedDate').value, document.getElementById('newRespondedDate').value),
+                documentUrl: document.getElementById('documentUrl').value,
             };
-
-            // Basic validation
             if (!data.docNumber || !data.rev || !data.discipline || !data.docType || !data.docTitle || !data.submittedDate) {
                 showMessageModal("Please fill in all required fields for Submission: Document Number, Revision, Discipline, Document Type, Document Title, Submitted Date.", "Missing Information");
                 console.warn("[Submission] Required fields missing. Operation aborted.");
@@ -3116,44 +3100,34 @@
             }
 
             console.log("[Submission] Attempting to add/update document. docId:", docId, "Data:", JSON.stringify(data));
-
             try {
                 let result;
-                if (docId) { // This branch is for editing an existing row (not adding a new revision)
+                if (docId) {
                     console.log(`[Submission] Updating existing document with ID: ${docId}. Its lifecycle status will be preserved.`);
-                    // When editing an existing document, we preserve its current lifecycle status.
                     const existingDoc = submissionData.find(d => d.id === docId);
                     if (existingDoc) {
-                        data.verifyRev = existingDoc.verifyRev; // Retain current lifecycle status (Latest/Superseded)
+                        data.verifyRev = existingDoc.verifyRev;
                     }
                     result = await saveDocument('submissions', docId, data);
                     if (result.success) {
                         showMessageModal("Submission document updated successfully!", "Success");
-                        clearNewSubmissionDocumentForm(); // Clear form after successful update
-                        showPage('submissionPage'); // Ensure we are on the submission page
+                        clearNewSubmissionDocumentForm();
+                        showPage('submissionPage');
                         console.log("[Submission] Update operation successful.");
                     } else {
                         console.error("[Submission] Document update failed:", result.error);
                     }
-                } else { // This branch is for adding a new document (which might be a new revision)
+                } else {
                     console.log("[Submission] Adding new document or new revision.");
-
-                    // LOGGING: Current state of submissionData before filtering
                     console.log("[Submission Debug] Current submissionData before filter:", JSON.stringify(submissionData.map(d => ({id: d.id, docNumber: d.docNumber, rev: d.rev, verifyRev: d.verifyRev}))));
-
-
-                    // Find any existing "Latest" submission for this Document Number and Discipline
-                    // A document is considered "Latest" if its verifyRev is NOT 'Superseded'
                     const existingLatestCandidates = submissionData.filter(d =>
                         d.docNumber === data.docNumber &&
                         d.discipline === data.discipline &&
-                        (d.verifyRev !== 'Superseded' && d.verifyRev !== 'superseded') // Case-insensitive check for 'Superseded'
+                        (d.verifyRev !== 'Superseded' && d.verifyRev !== 'superseded')
                     );
                     console.log("[Submission Debug] Found existingLatestCandidates (before sorting, i.e., not 'Superseded'):", JSON.stringify(existingLatestCandidates.map(d => ({id: d.id, rev: d.rev, verifyRev: d.verifyRev}))));
-
                     let previousLatestDoc = null;
                     if (existingLatestCandidates.length > 0) {
-                        // Sort by revision to ensure we get the highest revision among the candidates.
                         existingLatestCandidates.sort((a, b) => compareRevisions(a.rev, b.rev));
                         previousLatestDoc = existingLatestCandidates[existingLatestCandidates.length - 1];
                         console.log("[Submission Debug] Identified previousLatestDoc based on candidates:", JSON.stringify({id: previousLatestDoc.id, rev: previousLatestDoc.rev, verifyRev: previousLatestDoc.verifyRev}));
@@ -3162,9 +3136,7 @@
                     if (previousLatestDoc) {
                         const comparisonResult = compareRevisions(data.rev, previousLatestDoc.rev);
                         console.log(`[Submission Debug] Comparing new revision (${data.rev}) with previous latest (${previousLatestDoc.rev}). Comparison Result: ${comparisonResult}`);
-
                         if (comparisonResult > 0) {
-                            // New revision is genuinely higher, so supersede the old one.
                             console.log(`[Submission Debug] New revision (${data.rev}) is higher than previous latest (${previousLatestDoc.rev}). Marking previous latest (${previousLatestDoc.id}) as Superseded.`);
                             const supersedeResult = await saveDocument('submissions', previousLatestDoc.id, { verifyRev: 'Superseded' });
                             if (!supersedeResult.success) {
@@ -3173,32 +3145,27 @@
                             } else {
                                 console.log(`[Submission Debug] Previous document ${previousLatestDoc.id} successfully superseded.`);
                             }
-                            data.verifyRev = 'Latest'; // The new document is now the latest
+                            data.verifyRev = 'Latest';
                         } else if (comparisonResult < 0) {
-                            // New revision is older, so it should be automatically superseded.
                             showMessageModal("The revision you are adding is older than an existing 'Latest' revision for this Document Number and Discipline. It will be added as 'Superseded'.", "Warning: Older Revision");
                             data.verifyRev = 'Superseded';
                             console.log("[Submission Debug] New revision is older. Marking new document as Superseded.");
-                        } else { // comparisonResult === 0 (exact same revision and doc number)
-                            // This scenario implies a re-submission of the exact same revision.
-                            // It's safer to treat this new submission as superseded, or block it.
+                        } else {
                             showMessageModal("A document with the exact same Document Number, Discipline, and Revision already exists and is not 'Superseded'. This new entry will be added as 'Superseded'. If you intended to edit, please use the 'Edit' button for the existing document.", "Warning: Duplicate Revision");
                             data.verifyRev = 'Superseded';
                             console.log("[Submission Debug] Exact duplicate of existing 'Latest' revision detected. Marking new document as Superseded.");
                         }
                     } else {
-                        // No previous 'Latest' document found for this docNumber and discipline (meaning no current document is NOT 'Superseded'), so this is the first 'Latest'.
                         console.log("[Submission Debug] No non-superseded document found for this Doc Number and Discipline. This new document will be 'Latest'.");
-                        data.verifyRev = 'Latest'; // It's the first in its series, so it's latest.
+                        data.verifyRev = 'Latest';
                     }
 
-                    // Finally, add the new document (which already has its verifyRev set)
                     console.log("[Submission Debug] Adding new document with final data:", JSON.stringify(data));
                     result = await addDocument('submissions', data);
                     if (result.success) {
                         showMessageModal("New submission document added successfully!", "Success");
-                        clearNewSubmissionDocumentForm(); // Clear form after adding
-                        showPage('submissionPage'); // Ensure we are on the submission page
+                        clearNewSubmissionDocumentForm();
+                        showPage('submissionPage');
                         console.log("[Submission] Add operation successful.");
                     } else {
                         console.error("[Submission] Document add failed:", result.error);
@@ -3215,10 +3182,10 @@
             form.reset();
             form.removeAttribute('data-doc-id');
             document.querySelector('#submissionForm button.action-button').textContent = 'Add Document';
-            // Clear the read-only lifecycle status field
             document.getElementById('lifecycleStatus').value = '';
-            document.getElementById('daysOverdue').value = ''; // Also clear days overdue
-            document.getElementById('gecDueDate').value = ''; // Clear GEC Due Date
+            document.getElementById('daysOverdue').value = '';
+            document.getElementById('gecDueDate').value = '';
+            document.getElementById('documentUrl').value = '';
             console.log("[Submission] Form cleared.");
         }
 
@@ -3233,7 +3200,6 @@
                 const docSnap = await getDoc(doc(db, `/artifacts/${appId}/users/${userId}/submissions`, docId));
                 if (docSnap.exists()) {
                     const data = docSnap.data();
-                    // Populate date input fields with YYYY-MM-DD format
                     document.getElementById('newDocNumber').value = data.docNumber || '';
                     document.getElementById('newRev').value = data.rev || '';
                     document.getElementById('newDiscipline').value = data.discipline || '';
@@ -3244,10 +3210,10 @@
                     document.getElementById('newSubmittedDate').value = formatDateForInput(data.submittedDate) || '';
                     document.getElementById('newRespondedDate').value = formatDateForInput(data.respondedDate) || '';
                     document.getElementById('newStatus').value = data.status || '';
-                    document.getElementById('lifecycleStatus').value = data.verifyRev || ''; // Populate the read-only field
-                    document.getElementById('daysOverdue').value = data.daysOverdue || ''; // Populate days overdue
-                    // Format GEC Due Date for display in the read-only field
+                    document.getElementById('lifecycleStatus').value = data.verifyRev || '';
+                    document.getElementById('daysOverdue').value = data.daysOverdue || '';
                     document.getElementById('gecDueDate').value = formatDateForInput(data.gecDueDate) || '';
+                    document.getElementById('documentUrl').value = data.documentUrl || '';
 
                     const form = document.getElementById('submissionForm');
                     form.dataset.docId = docId;
@@ -3269,7 +3235,6 @@
         // Correspondence Register - Outgoing
         async function addNewOutgoingCorrespondence() {
             console.log("[Outgoing Correspondence] Starting addNewOutgoingCorrespondence...");
-            // Get the form using its new ID
             const form = document.getElementById('outgoingCorrespondenceForm');
             const docId = form.dataset.docId;
 
@@ -3277,23 +3242,21 @@
                 initiator: document.getElementById('newOutgoingInitiator').value,
                 addressee: document.getElementById('newOutgoingAddressee').value,
                 letterRef: document.getElementById('newOutgoingLetterRef').value,
-                // Values from date input fields are already YYYY-MM-DD
                 letterDate: document.getElementById('newOutgoingLetterDate').value,
                 letterSubject: document.getElementById('newOutgoingLetterSubject').value,
                 inReplyToRef: document.getElementById('newOutgoingInReplyToRef').value,
                 keyword: document.getElementById('newOutgoingKeyword').value,
                 replyRequired: document.getElementById('newOutgoingReplyRequired').value,
                 dateSent: document.getElementById('newOutgoingDateSent').value,
-                status: document.getElementById('newOutgoingReplyRequired').value === 'Yes' ? 'OPEN' : 'CLOSED'
+                status: document.getElementById('newOutgoingReplyRequired').value === 'Yes' ? 'OPEN' : 'CLOSED',
+                outgoingDocumentUrl: document.getElementById('outgoingDocumentUrl').value,
             };
-
             if (!data.letterRef || !data.letterSubject || !data.replyRequired) {
                 showMessageModal("Please fill in all required fields for Outgoing Correspondence: Outgoing Letter Ref., Letter Subject, Reply Required.", "Missing Information");
                 console.warn("[Outgoing Correspondence] Required fields missing. Operation aborted.");
                 return;
             }
             console.log("[Outgoing Correspondence] Attempting to add/update document. docId:", docId, "Data:", data);
-
             try {
                 let result;
                 if (docId) {
@@ -3305,7 +3268,7 @@
                 if (result.success) {
                     showMessageModal("Outgoing correspondence saved successfully!", "Success");
                     clearNewOutgoingCorrespondenceForm();
-                    showPage('correspondencePage'); // Ensure we are on the correspondence page
+                    showPage('correspondencePage');
                     console.log("[Outgoing Correspondence] Operation successful. Form cleared and page re-shown.");
                 } else {
                     console.error("[Outgoing Correspondence] Document operation failed:", result.error);
@@ -3318,12 +3281,11 @@
         }
 
         function clearNewOutgoingCorrespondenceForm() {
-            // Use the new form ID
             const form = document.getElementById('outgoingCorrespondenceForm');
             form.reset();
             form.removeAttribute('data-doc-id');
-            // Target the button directly using its form ID and a class
             document.querySelector('#outgoingCorrespondenceForm button.action-button').textContent = 'Add Outgoing';
+            document.getElementById('outgoingDocumentUrl').value = '';
             console.log("[Outgoing Correspondence] Form cleared.");
         }
 
@@ -3338,7 +3300,6 @@
                 const docSnap = await getDoc(doc(db, `/artifacts/${appId}/users/${userId}/outgoing_correspondences`, docId));
                 if (docSnap.exists()) {
                     const data = docSnap.data();
-                    // Populate date input fields with YYYY-MM-DD format
                     document.getElementById('newOutgoingInitiator').value = data.initiator || '';
                     document.getElementById('newOutgoingAddressee').value = data.addressee || '';
                     document.getElementById('newOutgoingLetterRef').value = data.letterRef || '';
@@ -3348,8 +3309,8 @@
                     document.getElementById('newOutgoingKeyword').value = data.keyword || '';
                     document.getElementById('newOutgoingReplyRequired').value = data.replyRequired || '';
                     document.getElementById('newOutgoingDateSent').value = formatDateForInput(data.dateSent) || '';
+                    document.getElementById('outgoingDocumentUrl').value = data.outgoingDocumentUrl || '';
 
-                    // Use the new form ID
                     const form = document.getElementById('outgoingCorrespondenceForm');
                     form.dataset.docId = docId;
                     document.querySelector('#outgoingCorrespondenceForm button.action-button').textContent = 'Update Outgoing';
@@ -3370,13 +3331,11 @@
         // Correspondence Register - Incoming
         async function addNewIncomingCorrespondence() {
             console.log("[Incoming Correspondence] Starting addNewIncomingCorrespondence...");
-            // Get the form using its new ID
             const form = document.getElementById('incomingCorrespondenceForm');
             const docId = form.dataset.docId;
 
             const data = {
                 incomingRef: document.getElementById('newIncomingRef').value,
-                // Values from date input fields are already YYYY-MM-DD
                 dateOfReceipt: document.getElementById('newIncomingDateOfReceipt').value,
                 originator: document.getElementById('newIncomingOriginator').value,
                 addressee: document.getElementById('newIncomingAddressee').value,
@@ -3384,16 +3343,15 @@
                 replyToRef: document.getElementById('newIncomingReplyToRef').value,
                 keyword: document.getElementById('newIncomingKeyword').value,
                 replyRequired: document.getElementById('newIncomingReplyRequired').value,
-                status: document.getElementById('newIncomingReplyRequired').value === 'Yes' ? 'OPEN' : 'CLOSED'
+                status: document.getElementById('newIncomingReplyRequired').value === 'Yes' ? 'OPEN' : 'CLOSED',
+                incomingDocumentUrl: document.getElementById('incomingDocumentUrl').value,
             };
-
             if (!data.incomingRef || !data.letterSubject || !data.replyRequired) {
                 showMessageModal("Please fill in all required fields for Incoming Correspondence: Incoming Reference, Letter Subject, Reply Required.", "Missing Information");
                 console.warn("[Incoming Correspondence] Required fields missing. Operation aborted.");
                 return;
             }
             console.log("[Incoming Correspondence] Attempting to add/update document. docId:", docId, "Data:", data);
-
             try {
                 let result;
                 if (docId) {
@@ -3405,7 +3363,7 @@
                 if (result.success) {
                     showMessageModal("Incoming correspondence saved successfully!", "Success");
                     clearNewIncomingCorrespondenceForm();
-                    showPage('correspondencePage'); // Ensure we are on the correspondence page
+                    showPage('correspondencePage');
                     console.log("[Incoming Correspondence] Operation successful. Form cleared and page re-shown.");
                 } else {
                     console.error("[Incoming Correspondence] Document operation failed:", result.error);
@@ -3417,12 +3375,11 @@
         }
 
         function clearNewIncomingCorrespondenceForm() {
-            // Use the new form ID
             const form = document.getElementById('incomingCorrespondenceForm');
             form.reset();
             form.removeAttribute('data-doc-id');
-            // Target the button directly using its form ID and a class
             document.querySelector('#incomingCorrespondenceForm button.action-button').textContent = 'Add Incoming';
+            document.getElementById('incomingDocumentUrl').value = '';
             console.log("[Incoming Correspondence] Form cleared.");
         }
 
@@ -3437,7 +3394,6 @@
                 const docSnap = await getDoc(doc(db, `/artifacts/${appId}/users/${userId}/incoming_correspondences`, docId));
                 if (docSnap.exists()) {
                     const data = docSnap.data();
-                    // Populate date input fields with YYYY-MM-DD format
                     document.getElementById('newIncomingRef').value = data.incomingRef || '';
                     document.getElementById('newIncomingDateOfReceipt').value = formatDateForInput(data.dateOfReceipt) || '';
                     document.getElementById('newIncomingOriginator').value = data.originator || '';
@@ -3446,8 +3402,8 @@
                     document.getElementById('newIncomingReplyToRef').value = data.replyToRef || '';
                     document.getElementById('newIncomingKeyword').value = data.keyword || '';
                     document.getElementById('newIncomingReplyRequired').value = data.replyRequired || '';
-
-                    // Use the new form ID
+                    document.getElementById('incomingDocumentUrl').value = data.incomingDocumentUrl || '';
+                    
                     const form = document.getElementById('incomingCorrespondenceForm');
                     form.dataset.docId = docId;
                     document.querySelector('#incomingCorrespondenceForm button.action-button').textContent = 'Update Incoming';
@@ -3465,8 +3421,76 @@
             }
         }
 
+        // --- Staff Emails Management ---
+        async function addUpdateStaffEmail() {
+            const name = document.getElementById('staffEmailName').value;
+            const email = document.getElementById('staffEmailAddress').value;
+            const docId = document.getElementById('staffEmailForm').dataset.docId;
 
-        // --- Render Table Rows ---
+            if (!name || !email) {
+                showMessageModal("Please enter both staff name and email address.", "Missing Information");
+                return;
+            }
+
+            const data = { name, email };
+            const collectionName = 'staff_emails';
+            let result;
+
+            if (docId) {
+                result = await saveDocument(collectionName, docId, data);
+            } else {
+                result = await addDocument(collectionName, data);
+            }
+
+            if (result.success) {
+                showMessageModal("Staff email saved successfully!", "Success");
+                clearStaffForm();
+            } else {
+                showMessageModal("Error saving staff email: " + result.error.message, "Error");
+            }
+        }
+
+        async function editStaffEmail(docId) {
+            staffEditingEmailId = docId;
+            const staff = staffEmailsData.find(d => d.id === docId);
+            if (staff) {
+                document.getElementById('staffEmailName').value = staff.name;
+                document.getElementById('staffEmailAddress').value = staff.email;
+                document.getElementById('staffEmailForm').dataset.docId = docId;
+                document.getElementById('addUpdateStaffButton').textContent = 'Update Staff';
+                window.scrollTo(0, 0);
+            }
+        }
+
+        async function deleteStaffEmail(docId) {
+            await deleteDocument('staff_emails', docId);
+        }
+
+        function clearStaffForm() {
+            document.getElementById('staffEmailForm').reset();
+            document.getElementById('staffEmailForm').removeAttribute('data-doc-id');
+            document.getElementById('addUpdateStaffButton').textContent = 'Save Staff';
+            staffEditingEmailId = null;
+        }
+
+        function renderStaffEmails() {
+            const tableBody = document.querySelector('#staffEmailsTable tbody');
+            tableBody.innerHTML = '';
+            staffEmailsData.forEach(staff => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${staff.name || ''}</td>
+                    <td>${staff.email || ''}</td>
+                    <td class="action-buttons">
+                        <button class="edit-button" onclick="editStaffEmail('${staff.id}')">Edit</button>
+                        <button class="danger-button" onclick="deleteStaffEmail('${staff.id}')">Delete</button>
+                    </td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        }
+
+        // --- Render Table Rows with Email button ---
 
         function renderInspectionRow(doc, collectionName) {
             const tr = document.createElement('tr');
@@ -3476,7 +3500,6 @@
                 <td>${doc.insNumber || ''}</td>
                 <td>${doc.revision || ''}</td>
                 <td>${doc.location || ''}</td>
-                <!-- Removed Submission Type from row rendering -->
                 <td>${doc.workToBeInspected || ''}</td>
                 <td>${formatDateForDisplay(doc.inspectionDate)}</td>
                 <td>${doc.inspectionTime || ''}</td>
@@ -3486,10 +3509,11 @@
                 <td>${doc.qcsReference || ''}</td>
                 <td>${formatDateForDisplay(doc.commentReceivedDate)}</td>
                 <td>${doc.documentStatus || ''}</td>
-                <td>${doc.revStatus || ''}</td> <!-- This now displays 'Latest' or 'Superseded' -->
+                <td>${doc.revStatus || ''}</td>
                 <td class="action-buttons">
                     <button class="edit-button" onclick="editInspection('${doc.id}')">Edit</button>
-                    <button class="delete-button" onclick="deleteDocument('inspections', '${doc.id}')">Delete</button>
+                    <button class="danger-button" onclick="deleteDocument('inspections', '${doc.id}')">Delete</button>
+                    <button class="email-button" onclick="showEmailModal({ id: '${doc.id}' }, 'inspections')"><i class="fas fa-envelope"></i></button>
                 </td>
             `;
             return tr;
@@ -3514,10 +3538,11 @@
                 <td>${formatDateForDisplay(doc.mirSubmissionDate)}</td>
                 <td>${formatDateForDisplay(doc.mirResponseDate)}</td>
                 <td>${doc.mirApprovalStatus || ''}</td>
-                <td>${doc.mirRevStatus || ''}</td> <!-- This now displays 'Latest' or 'Superseded' -->
+                <td>${doc.mirRevStatus || ''}</td>
                 <td class="action-buttons">
                     <button class="edit-button" onclick="editMir('${doc.id}')">Edit</button>
-                    <button class="delete-button" onclick="deleteDocument('mir', '${doc.id}')">Delete</button>
+                    <button class="danger-button" onclick="deleteDocument('mir', '${doc.id}')">Delete</button>
+                    <button class="email-button" onclick="showEmailModal({ id: '${doc.id}' }, 'mir')"><i class="fas fa-envelope"></i></button>
                 </td>
             `;
             return tr;
@@ -3548,7 +3573,8 @@
                 <td>${doc.ncrCurrentStatus || ''}</td>
                 <td class="action-buttons">
                     <button class="edit-button" onclick="editNcr('${doc.id}')">Edit</button>
-                    <button class="delete-button" onclick="deleteDocument('ncr', '${doc.id}')">Delete</button>
+                    <button class="danger-button" onclick="deleteDocument('ncr', '${doc.id}')">Delete</button>
+                    <button class="email-button" onclick="showEmailModal({ id: '${doc.id}' }, 'ncr')"><i class="fas fa-envelope"></i></button>
                 </td>
             `;
             return tr;
@@ -3556,16 +3582,12 @@
 
         function renderSubmissionRow(doc, collectionName) {
             const tr = document.createElement('tr');
-
-            // Extract just "Latest" or "Superseded" from doc.verifyRev for display
             let lifecycleStatusForDisplay = '';
             if (doc.verifyRev) {
-                // This regex captures "Latest" or "Superseded" from the beginning of the string
                 const match = doc.verifyRev.match(/^(Latest|Superseded)/i);
                 if (match) {
                     lifecycleStatusForDisplay = match[0];
                 } else {
-                    // Fallback if it's neither "Latest" nor "Superseded" for some reason
                     lifecycleStatusForDisplay = doc.verifyRev;
                 }
             }
@@ -3582,11 +3604,12 @@
                 <td>${formatDateForDisplay(doc.gecDueDate)}</td>
                 <td>${formatDateForDisplay(doc.respondedDate)}</td>
                 <td>${doc.status || ''}</td>
-                <td>${lifecycleStatusForDisplay}</td> <!-- This line is changed -->
+                <td>${lifecycleStatusForDisplay}</td>
                 <td>${doc.daysOverdue || ''}</td>
                 <td class="action-buttons">
                     <button class="edit-button" onclick="editSubmission('${doc.id}')">Edit</button>
-                    <button class="delete-button" onclick="deleteDocument('submissions', '${doc.id}')">Delete</button>
+                    <button class="danger-button" onclick="deleteDocument('submissions', '${doc.id}')">Delete</button>
+                    <button class="email-button" onclick="showEmailModal({ id: '${doc.id}' }, 'submissions')"><i class="fas fa-envelope"></i></button>
                 </td>
             `;
             return tr;
@@ -3607,7 +3630,8 @@
                 <td>${doc.status || ''}</td>
                 <td class="action-buttons">
                     <button class="edit-button" onclick="editOutgoing('${doc.id}')">Edit</button>
-                    <button class="delete-button" onclick="deleteDocument('outgoing_correspondences', '${doc.id}')">Delete</button>
+                    <button class="danger-button" onclick="deleteDocument('outgoing_correspondences', '${doc.id}')">Delete</button>
+                    <button class="email-button" onclick="showEmailModal({ id: '${doc.id}' }, 'outgoing_correspondences')"><i class="fas fa-envelope"></i></button>
                 </td>
             `;
             return tr;
@@ -3627,12 +3651,12 @@
                 <td>${doc.status || ''}</td>
                 <td class="action-buttons">
                     <button class="edit-button" onclick="editIncoming('${doc.id}')">Edit</button>
-                    <button class="delete-button" onclick="deleteDocument('incoming_correspondences', '${doc.id}')">Delete</button>
+                    <button class="danger-button" onclick="deleteDocument('incoming_correspondences', '${doc.id}')">Delete</button>
+                    <button class="email-button" onclick="showEmailModal({ id: '${doc.id}' }, 'incoming_correspondences')"><i class="fas fa-envelope"></i></button>
                 </td>
             `;
             return tr;
         }
-
 
         // --- Search and Filter Functions (client-side for simplicity) ---
         function performInspectionsSearch() {
@@ -3642,39 +3666,34 @@
             const term = document.getElementById('inspectionsSearchTerm').value.toLowerCase();
             let filtered = inspectionsData.filter(doc => {
                 if (!term) return true;
-                // Check against lifecycle status if the field is 'revStatus'
                 if (field === 'revStatus' && doc.revStatus) {
                     return String(doc.revStatus).toLowerCase().includes(term);
                 } else if (field && doc[field]) {
-                    // Apply date formatting for comparison if it's a date field
                     if (field.toLowerCase().includes('date')) {
                         return formatDateForDisplay(doc[field]).toLowerCase().includes(term);
                     }
                     return String(doc[field]).toLowerCase().includes(term);
                 }
-                // Fallback for general search across all string values, format dates for comparison
                 return Object.values(doc).some(value => {
-                    if (typeof value === 'string' && value.toLowerCase().includes('date')) { // Heuristic for date fields
+                    if (typeof value === 'string' && value.toLowerCase().includes('date')) {
                         return formatDateForDisplay(value || '').toLowerCase().includes(term);
                     }
                     return String(value || '').toLowerCase().includes(term);
                 });
             });
 
-            // Sort by date (ascending) then INS Number (ascending) then Revision (ascending)
             filtered.sort((a, b) => {
                 const dateA = new Date(a.date);
                 const dateB = new Date(b.date);
                 if (dateA.getTime() !== dateB.getTime()) {
-                    return dateA.getTime() - dateB.getTime(); // Ascending date
+                    return dateA.getTime() - dateB.getTime();
                 }
                 const insNumComparison = String(a.insNumber || '').localeCompare(String(b.insNumber || ''));
                 if (insNumComparison !== 0) {
-                    return insNumComparison; // Secondary sort by INS Number
+                    return insNumComparison;
                 }
-                return compareRevisions(a.revision, b.revision); // Tertiary sort by Revision
+                return compareRevisions(a.revision, b.revision);
             });
-
             filtered.forEach(doc => tableBody.appendChild(renderInspectionRow(doc, 'inspections')));
         }
 
@@ -3691,39 +3710,34 @@
             const term = document.getElementById('mirSearchTerm').value.toLowerCase();
             let filtered = mirData.filter(doc => {
                 if (!term) return true;
-                // Check against lifecycle status if the field is 'mirRevStatus'
                 if (field === 'mirRevStatus' && doc.mirRevStatus) {
                     return String(doc.mirRevStatus).toLowerCase().includes(term);
                 } else if (field && doc[field]) {
-                    // Apply date formatting for comparison if it's a date field
                     if (field.toLowerCase().includes('date')) {
                         return formatDateForDisplay(doc[field]).toLowerCase().includes(term);
                     }
                     return String(doc[field]).toLowerCase().includes(term);
                 }
-                // Fallback for general search across all string values, format dates for comparison
                 return Object.values(doc).some(value => {
-                    if (typeof value === 'string' && value.toLowerCase().includes('date')) { // Heuristic for date fields
+                    if (typeof value === 'string' && value.toLowerCase().includes('date')) {
                         return formatDateForDisplay(value || '').toLowerCase().includes(term);
                     }
                     return String(value || '').toLowerCase().includes(term);
                 });
             });
 
-            // Sort by mirDate (ascending) then MIR Number (ascending) then Revision (ascending)
             filtered.sort((a, b) => {
                 const dateA = new Date(a.mirDate);
                 const dateB = new Date(b.mirDate);
                 if (dateA.getTime() !== dateB.getTime()) {
-                    return dateA.getTime() - dateB.getTime(); // Ascending date
+                    return dateA.getTime() - dateB.getTime();
                 }
                 const mirNumComparison = String(a.mirNumber || '').localeCompare(String(b.mirNumber || ''));
                 if (mirNumComparison !== 0) {
-                    return mirNumComparison; // Secondary sort by MIR Number
+                    return mirNumComparison;
                 }
-                return compareRevisions(a.mirRevision, b.mirRevision); // Tertiary sort by Revision
+                return compareRevisions(a.mirRevision, b.mirRevision);
             });
-
             filtered.forEach(doc => tableBody.appendChild(renderMirRow(doc, 'mir')));
         }
 
@@ -3738,8 +3752,6 @@
             tableBody.innerHTML = '';
             const field = document.getElementById('ncrSearchField').value;
             const term = document.getElementById('ncrSearchTerm').value.toLowerCase();
-
-            // 1. Group NCRs by ncrRefNumber and ncrDiscipline
             const groupedNCRS = {};
             ncrData.forEach(doc => {
                 const refNumber = doc.ncrRefNumber;
@@ -3748,69 +3760,54 @@
                 if (!groupedNCRS[groupKey]) {
                     groupedNCRS[groupKey] = [];
                 }
-                    groupedNCRS[groupKey].push(doc);
+                groupedNCRS[groupKey].push(doc);
             });
-
-            // 2. Determine 'Latest' and 'Superseded' status for each group based on Part B Rev
             const ncrDataWithLifecycleStatus = [];
             for (const groupKey in groupedNCRS) {
                 const group = groupedNCRS[groupKey];
                 if (group.length === 0) continue;
-
-                // Sort the group by ncrRev_PartB to find the latest
                 group.sort((a, b) => compareRevisions(a.ncrRev_PartB, b.ncrRev_PartB));
                 const latestDoc = group[group.length - 1];
-
                 group.forEach(doc => {
-                    const newDoc = { ...doc }; // Create a copy to add new properties
-                    if (newDoc.id === latestDoc.id) {
-                        newDoc.ncrLifecycleStatus = 'Latest';
-                    } else {
-                        newDoc.ncrLifecycleStatus = 'Superseded';
-                    }
+                    const newDoc = { ...doc };
+                    newDoc.ncrLifecycleStatus = (newDoc.id === latestDoc.id) ? 'Latest' : 'Superseded';
                     ncrDataWithLifecycleStatus.push(newDoc);
                 });
             }
 
-            // 3. Apply search and filter on the data with lifecycle status
             let filtered = ncrDataWithLifecycleStatus.filter(doc => {
                 if (!term) return true;
                 if (field === 'ncrLifecycleStatus' && doc.ncrLifecycleStatus) {
                     return String(doc.ncrLifecycleStatus).toLowerCase().includes(term);
                 } else if (field && doc[field]) {
-                    // Apply date formatting for comparison if it's a date field
                     if (field.toLowerCase().includes('date')) {
                         return formatDateForDisplay(doc[field]).toLowerCase().includes(term);
                     }
                     return String(doc[field]).toLowerCase().includes(term);
                 }
-                // Fallback for general search across all string values, format dates for comparison
                 return Object.values(doc).some(value => {
-                    if (typeof value === 'string' && value.toLowerCase().includes('date')) { // Heuristic for date fields
+                    if (typeof value === 'string' && value.toLowerCase().includes('date')) {
                         return formatDateForDisplay(value || '').toLowerCase().includes(term);
                     }
                     return String(value || '').toLowerCase().includes(term);
                 });
             });
 
-            // 4. Sort the filtered data: Primary by Part A Received Date, Secondary by NCR Ref Number, Tertiary by Part B Revision
             filtered.sort((a, b) => {
                 const dateA = new Date(a.partAReceivedDate);
                 const dateB = new Date(b.partAReceivedDate);
 
                 if (dateA.getTime() !== dateB.getTime()) {
-                    return dateA.getTime() - dateB.getTime(); // Ascending Part A Date
+                    return dateA.getTime() - dateB.getTime();
                 }
 
                 const refComparison = String(a.ncrRefNumber || '').localeCompare(String(b.ncrRefNumber || ''));
                 if (refComparison !== 0) {
-                    return refComparison; // Ascending NCR Ref Number
+                    return refComparison;
                 }
 
-                return compareRevisions(a.ncrRev_PartB, b.ncrRev_PartB); // Ascending Part B Revision
+                return compareRevisions(a.ncrRev_PartB, b.ncrRev_PartB);
             });
-
-            // 5. Render the filtered and sorted data
             filtered.forEach(doc => tableBody.appendChild(renderNcrRow(doc, 'ncr')));
         }
 
@@ -3826,7 +3823,6 @@
             tableBody.innerHTML = '';
             const searchTerm = document.getElementById('submissionSearchInput').value.toLowerCase();
             let filtered = submissionData;
-
             if (currentSubmissionFilterStatus) {
                 filtered = filtered.filter(doc => doc.status === currentSubmissionFilterStatus);
             }
@@ -3834,24 +3830,22 @@
             if (searchTerm) {
                 filtered = filtered.filter(doc => {
                     return Object.values(doc).some(value => {
-                        if (typeof value === 'string' && value.toLowerCase().includes('date')) { // Heuristic for date fields
-                            return formatDateForDisplay(value || '').toLowerCase().includes(searchTerm);
+                        if (typeof value === 'string' && value.toLowerCase().includes('date')) {
+                            return formatDateForDisplay(value || '').toLowerCase().includes(term);
                         }
-                        return String(value || '').toLowerCase().includes(searchTerm);
+                        return String(value || '').toLowerCase().includes(term);
                     });
                 });
             }
 
-            // Sort by submittedDate (ascending) then Doc Number (ascending)
             filtered.sort((a, b) => {
                 const dateA = new Date(a.submittedDate);
                 const dateB = new Date(b.submittedDate);
                 if (dateA.getTime() !== dateB.getTime()) {
-                    return dateA.getTime() - dateB.getTime(); // Ascending date
+                    return dateA.getTime() - dateB.getTime();
                 }
-                return String(a.docNumber || '').localeCompare(String(b.docNumber || '')); // Secondary sort by Doc Number
+                return String(a.docNumber || '').localeCompare(String(b.docNumber || ''));
             });
-
             filtered.forEach(doc => tableBody.appendChild(renderSubmissionRow(doc, 'submissions')));
         }
 
@@ -3869,13 +3863,11 @@
 
         let currentOutgoingFilterStatus = '';
         let currentOutgoingKeywordFilter = '';
-
         function searchOutgoingCorrespondences() {
             const tableBody = document.querySelector('#outgoingCorrespondenceTable tbody');
             tableBody.innerHTML = '';
             const searchTerm = document.getElementById('outgoingSearchInput').value.toLowerCase();
             let filtered = outgoingCorrespondenceData;
-
             if (currentOutgoingFilterStatus) {
                 filtered = filtered.filter(doc => doc.status === currentOutgoingFilterStatus);
             }
@@ -3885,24 +3877,22 @@
             if (searchTerm) {
                 filtered = filtered.filter(doc => {
                     return Object.values(doc).some(value => {
-                        if (typeof value === 'string' && value.toLowerCase().includes('date')) { // Heuristic for date fields
-                            return formatDateForDisplay(value || '').toLowerCase().includes(searchTerm);
+                        if (typeof value === 'string' && value.toLowerCase().includes('date')) {
+                            return formatDateForDisplay(value || '').toLowerCase().includes(term);
                         }
-                        return String(value || '').toLowerCase().includes(searchTerm);
+                        return String(value || '').toLowerCase().includes(term);
                     });
                 });
             }
 
-            // Sort by letterDate (ascending) then Letter Ref (ascending)
             filtered.sort((a, b) => {
                 const dateA = new Date(a.letterDate);
                 const dateB = new Date(b.letterDate);
                 if (dateA.getTime() !== dateB.getTime()) {
-                    return dateA.getTime() - dateB.getTime(); // Ascending date
+                    return dateA.getTime() - dateB.getTime();
                 }
-                return String(a.letterRef || '').localeCompare(String(b.letterRef || '')); // Secondary sort by Letter Ref
+                return String(a.letterRef || '').localeCompare(String(b.letterRef || ''));
             });
-
             filtered.forEach(doc => tableBody.appendChild(renderOutgoingCorrespondenceRow(doc, 'outgoing_correspondences')));
         }
 
@@ -3927,13 +3917,11 @@
 
         let currentIncomingFilterStatus = '';
         let currentIncomingKeywordFilter = '';
-
         function searchIncomingCorrespondences() {
             const tableBody = document.querySelector('#incomingCorrespondenceTable tbody');
             tableBody.innerHTML = '';
             const searchTerm = document.getElementById('incomingSearchInput').value.toLowerCase();
             let filtered = incomingCorrespondenceData;
-
             if (currentIncomingFilterStatus) {
                 filtered = filtered.filter(doc => doc.status === currentIncomingFilterStatus);
             }
@@ -3943,24 +3931,22 @@
             if (searchTerm) {
                 filtered = filtered.filter(doc => {
                     return Object.values(doc).some(value => {
-                        if (typeof value === 'string' && value.toLowerCase().includes('date')) { // Heuristic for date fields
-                            return formatDateForDisplay(value || '').toLowerCase().includes(searchTerm);
+                        if (typeof value === 'string' && value.toLowerCase().includes('date')) {
+                            return formatDateForDisplay(value || '').toLowerCase().includes(term);
                         }
-                        return String(value || '').toLowerCase().includes(searchTerm);
+                        return String(value || '').toLowerCase().includes(term);
                     });
                 });
             }
 
-            // Sort by dateOfReceipt (ascending) then Incoming Ref (ascending)
             filtered.sort((a, b) => {
                 const dateA = new Date(a.dateOfReceipt);
                 const dateB = new Date(b.dateOfReceipt);
                 if (dateA.getTime() !== dateB.getTime()) {
-                    return dateA.getTime() - dateB.getTime(); // Ascending date
+                    return dateA.getTime() - dateB.getTime();
                 }
-                return String(a.incomingRef || '').localeCompare(String(b.incomingRef || '')); // Secondary sort by Incoming Ref
+                return String(a.incomingRef || '').localeCompare(String(b.incomingRef || ''));
             });
-
             filtered.forEach(doc => tableBody.appendChild(renderIncomingCorrespondenceRow(doc, 'incoming_correspondences')));
         }
 
@@ -3985,40 +3971,25 @@
 
         // --- CSV Download Functions ---
 
-        /**
-         * Generic function to download data as a CSV file.
-         * @param {Array<Object>} data - Array of objects to be exported.
-         * @param {string} filename - The name of the CSV file.
-         * @param {Array<string>} headers - An array of strings defining the header order and names.
-         * These strings should match the keys in your data objects.
-         */
         function downloadCSV(data, filename, headers) {
             if (!data || data.length === 0) {
                 showMessageModal("No data to download. Please add some records first.", "No Data");
                 return;
             }
 
-            // Create header row based on the provided headers array, ensuring all are quoted
             let csv = headers.map(header => `"${header}"`).join(',') + '\n';
-
             data.forEach(row => {
                 const values = headers.map(header => {
                     let value = row[header];
 
-                    // Special handling for date fields to ensure MM/DD/YYYY format in CSV
-                    // The includes('Date') check works for 'date', 'submittedDate', etc.
                     if (header.toLowerCase().includes('date') && typeof value === 'string') {
                         value = formatDateForDisplay(value);
                     }
 
-                    // Handle null/undefined values by converting to empty string
-                    // Convert all values to string to ensure .replace() works
                     let stringValue = String(value || '');
 
-                    // Escape double quotes within the string value by replacing them with two double quotes
                     stringValue = stringValue.replace(/"/g, '""');
 
-                    // Enclose the entire value in double quotes
                     return `"${stringValue}"`;
                 });
                 csv += values.join(',') + '\n';
@@ -4033,20 +4004,18 @@
             document.body.removeChild(link);
         }
 
-        // Correspondence CSV Headers (Standardized)
-        // These headers should be consistently used for both incoming and outgoing for easier Power Query combining
         const CORRESPONDENCE_CSV_HEADERS = [
             'Type', 'Reference', 'Date', 'From', 'To', 'Subject',
             'Reply_Reference', 'Keyword', 'Reply_Required', 'Date_Sent', 'Status'
         ];
-
+        
         function downloadInspectionsCSV() {
             downloadCSV(inspectionsData, 'inspections_register.csv', [
                 'date', 'discipline', 'insNumber', 'revision', 'location',
-                'workToBeInspected', 'inspectionDate', 'inspectionTime', // Removed 'submissionType'
+                'workToBeInspected', 'inspectionDate', 'inspectionTime',
                 'approvedDrawingRef', 'specificationRef', 'approvedMethodStatementRef',
                 'qcsReference', 'commentReceivedDate', 'documentStatus', 'revStatus',
-                'approvalSummaryStatus'
+                'approvalSummaryStatus', 'inspectionsDocumentUrl'
             ]);
         }
 
@@ -4056,16 +4025,15 @@
                 'mirInspectionDate', 'mirInspectionTime', 'materialApprovalRef', 'descriptionMaterial',
                 'deliveryNoteNumber', 'manufacturer', 'supplier', 'countryOrigin',
                 'mirSubmissionDate', 'mirResponseDate', 'mirApprovalStatus', 'mirRevStatus',
-                'mirApprovalSummaryStatus'
+                'mirApprovalSummaryStatus', 'mirDocumentUrl'
             ]);
         }
 
         function downloadNcrCSV() {
-            // Need to apply lifecycle status before downloading if desired in CSV
             const groupedNCRS = {};
             ncrData.forEach(doc => {
                 const refNumber = doc.ncrRefNumber;
-                const groupKey = `${refNumber}-${doc.ncrDiscipline}`; // Include discipline in grouping
+                const groupKey = `${refNumber}-${doc.ncrDiscipline}`;
                 if (!groupedNCRS[groupKey]) {
                     groupedNCRS[groupKey] = [];
                 }
@@ -4075,7 +4043,6 @@
             for (const groupKey in groupedNCRS) {
                 const group = groupedNCRS[groupKey];
                 if (group.length === 0) continue;
-                // Sort by Part B revision for lifecycle status calculation
                 group.sort((a, b) => compareRevisions(a.ncrRev_PartB, b.ncrRev_PartB));
                 const latestDoc = group[group.length - 1];
                 group.forEach(doc => {
@@ -4089,7 +4056,7 @@
                 'partAReceivedDate', 'ncrRev_PartB', 'ncrRevisedParts_PartB', 'immediateAction',
                 'rootCause', 'correctiveAction', 'partBSubmittedDate', 'partCReceivedDate',
                 'partBAcceptedByGEC', 'ifPartBAccepted', 'partDRev', 'partDRevisedParts',
-                'partDSubmittedDate', 'partEReceivedDate', 'partEStatus', 'ncrCurrentStatus'
+                'partDSubmittedDate', 'partEReceivedDate', 'partEStatus', 'ncrCurrentStatus', 'ncrDocumentUrl'
             ]);
         }
 
@@ -4097,18 +4064,14 @@
             downloadCSV(submissionData, 'submission_register.csv', [
                 'docNumber', 'rev', 'discipline', 'docType', 'section', 'docTitle',
                 'subRef', 'submittedDate', 'gecDueDate', 'respondedDate', 'status',
-                'verifyRev', // This now holds 'Latest' or 'Superseded'
-                'daysOverdue'
+                'verifyRev',
+                'daysOverdue', 'documentUrl'
             ]);
         }
 
-        /**
-         * Prepares outgoing correspondence data for CSV export with standardized headers.
-         * @returns {Array<Object>} Transformed data.
-         */
         function prepareOutgoingForCSV() {
             return outgoingCorrespondenceData.map(doc => ({
-                Type: 'Outgoing', // New field for Type
+                Type: 'Outgoing',
                 Reference: doc.letterRef || '',
                 Date: doc.letterDate || '',
                 From: doc.initiator || '',
@@ -4122,13 +4085,9 @@
             }));
         }
 
-        /**
-         * Prepares incoming correspondence data for CSV export with standardized headers.
-         * @returns {Array<Object>} Transformed data.
-         */
         function prepareIncomingForCSV() {
             return incomingCorrespondenceData.map(doc => ({
-                Type: 'Incoming', // New field for Type
+                Type: 'Incoming',
                 Reference: doc.incomingRef || '',
                 Date: doc.dateOfReceipt || '',
                 From: doc.originator || '',
@@ -4137,17 +4096,17 @@
                 Reply_Reference: doc.replyToRef || '',
                 Keyword: doc.keyword || '',
                 Reply_Required: doc.replyRequired || '',
-                Date_Sent: '', // Incoming correspondences don't have a 'Date Sent'
+                Date_Sent: '',
                 Status: doc.status || ''
             }));
         }
 
-        function downloadOutgoingCSV() { // Renamed from downloadOutgoingExcel for clarity
+        function downloadOutgoingCSV() {
             const dataToExport = prepareOutgoingForCSV();
             downloadCSV(dataToExport, 'outgoing_correspondence_register.csv', CORRESPONDENCE_CSV_HEADERS);
         }
 
-        function downloadIncomingCSV() { // Renamed from downloadIncomingExcel for clarity
+        function downloadIncomingCSV() {
             const dataToExport = prepareIncomingForCSV();
             downloadCSV(dataToExport, 'incoming_correspondence_register.csv', CORRESPONDENCE_CSV_HEADERS);
         }
@@ -4171,7 +4130,6 @@
             pivotTable.innerHTML = '<thead></thead><tbody></tbody>';
 
             const groupedData = {};
-            // Using the full text for statuses in the pivot table for clarity
             const statusMap = {
                 'UR': 'Under Review',
                 'C': 'Revised & Resubmit',
@@ -4181,7 +4139,7 @@
                 'E': 'For Information',
                 'X': 'Cancelled'
             };
-            const statusesOrder = ['UR', 'C', 'A', 'B', 'D', 'E', 'X']; // Order of columns
+            const statusesOrder = ['UR', 'C', 'A', 'B', 'D', 'E', 'X'];
 
             submissionData.forEach(doc => {
                 const groupKey = doc[groupByField] || 'N/A';
@@ -4195,11 +4153,10 @@
                 }
                 groupedData[groupKey].total++;
             });
-
             const thead = pivotTable.querySelector('thead');
             let headerRow = `<tr><th>${groupByField.charAt(0).toUpperCase() + groupByField.slice(1)}</th>`;
             statusesOrder.forEach(status => {
-                headerRow += `<th>${statusMap[status] || status}</th>`; // Use mapped name, fallback to code
+                headerRow += `<th>${statusMap[status] || status}</th>`;
             });
             headerRow += `<th>Total</th></tr>`;
             thead.innerHTML = headerRow;
@@ -4241,10 +4198,7 @@
                 }
                 groupedData[groupKey].total++;
             });
-
-            // Create header row using mapped status names
             let csvContent = `"${groupByField}",${statusesOrder.map(status => `"${statusMap[status] || status}"`).join(',')},"Total"\n`;
-
             for (const groupKey in groupedData) {
                 const rowData = statusesOrder.map(status => groupedData[groupKey][status]);
                 csvContent += `"${String(groupKey || '').replace(/"/g, '""')}",${rowData.join(',')},${groupedData[groupKey].total}\n`;
@@ -4264,23 +4218,14 @@
         document.addEventListener('DOMContentLoaded', () => {
             console.log("DOMContentLoaded fired. Initializing UI elements and then Firebase.");
 
-            // Initial setup of fixed dropdowns and showing the default page
             populateFixedDropdowns();
-            showPage('inspectionsPage'); // Still default to this page when app is visible
-            showCorrespondenceSection('outgoingCorrespondenceSection'); // Default to outgoing correspondence
+            showPage('inspectionsPage');
+            showCorrespondenceSection('outgoingCorrespondenceSection');
 
-            // Attach event listeners to input fields for calculated values
-            // Inspections Register
             document.getElementById('discipline').addEventListener('change', updateNextInsNumber);
-            // documentStatus now selects, no direct revStatus calculation based on it for the 'revStatus' field
-            // The `approvalSummaryStatus` will be calculated during add/update
 
-            // MIR Register
             document.getElementById('mirDiscipline').addEventListener('change', updateNextMirNumber);
-            // mirApprovalStatus now selects, no direct mirRevStatus calculation based on it for the 'mirRevStatus' field
-            // The `mirApprovalSummaryStatus` will be calculated during add/update
 
-            // NCR Register (unchanged as it already has the lifecycle status logic)
             document.getElementById('partBAcceptedByGEC').addEventListener('change', (e) => {
                 if (e.target.value === 'Yes') {
                     document.getElementById('ifPartBAccepted').value = 'Submit Part D';
@@ -4296,16 +4241,14 @@
                     document.getElementById('partDRevisedParts').value = '';
                 }
             });
-
-            // Submission Register - Recalculate days overdue on date change (verifyRev is now automatic)
+            
             document.getElementById('newSubmittedDate').addEventListener('change', () => {
                 const submittedDate = document.getElementById('newSubmittedDate').value;
                 const respondedDate = document.getElementById('newRespondedDate').value;
-                // Re-calculate GEC Due Date based on submittedDate
                 if (submittedDate) {
                     const subDateObj = new Date(submittedDate);
-                    const dueDateObj = new Date(subDateObj); // Create a new Date object for dueDate
-                    dueDateObj.setDate(subDateObj.getDate() + 14); // Add 14 days
+                    const dueDateObj = new Date(subDateObj);
+                    dueDateObj.setDate(subDateObj.getDate() + 14);
                     document.getElementById('gecDueDate').value = dueDateObj.toISOString().split('T')[0];
                 } else {
                     document.getElementById('gecDueDate').value = '';
@@ -4317,21 +4260,15 @@
                 const respondedDate = document.getElementById('newRespondedDate').value;
                 document.getElementById('daysOverdue').value = calculateDaysOverdue(submittedDate, respondedDate);
             });
-            // The newStatus (approval status) change no longer affects verifyRev directly in the form
-            // as verifyRev is now purely 'Latest'/'Superseded' based on revision logic.
-            // The daysOverdue calculation remains, but no more `calculateRevStatus`
             document.getElementById('newStatus').addEventListener('change', () => {
                 const submittedDate = document.getElementById('newSubmittedDate').value;
                 const respondedDate = document.getElementById('newRespondedDate').value;
                 document.getElementById('daysOverdue').value = calculateDaysOverdue(submittedDate, respondedDate);
             });
-
-
-            // Start Firebase initialization as an asynchronous process
+            
             initializeFirebaseAndAuth();
         });
 
-        // Function to load all data listeners after authentication is ready
         async function loadAllDataListeners() {
             console.log("Loading all data listeners...");
             setupRealtimeListener('inspections');
@@ -4340,54 +4277,54 @@
             setupRealtimeListener('submissions');
             setupRealtimeListener('outgoing_correspondences');
             setupRealtimeListener('incoming_correspondences');
+            setupRealtimeListener('staff_emails');
 
-            // Initial updates for numbers that depend on loaded data
             updateNextInsNumber();
             updateNextMirNumber();
         }
 
-        // --- Expose functions to the global scope for HTML onclick attributes ---
-        // These are critical for the HTML `onclick` attributes to find the functions.
         window.showPage = showPage;
         window.handleCustomConfirm = handleCustomConfirm;
         window.showMessageModal = showMessageModal;
         window.hideMessageModal = hideMessageModal;
         window.showLoadingOverlay = showLoadingOverlay;
         window.hideLoadingOverlay = hideLoadingOverlay;
-        window.showCustomConfirm = showCustomConfirm; // Expose the Promise-based custom confirm
+        window.showCustomConfirm = showCustomConfirm;
 
-        // Auth
         window.toggleAuthMode = toggleAuthMode;
         window.handleAuthSubmit = handleAuthSubmit;
         window.handleSignOut = handleSignOut;
         window.signInAnonymouslyUser = signInAnonymouslyUser;
-        window.showForgotPasswordModal = showForgotPasswordModal; // Expose new function
-        window.hideForgotPasswordModal = hideForgotPasswordModal; // Expose new function
-        window.sendPasswordReset = sendPasswordReset; // Expose new function
+        window.showForgotPasswordModal = showForgotPasswordModal;
+        window.hideForgotPasswordModal = hideForgotPasswordModal;
+        window.sendPasswordReset = sendPasswordReset;
 
-        // Inspections
+        window.showEmailModal = showEmailModal;
+        window.hideEmailModal = hideEmailModal;
+        window.sendEmailViaOutlook = sendEmailViaOutlook;
+
         window.addUpdateInspectionDocument = addUpdateInspectionDocument;
         window.clearInspectionsForm = clearInspectionsForm;
         window.editInspection = editInspection;
         window.performInspectionsSearch = performInspectionsSearch;
         window.clearInspectionsSearch = clearInspectionsSearch;
         window.downloadInspectionsCSV = downloadInspectionsCSV;
-        // MIR
+
         window.addUpdateMirDocument = addUpdateMirDocument;
         window.clearMirForm = clearMirForm;
         window.editMir = editMir;
         window.performMirSearch = performMirSearch;
         window.clearMirSearch = clearMirSearch;
         window.downloadMirCSV = downloadMirCSV;
-        // NCR
-        window.handleNcrFormSubmission = handleNcrFormSubmission; // Renamed from addUpdateNcrDocument
+
+        window.handleNcrFormSubmission = handleNcrFormSubmission;
         window.clearNcrForm = clearNcrForm;
         window.editNcr = editNcr;
         window.performNcrSearch = performNcrSearch;
-        window.autoFillNcrDetails = autoFillNcrDetails; // Expose
+        window.autoFillNcrDetails = autoFillNcrDetails;
         window.clearNcrSearch = clearNcrSearch;
         window.downloadNcrCSV = downloadNcrCSV;
-        // Submissions
+
         window.addNewSubmissionDocument = addNewSubmissionDocument;
         window.clearNewSubmissionDocumentForm = clearNewSubmissionDocumentForm;
         window.editSubmission = editSubmission;
@@ -4399,9 +4336,8 @@
         window.hidePivotTable = hidePivotTable;
         window.generatePivotTable = generatePivotTable;
         window.downloadPivotTableCSV = downloadPivotTableCSV;
-        // Correspondence
+
         window.showCorrespondenceSection = showCorrespondenceSection;
-        // Outgoing Correspondence
         window.addNewOutgoingCorrespondence = addNewOutgoingCorrespondence;
         window.clearNewOutgoingCorrespondenceForm = clearNewOutgoingCorrespondenceForm;
         window.editOutgoing = editOutgoing;
@@ -4409,8 +4345,8 @@
         window.clearOutgoingSearch = clearOutgoingSearch;
         window.filterOutgoingByStatus = filterOutgoingByStatus;
         window.filterOutgoingByKeyword = filterOutgoingByKeyword;
-        window.downloadOutgoingCSV = downloadOutgoingCSV; // Updated name
-        // Incoming Correspondence
+        window.downloadOutgoingCSV = downloadOutgoingCSV;
+
         window.addNewIncomingCorrespondence = addNewIncomingCorrespondence;
         window.clearNewIncomingCorrespondenceForm = clearNewIncomingCorrespondenceForm;
         window.editIncoming = editIncoming;
@@ -4418,11 +4354,15 @@
         window.clearIncomingSearch = clearIncomingSearch;
         window.filterIncomingByStatus = filterIncomingByStatus;
         window.filterIncomingByKeyword = filterIncomingByKeyword;
-        window.downloadIncomingCSV = downloadIncomingCSV; // Updated name
-        // General UI
-        window.toggleTableVisibility = toggleTableVisibility;
+        window.downloadIncomingCSV = downloadIncomingCSV;
 
-        // CRITICAL: Expose the deleteDocument function to the global scope
+        window.addUpdateStaffEmail = addUpdateStaffEmail;
+        window.editStaffEmail = editStaffEmail;
+        window.deleteStaffEmail = deleteStaffEmail;
+        window.clearStaffForm = clearStaffForm;
+        window.renderStaffEmails = renderStaffEmails;
+        
+        window.toggleTableVisibility = toggleTableVisibility;
         window.deleteDocument = deleteDocument;
     </script>
 </body>
