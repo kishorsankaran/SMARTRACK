@@ -420,6 +420,32 @@
             margin-right: 10px;
             transform: scale(1.2);
         }
+
+        .upload-file-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .upload-file-button {
+            background-color: #1c64f2;
+            color: #fff;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .upload-file-button:hover {
+            background-color: #1a56c4;
+        }
+
+        .upload-file-info {
+            font-size: 12px;
+            color: #6b7280;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -470,14 +496,14 @@
     <div id="emailModal" class="modal-overlay hidden">
         <div class="modal-content">
             <h3 id="emailModalTitle" class="text-2xl font-semibold mb-4 text-gray-700">Send Email</h3>
-            <p id="emailModalMessage" class="text-gray-600 mb-4">Select staff to email the document link.</p>
+            <p id="emailModalMessage" class="text-gray-600 mb-4">Select staff to email the document details.</p>
             
             <div class="form-group">
                 <label class="block font-medium mb-2">Recipients:</label>
                 <div id="staffEmailCheckboxes" class="email-list">
                     </div>
             </div>
-            <p class="text-sm text-gray-500 mt-2">Note: This will open a new Outlook email draft. The document URL will be a placeholder and must be manually provided.</p>
+            <p class="text-sm text-gray-500 mt-2">Note: This will open a new Outlook email draft with a summary of the document details. The document itself is not attached or linked.</p>
             
             <div class="flex justify-end space-x-4 mt-6">
                 <button type="button" class="action-button" id="sendEmailButton" onclick="sendEmailViaOutlook()">Send via Outlook</button>
@@ -610,8 +636,8 @@
                         <input type="text" id="revStatus" readonly class="bg-gray-100 text-gray-500">
                     </div>
                     <div class="form-group">
-                        <label for="inspectionsDocumentUrl">Document URL (Optional):</label>
-                        <input type="url" id="inspectionsDocumentUrl" placeholder="https://your-server.com/doc.pdf">
+                        <label for="inspectionDocument">Upload Document:</label>
+                        <input type="file" id="inspectionDocument">
                     </div>
                     <div class="form-group col-span-full flex justify-end space-x-2">
                         <button type="button" id="addUpdateButton" class="action-button" onclick="addUpdateInspectionDocument()">Add Document</button>
@@ -771,8 +797,8 @@
                         <input type="text" id="mirRevStatus" readonly class="bg-gray-100 text-gray-500">
                     </div>
                     <div class="form-group">
-                        <label for="mirDocumentUrl">Document URL (Optional):</label>
-                        <input type="url" id="mirDocumentUrl" placeholder="https://your-server.com/doc.pdf">
+                        <label for="mirDocument">Upload Document:</label>
+                        <input type="file" id="mirDocument">
                     </div>
                     <div class="form-group col-span-full flex justify-end space-x-2">
                         <button type="button" id="addUpdateMirButton" class="action-button" onclick="addUpdateMirDocument()">Add Document</button>
@@ -882,8 +908,8 @@
                         <input type="date" id="partAReceivedDate">
                     </div>
                     <div class="form-group">
-                        <label for="ncrDocumentUrl">Document URL (Optional):</label>
-                        <input type="url" id="ncrDocumentUrl" placeholder="https://your-server.com/doc.pdf">
+                        <label for="ncrDocument">Upload Document:</label>
+                        <input type="file" id="ncrDocument">
                     </div>
 
                     <h4 class="col-span-full text-lg font-semibold text-blue-700 mt-4 mb-2">Part B: Root Cause & Corrective Action</h4>
@@ -1119,8 +1145,8 @@
                         <input type="text" id="daysOverdue" readonly class="bg-gray-100 text-gray-500">
                     </div>
                     <div class="form-group">
-                        <label for="documentUrl">Document URL (Optional):</label>
-                        <input type="url" id="documentUrl" placeholder="https://your-server.com/doc.pdf">
+                        <label for="submissionDocument">Upload Document:</label>
+                        <input type="file" id="submissionDocument">
                     </div>
                     <div class="form-group col-span-full flex justify-end space-x-2">
                         <button type="button" class="action-button" onclick="addNewSubmissionDocument()">Add Document</button>
@@ -1266,8 +1292,8 @@
                         <input type="date" id="newOutgoingDateSent">
                     </div>
                     <div class="form-group">
-                        <label for="outgoingDocumentUrl">Document URL (Optional):</label>
-                        <input type="url" id="outgoingDocumentUrl" placeholder="https://your-server.com/letter.pdf">
+                        <label for="outgoingDocument">Upload Document:</label>
+                        <input type="file" id="outgoingDocument">
                     </div>
                     <div class="form-group col-span-full flex justify-end space-x-2">
                         <button type="button" class="action-button" onclick="addNewOutgoingCorrespondence()">Add Outgoing</button>
@@ -1375,8 +1401,8 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="incomingDocumentUrl">Document URL (Optional):</label>
-                        <input type="url" id="incomingDocumentUrl" placeholder="https://your-server.com/letter.pdf">
+                        <label for="incomingDocument">Upload Document:</label>
+                        <input type="file" id="incomingDocument">
                     </div>
                     <div class="form-group col-span-full flex justify-end space-x-2">
                         <button type="button" class="action-button" onclick="addNewIncomingCorrespondence()">Add Incoming</button>
@@ -1486,6 +1512,9 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, doc, getDoc, addDoc, setDoc, deleteDoc, onSnapshot, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        
+        // You will also need to add Firebase Storage if you want to store files
+        // import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js";
 
         // --- Global Variables ---
         let inspectionsData = [];
@@ -1771,7 +1800,6 @@
 
             let docId = docData.id;
             let docDetails;
-            let docUrl;
 
             // Retrieve the correct document data based on the type and ID
             switch(docType) {
@@ -1779,42 +1807,36 @@
                     docDetails = inspectionsData.find(d => d.id === docId);
                     if (docDetails) {
                         document.getElementById('emailModalTitle').textContent = `Email: ${docDetails.workToBeInspected}`;
-                        docUrl = docDetails.inspectionsDocumentUrl;
                     }
                     break;
                 case 'mir':
                     docDetails = mirData.find(d => d.id === docId);
                     if (docDetails) {
                         document.getElementById('emailModalTitle').textContent = `Email: ${docDetails.descriptionMaterial}`;
-                        docUrl = docDetails.mirDocumentUrl;
                     }
                     break;
                 case 'ncr':
                     docDetails = ncrData.find(d => d.id === docId);
                     if (docDetails) {
                         document.getElementById('emailModalTitle').textContent = `Email: ${docDetails.ncrDescription}`;
-                        docUrl = docDetails.ncrDocumentUrl;
                     }
                     break;
                 case 'submissions':
                     docDetails = submissionData.find(d => d.id === docId);
                     if (docDetails) {
                         document.getElementById('emailModalTitle').textContent = `Email: ${docDetails.docTitle}`;
-                        docUrl = docDetails.documentUrl;
                     }
                     break;
                 case 'outgoing_correspondences':
                     docDetails = outgoingCorrespondenceData.find(d => d.id === docId);
                     if (docDetails) {
                         document.getElementById('emailModalTitle').textContent = `Email: ${docDetails.letterSubject}`;
-                        docUrl = docDetails.outgoingDocumentUrl;
                     }
                     break;
                 case 'incoming_correspondences':
                     docDetails = incomingCorrespondenceData.find(d => d.id === docId);
                     if (docDetails) {
                         document.getElementById('emailModalTitle').textContent = `Email: ${docDetails.letterSubject}`;
-                        docUrl = docDetails.incomingDocumentUrl;
                     }
                     break;
             }
@@ -1854,49 +1876,88 @@
                 return;
             }
 
-            let subject = "Document Review Request";
-            let body = "Please review the document here: [link]";
-            let docUrl = "[link]";
+            let subject = "Document Details";
+            let body = "Please find the details of the document:\n\n";
             let docInfo = "Document";
 
             if (emailModalDocData) {
                 if (emailModalDocType === 'inspections') {
-                    subject = `Review Request: Inspection ${emailModalDocData.insNumber}`;
-                    docInfo = `Inspection: ${emailModalDocData.insNumber} - ${emailModalDocData.workToBeInspected}`;
-                    docUrl = emailModalDocData.inspectionsDocumentUrl || docUrl;
+                    subject = `Details: Inspection ${emailModalDocData.insNumber}`;
+                    docInfo = `Inspection: ${emailModalDocData.insNumber} - ${emailModalDocData.workToBeInspected}\n\n`;
+                    for (const key in emailModalDocData) {
+                        if (key !== 'id' && key !== 'inspectionsDocumentUrl') {
+                            let value = emailModalDocData[key];
+                            if (key.toLowerCase().includes('date')) {
+                                value = formatDateForDisplay(value);
+                            }
+                            docInfo += `${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}\n`;
+                        }
+                    }
                 } else if (emailModalDocType === 'mir') {
-                    subject = `Review Request: MIR ${emailModalDocData.mirNumber}`;
-                    docInfo = `Material Inspection Request: ${emailModalDocData.mirNumber} - ${emailModalDocData.descriptionMaterial}`;
-                    docUrl = emailModalDocData.mirDocumentUrl || docUrl;
+                    subject = `Details: MIR ${emailModalDocData.mirNumber}`;
+                    docInfo = `Material Inspection Request: ${emailModalDocData.mirNumber} - ${emailModalDocData.descriptionMaterial}\n\n`;
+                    for (const key in emailModalDocData) {
+                        if (key !== 'id' && key !== 'mirDocumentUrl') {
+                            let value = emailModalDocData[key];
+                            if (key.toLowerCase().includes('date')) {
+                                value = formatDateForDisplay(value);
+                            }
+                            docInfo += `${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}\n`;
+                        }
+                    }
                 } else if (emailModalDocType === 'ncr') {
-                    subject = `Review Request: NCR ${emailModalDocData.ncrRefNumber}`;
-                    docInfo = `Non-Conformance Report: ${emailModalDocData.ncrRefNumber} - ${emailModalDocData.ncrDescription}`;
-                    docUrl = emailModalDocData.ncrDocumentUrl || docUrl;
+                    subject = `Details: NCR ${emailModalDocData.ncrRefNumber}`;
+                    docInfo = `Non-Conformance Report: ${emailModalDocData.ncrRefNumber} - ${emailModalDocData.ncrDescription}\n\n`;
+                    for (const key in emailModalDocData) {
+                        if (key !== 'id' && key !== 'ncrDocumentUrl') {
+                            let value = emailModalDocData[key];
+                            if (key.toLowerCase().includes('date')) {
+                                value = formatDateForDisplay(value);
+                            }
+                            docInfo += `${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}\n`;
+                        }
+                    }
                 } else if (emailModalDocType === 'submissions') {
-                    subject = `Review Request: Submission ${emailModalDocData.docNumber} - ${emailModalDocData.docTitle}`;
-                    docInfo = `Submission Document: ${emailModalDocData.docNumber}`;
-                    docUrl = emailModalDocData.documentUrl || docUrl;
+                    subject = `Details: Submission ${emailModalDocData.docNumber} - ${emailModalDocData.docTitle}`;
+                    docInfo = `Submission Document: ${emailModalDocData.docNumber}\n\n`;
+                    for (const key in emailModalDocData) {
+                        if (key !== 'id' && key !== 'documentUrl') {
+                            let value = emailModalDocData[key];
+                            if (key.toLowerCase().includes('date')) {
+                                value = formatDateForDisplay(value);
+                            }
+                            docInfo += `${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}\n`;
+                        }
+                    }
                 } else if (emailModalDocType === 'outgoing_correspondences') {
-                    subject = `Review Request: Outgoing Correspondence ${emailModalDocData.letterRef}`;
-                    docInfo = `Outgoing Correspondence: ${emailModalDocData.letterRef}`;
-                    docUrl = emailModalDocData.outgoingDocumentUrl || docUrl;
+                    subject = `Details: Outgoing Correspondence ${emailModalDocData.letterRef}`;
+                    docInfo = `Outgoing Correspondence: ${emailModalDocData.letterRef}\n\n`;
+                    for (const key in emailModalDocData) {
+                        if (key !== 'id' && key !== 'outgoingDocumentUrl') {
+                            let value = emailModalDocData[key];
+                            if (key.toLowerCase().includes('date')) {
+                                value = formatDateForDisplay(value);
+                            }
+                            docInfo += `${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}\n`;
+                        }
+                    }
                 } else if (emailModalDocType === 'incoming_correspondences') {
-                    subject = `Review Request: Incoming Correspondence ${emailModalDocData.incomingRef}`;
-                    docInfo = `Incoming Correspondence: ${emailModalDocData.incomingRef}`;
-                    docUrl = emailModalDocData.incomingDocumentUrl || docUrl;
+                    subject = `Details: Incoming Correspondence ${emailModalDocData.incomingRef}`;
+                    docInfo = `Incoming Correspondence: ${emailModalDocData.incomingRef}\n\n`;
+                    for (const key in emailModalDocData) {
+                        if (key !== 'id' && key !== 'incomingDocumentUrl') {
+                            let value = emailModalDocData[key];
+                            if (key.toLowerCase().includes('date')) {
+                                value = formatDateForDisplay(value);
+                            }
+                            docInfo += `${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}\n`;
+                        }
+                    }
                 }
             }
-            body = `Please review the following document:\n\n${docInfo}\n\nLink: ${docUrl}\n\nBest regards,\nSMARTRACK`;
+            body += `${docInfo}\n\nBest regards,\nSMARTRACK`;
             
-            // Special handling for UNC paths. The file:// protocol is often required for these.
-            let fullDocUrl = docUrl;
-            if (docUrl.startsWith('\\\\')) {
-                // Encode the path for use in a mailto link.
-                // The `file:` protocol may not work in all browsers/clients, but it's the standard for this.
-                fullDocUrl = `file:///${docUrl.replace(/\\/g, '/')}`;
-            }
-
-            const mailtoLink = `mailto:${selectedEmails.join(';')}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body.replace('[link]', fullDocUrl))}`;
+            const mailtoLink = `mailto:${selectedEmails.join(';')}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
             window.open(mailtoLink, '_blank');
 
             hideEmailModal();
@@ -2463,12 +2524,7 @@
             console.log(`[Firestore] Attempting to add document to collection path: ${colRefPath}`);
 
             try {
-                const addPromise = addDoc(collection(db, colRefPath), data);
-                const timeoutPromise = new Promise((_, reject) =>
-                    setTimeout(() => reject(new Error('Firestore add operation timed out')), 15000)
-                );
-                await Promise.race([addPromise, timeoutPromise]);
-
+                const docRef = await addDoc(collection(db, colRefPath), data);
                 console.log(`[Firestore] New document added to ${collectionName} with ID: ${docRef.id}`);
                 return { success: true, id: docRef.id };
             } catch (e) {
@@ -2570,8 +2626,7 @@
                 commentReceivedDate: document.getElementById('commentReceivedDate').value,
                 documentStatus: document.getElementById('documentStatus').value,
                 revStatus: '',
-                approvalSummaryStatus: getApprovalSummaryText(document.getElementById('documentStatus').value),
-                inspectionsDocumentUrl: document.getElementById('inspectionsDocumentUrl').value,
+                approvalSummaryStatus: getApprovalSummaryText(document.getElementById('documentStatus').value)
             };
             if (!data.date || !data.insNumber || !data.revision || !data.discipline || !data.documentStatus) {
                 showMessageModal("Please fill in all required fields: Date, INS Number, Revision, Discipline, and Document Status.", "Missing Information");
@@ -2633,7 +2688,6 @@
             document.getElementById('inspectionForm').removeAttribute('data-doc-id');
             document.getElementById('addUpdateButton').textContent = 'Add Document';
             document.getElementById('revStatus').value = '';
-            document.getElementById('inspectionsDocumentUrl').value = '';
             updateNextInsNumber();
             console.log("[Inspections] Form cleared.");
         }
@@ -2664,7 +2718,6 @@
                     document.getElementById('commentReceivedDate').value = formatDateForInput(data.commentReceivedDate) || '';
                     document.getElementById('documentStatus').value = data.documentStatus || '';
                     document.getElementById('revStatus').value = data.revStatus || '';
-                    document.getElementById('inspectionsDocumentUrl').value = data.inspectionsDocumentUrl || '';
 
                     document.getElementById('inspectionForm').dataset.docId = docId;
                     document.getElementById('addUpdateButton').textContent = 'Update Document';
@@ -2705,8 +2758,7 @@
                 mirResponseDate: document.getElementById('mirResponseDate').value,
                 mirApprovalStatus: document.getElementById('mirApprovalStatus').value,
                 mirRevStatus: '',
-                mirApprovalSummaryStatus: getApprovalSummaryText(document.getElementById('mirApprovalStatus').value),
-                mirDocumentUrl: document.getElementById('mirDocumentUrl').value,
+                mirApprovalSummaryStatus: getApprovalSummaryText(document.getElementById('mirApprovalStatus').value)
             };
             if (!data.mirDate || !data.mirNumber || !data.mirRevision || !data.mirDiscipline || !data.mirApprovalStatus) {
                 showMessageModal("Please fill in all required fields: Date, MIR Number, Revision, Discipline, and Approval Status.", "Missing Information");
@@ -2767,7 +2819,6 @@
             document.getElementById('mirForm').removeAttribute('data-doc-id');
             document.getElementById('addUpdateMirButton').textContent = 'Add Document';
             document.getElementById('mirRevStatus').value = '';
-            document.getElementById('mirDocumentUrl').value = '';
             updateNextMirNumber();
             console.log("[MIR] Form cleared.");
         }
@@ -2800,7 +2851,6 @@
                     document.getElementById('mirResponseDate').value = formatDateForInput(data.mirResponseDate) || '';
                     document.getElementById('mirApprovalStatus').value = data.mirApprovalStatus || '';
                     document.getElementById('mirRevStatus').value = data.mirRevStatus || '';
-                    document.getElementById('mirDocumentUrl').value = data.mirDocumentUrl || '';
 
                     document.getElementById('mirForm').dataset.docId = docId;
                     document.getElementById('addUpdateMirButton').textContent = 'Update Document';
@@ -2858,23 +2908,18 @@
                 ncrRefNumber: document.getElementById('ncrRefNumber').value,
                 ncrDescription: document.getElementById('ncrDescription').value,
                 partAReceivedDate: document.getElementById('partAReceivedDate').value,
-                ncrDocumentUrl: document.getElementById('ncrDocumentUrl').value,
-
                 ncrRev_PartB: document.getElementById('ncrRev_PartB').value,
                 ncrRevisedParts_PartB: document.getElementById('ncrRevisedParts_PartB').value,
                 immediateAction: document.getElementById('immediateAction').value,
                 rootCause: document.getElementById('rootCause').value,
                 correctiveAction: document.getElementById('correctiveAction').value,
                 partBSubmittedDate: document.getElementById('partBSubmittedDate').value,
-
                 partCReceivedDate: document.getElementById('partCReceivedDate').value,
                 partBAcceptedByGEC: document.getElementById('partBAcceptedByGEC').value,
                 ifPartBAccepted: document.getElementById('ifPartBAccepted').value,
-
                 partDRev: document.getElementById('partDRev').value,
                 partDRevisedParts: document.getElementById('partDRevisedParts').value,
                 partDSubmittedDate: document.getElementById('partDSubmittedDate').value,
-
                 partEReceivedDate: document.getElementById('partEReceivedDate').value,
                 partEStatus: document.getElementById('partEStatus').value,
                 ncrCurrentStatus: document.getElementById('ncrCurrentStatus').value,
@@ -2940,7 +2985,6 @@
             document.getElementById('ncrRev_PartB').value = '0';
             document.getElementById('partDRev').value = '';
             document.getElementById('partDRevisedParts').value = '';
-            document.getElementById('ncrDocumentUrl').value = '';
             console.log("[NCR] Form cleared.");
         }
 
@@ -2949,7 +2993,6 @@
             document.getElementById('ncrRefNumber').value = data.ncrRefNumber || '';
             document.getElementById('ncrDescription').value = data.ncrDescription || '';
             document.getElementById('partAReceivedDate').value = formatDateForInput(data.partAReceivedDate) || '';
-            document.getElementById('ncrDocumentUrl').value = data.ncrDocumentUrl || '';
             if (forNewRevision) {
                 document.getElementById('ncrRev_PartB').value = getNextRevision(data.ncrRev_PartB || '0');
                 document.getElementById('ncrRevisedParts_PartB').value = '';
@@ -3090,8 +3133,7 @@
                 gecDueDate: document.getElementById('newSubmittedDate').value ? new Date(new Date(document.getElementById('newSubmittedDate').value).setDate(new Date(document.getElementById('newSubmittedDate').value).getDate() + 14)).toISOString().split('T')[0] : '',
                 status: document.getElementById('newStatus').value,
                 verifyRev: 'Latest',
-                daysOverdue: calculateDaysOverdue(document.getElementById('newSubmittedDate').value, document.getElementById('newRespondedDate').value),
-                documentUrl: document.getElementById('documentUrl').value,
+                daysOverdue: calculateDaysOverdue(document.getElementById('newSubmittedDate').value, document.getElementById('newRespondedDate').value)
             };
             if (!data.docNumber || !data.rev || !data.discipline || !data.docType || !data.docTitle || !data.submittedDate) {
                 showMessageModal("Please fill in all required fields for Submission: Document Number, Revision, Discipline, Document Type, Document Title, Submitted Date.", "Missing Information");
@@ -3185,7 +3227,6 @@
             document.getElementById('lifecycleStatus').value = '';
             document.getElementById('daysOverdue').value = '';
             document.getElementById('gecDueDate').value = '';
-            document.getElementById('documentUrl').value = '';
             console.log("[Submission] Form cleared.");
         }
 
@@ -3213,7 +3254,6 @@
                     document.getElementById('lifecycleStatus').value = data.verifyRev || '';
                     document.getElementById('daysOverdue').value = data.daysOverdue || '';
                     document.getElementById('gecDueDate').value = formatDateForInput(data.gecDueDate) || '';
-                    document.getElementById('documentUrl').value = data.documentUrl || '';
 
                     const form = document.getElementById('submissionForm');
                     form.dataset.docId = docId;
@@ -3248,8 +3288,7 @@
                 keyword: document.getElementById('newOutgoingKeyword').value,
                 replyRequired: document.getElementById('newOutgoingReplyRequired').value,
                 dateSent: document.getElementById('newOutgoingDateSent').value,
-                status: document.getElementById('newOutgoingReplyRequired').value === 'Yes' ? 'OPEN' : 'CLOSED',
-                outgoingDocumentUrl: document.getElementById('outgoingDocumentUrl').value,
+                status: document.getElementById('newOutgoingReplyRequired').value === 'Yes' ? 'OPEN' : 'CLOSED'
             };
             if (!data.letterRef || !data.letterSubject || !data.replyRequired) {
                 showMessageModal("Please fill in all required fields for Outgoing Correspondence: Outgoing Letter Ref., Letter Subject, Reply Required.", "Missing Information");
@@ -3285,7 +3324,6 @@
             form.reset();
             form.removeAttribute('data-doc-id');
             document.querySelector('#outgoingCorrespondenceForm button.action-button').textContent = 'Add Outgoing';
-            document.getElementById('outgoingDocumentUrl').value = '';
             console.log("[Outgoing Correspondence] Form cleared.");
         }
 
@@ -3309,7 +3347,6 @@
                     document.getElementById('newOutgoingKeyword').value = data.keyword || '';
                     document.getElementById('newOutgoingReplyRequired').value = data.replyRequired || '';
                     document.getElementById('newOutgoingDateSent').value = formatDateForInput(data.dateSent) || '';
-                    document.getElementById('outgoingDocumentUrl').value = data.outgoingDocumentUrl || '';
 
                     const form = document.getElementById('outgoingCorrespondenceForm');
                     form.dataset.docId = docId;
@@ -3343,8 +3380,7 @@
                 replyToRef: document.getElementById('newIncomingReplyToRef').value,
                 keyword: document.getElementById('newIncomingKeyword').value,
                 replyRequired: document.getElementById('newIncomingReplyRequired').value,
-                status: document.getElementById('newIncomingReplyRequired').value === 'Yes' ? 'OPEN' : 'CLOSED',
-                incomingDocumentUrl: document.getElementById('incomingDocumentUrl').value,
+                status: document.getElementById('newIncomingReplyRequired').value === 'Yes' ? 'OPEN' : 'CLOSED'
             };
             if (!data.incomingRef || !data.letterSubject || !data.replyRequired) {
                 showMessageModal("Please fill in all required fields for Incoming Correspondence: Incoming Reference, Letter Subject, Reply Required.", "Missing Information");
@@ -3379,7 +3415,6 @@
             form.reset();
             form.removeAttribute('data-doc-id');
             document.querySelector('#incomingCorrespondenceForm button.action-button').textContent = 'Add Incoming';
-            document.getElementById('incomingDocumentUrl').value = '';
             console.log("[Incoming Correspondence] Form cleared.");
         }
 
@@ -3402,7 +3437,6 @@
                     document.getElementById('newIncomingReplyToRef').value = data.replyToRef || '';
                     document.getElementById('newIncomingKeyword').value = data.keyword || '';
                     document.getElementById('newIncomingReplyRequired').value = data.replyRequired || '';
-                    document.getElementById('incomingDocumentUrl').value = data.incomingDocumentUrl || '';
                     
                     const form = document.getElementById('incomingCorrespondenceForm');
                     form.dataset.docId = docId;
@@ -4015,7 +4049,7 @@
                 'workToBeInspected', 'inspectionDate', 'inspectionTime',
                 'approvedDrawingRef', 'specificationRef', 'approvedMethodStatementRef',
                 'qcsReference', 'commentReceivedDate', 'documentStatus', 'revStatus',
-                'approvalSummaryStatus', 'inspectionsDocumentUrl'
+                'approvalSummaryStatus'
             ]);
         }
 
@@ -4025,7 +4059,7 @@
                 'mirInspectionDate', 'mirInspectionTime', 'materialApprovalRef', 'descriptionMaterial',
                 'deliveryNoteNumber', 'manufacturer', 'supplier', 'countryOrigin',
                 'mirSubmissionDate', 'mirResponseDate', 'mirApprovalStatus', 'mirRevStatus',
-                'mirApprovalSummaryStatus', 'mirDocumentUrl'
+                'mirApprovalSummaryStatus'
             ]);
         }
 
@@ -4056,7 +4090,7 @@
                 'partAReceivedDate', 'ncrRev_PartB', 'ncrRevisedParts_PartB', 'immediateAction',
                 'rootCause', 'correctiveAction', 'partBSubmittedDate', 'partCReceivedDate',
                 'partBAcceptedByGEC', 'ifPartBAccepted', 'partDRev', 'partDRevisedParts',
-                'partDSubmittedDate', 'partEReceivedDate', 'partEStatus', 'ncrCurrentStatus', 'ncrDocumentUrl'
+                'partDSubmittedDate', 'partEReceivedDate', 'partEStatus', 'ncrCurrentStatus'
             ]);
         }
 
@@ -4065,7 +4099,7 @@
                 'docNumber', 'rev', 'discipline', 'docType', 'section', 'docTitle',
                 'subRef', 'submittedDate', 'gecDueDate', 'respondedDate', 'status',
                 'verifyRev',
-                'daysOverdue', 'documentUrl'
+                'daysOverdue'
             ]);
         }
 
