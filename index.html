@@ -432,7 +432,7 @@
             color: #fff;
             padding: 8px 12px;
             border: none;
-            border-radius: 6px;
+            border-radius: 6-px;
             cursor: pointer;
             font-size: 14px;
             transition: background-color 0.3s ease;
@@ -1221,7 +1221,7 @@
                     <label for="pivotGroupingSelect" class="font-medium">Group By:</label>
                     <select id="pivotGroupingSelect" onchange="generatePivotTable()" class="flex-grow">
                         <option value="discipline">Discipline</option>
-                        <option value="docType">Document Type</option>
+                        <option value="doc_type">Document Type</option>
                         <option value="section">Section</option>
                     </select>
                     <button class="secondary-button" onclick="hidePivotTable()">Hide Pivot</button>
@@ -1461,7 +1461,8 @@
                             </thead>
                             <tbody>
                                 </tbody>
-                    </table>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
