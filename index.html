@@ -173,7 +173,7 @@
             width: 100%;
             border-collapse: collapse;
             background-color: #fff;
-            border-radius: 8px;
+            border-radius: 8-px;
             overflow: hidden;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
@@ -505,7 +505,7 @@
             </div>
             <p class="text-sm text-gray-500 mt-2">Note: This will open a new Outlook email draft with a summary of the document details. The document itself is not attached or linked.</p>
             
-            <div class="flex justify-end space-x-4 mt-6">
+            <div class="flex justify-end space-x-2 mt-6">
                 <button type="button" class="action-button" id="sendEmailButton" onclick="sendEmailViaOutlook()">Send via Outlook</button>
                 <button type="button" class="secondary-button" onclick="hideEmailModal()">Cancel</button>
             </div>
@@ -662,20 +662,20 @@
                             <option value="">All Fields</option>
                             <option value="date">Date</option>
                             <option value="discipline">Discipline</option>
-                            <option value="insNumber">INS Number</option>
+                            <option value="ins_number">INS Number</option>
                             <option value="revision">Revision</option>
                             <option value="location">Location</option>
-                            <option value="workToBeInspected">Work To Be Inspected</option>
-                            <option value="inspectionDate">Inspection Date</option>
-                            <option value="inspectionTime">Inspection Time</option>
-                            <option value="approvedDrawingRef">Approved Drawing Ref.</option>
-                            <option value="specificationRef">Specification Ref.</option>
-                            <option value="approvedMethodStatementRef">Approved Method Statement Ref.</option>
-                            <option value="qcsReference">QCS Reference</option>
-                            <option value="commentReceivedDate">Comment Received Date</option>
-                            <option value="documentStatus">Document Status</option>
-                            <option value="revStatus">Lifecycle Status</option>
-                            <option value="approvalSummaryStatus">Approval Summary</option>
+                            <option value="work_to_be_inspected">Work To Be Inspected</option>
+                            <option value="inspection_date">Inspection Date</option>
+                            <option value="inspection_time">Inspection Time</option>
+                            <option value="approved_drawing_ref">Approved Drawing Ref.</option>
+                            <option value="specification_ref">Specification Ref.</option>
+                            <option value="approved_method_statement_ref">Approved Method Statement Ref.</option>
+                            <option value="qcs_reference">QCS Reference</option>
+                            <option value="comment_received_date">Comment Received Date</option>
+                            <option value="document_status">Document Status</option>
+                            <option value="rev_status">Lifecycle Status</option>
+                            <option value="approval_summary_status">Approval Summary</option>
                         </select>
                     </div>
                     <div class="form-group m-0 flex-grow-[2]">
@@ -821,24 +821,24 @@
                         <label for="mirSearchField" class="text-sm">Search Field:</label>
                         <select id="mirSearchField" class="w-full">
                             <option value="">All Fields</option>
-                            <option value="mirDate">MIR Date</option>
-                            <option value="mirDiscipline">Discipline</option>
-                            <option value="mirNumber">MIR Number</option>
-                            <option value="mirRevision">Revision</option>
-                            <option value="dateMaterialReceived">Date Material Received</option>
-                            <option value="mirInspectionDate">MIR Inspection Date</option>
-                            <option value="mirInspectionTime">MIR Inspection Time</option>
-                            <option value="materialApprovalRef">Material Approval Ref.</option>
-                            <option value="descriptionMaterial">Description of Material</option>
-                            <option value="deliveryNoteNumber">Delivery Note Number</option>
+                            <option value="mir_date">MIR Date</option>
+                            <option value="mir_discipline">Discipline</option>
+                            <option value="mir_number">MIR Number</option>
+                            <option value="mir_revision">Revision</option>
+                            <option value="date_material_received">Date Material Received</option>
+                            <option value="mir_inspection_date">MIR Inspection Date</option>
+                            <option value="mir_inspection_time">MIR Inspection Time</option>
+                            <option value="material_approval_ref">Material Approval Ref.</option>
+                            <option value="description_material">Description of Material</option>
+                            <option value="delivery_note_number">Delivery Note Number</option>
                             <option value="manufacturer">Manufacturer</option>
                             <option value="supplier">Supplier</option>
-                            <option value="countryOrigin">Country of Origin</option>
-                            <option value="mirSubmissionDate">MIR Submission Date</option>
-                            <option value="mirResponseDate">MIR Response Date</option>
-                            <option value="mirApprovalStatus">Approval Status</option>
-                            <option value="mirRevStatus">Lifecycle Status</option>
-                            <option value="mirApprovalSummaryStatus">Approval Summary</option>
+                            <option value="country_origin">Country of Origin</option>
+                            <option value="mir_submission_date">MIR Submission Date</option>
+                            <option value="mir_response_date">MIR Response Date</option>
+                            <option value="mir_approval_status">Approval Status</option>
+                            <option value="mir_rev_status">Lifecycle Status</option>
+                            <option value="mir_approval_summary_status">Approval Summary</option>
                         </select>
                     </div>
                     <div class="form-group m-0 flex-grow-[2]">
@@ -1007,26 +1007,26 @@
                         <label for="ncrSearchField" class="text-sm">Search Field:</label>
                         <select id="ncrSearchField" class="w-full">
                             <option value="">All Fields</option>
-                            <option value="ncrRefNumber">NCR Ref. Number</option>
-                            <option value="ncrDiscipline">Discipline</option>
-                            <option value="ncrLifecycleStatus">Lifecycle Status</option>
-                            <option value="ncrDescription">NCR Description</option>
-                            <option value="partAReceivedDate">Part A Received Date</option>
-                            <option value="ncrRev_PartB">Part B Revision</option>
-                            <option value="ncrRevisedParts_PartB">Revised Parts (Part B)</option>
-                            <option value="immediateAction">Immediate Action</option>
-                            <option value="rootCause">Root Cause</option>
-                            <option value="correctiveAction">Corrective Action</option>
-                            <option value="partBSubmittedDate">Part B Submitted Date</option>
-                            <option value="partCReceivedDate">Part C Received Date</option>
-                            <option value="partBAcceptedByGEC">Part B Accepted by GEC?</option>
-                            <option value="ifPartBAccepted">If Part B Accepted</option>
-                            <option value="partDRev">Part D Revision</option>
-                            <option value="partDRevisedParts">Revised Parts (Part D)</option>
-                            <option value="partDSubmittedDate">Part D Submitted Date</option>
-                            <option value="partEReceivedDate">Part E Received Date</option>
-                            <option value="partEStatus">Part E Status</option>
-                            <option value="ncrCurrentStatus">NCR Current Status</option>
+                            <option value="ncr_ref_number">NCR Ref. Number</option>
+                            <option value="ncr_discipline">Discipline</option>
+                            <option value="ncr_lifecycle_status">Lifecycle Status</option>
+                            <option value="ncr_description">NCR Description</option>
+                            <option value="part_a_received_date">Part A Received Date</option>
+                            <option value="ncr_rev_part_b">Part B Revision</option>
+                            <option value="ncr_revised_parts_part_b">Revised Parts (Part B)</option>
+                            <option value="immediate_action">Immediate Action</option>
+                            <option value="root_cause">Root Cause</option>
+                            <option value="corrective_action">Corrective Action</option>
+                            <option value="part_b_submitted_date">Part B Submitted Date</option>
+                            <option value="part_c_received_date">Part C Received Date</option>
+                            <option value="part_b_accepted_by_gec">Part B Acc. by GEC?</option>
+                            <option value="if_part_b_accepted">If Part B Accepted</option>
+                            <option value="part_d_rev">Part D Revision</option>
+                            <option value="part_d_revised_parts">Revised Parts (Part D)</option>
+                            <option value="part_d_submitted_date">Part D Submitted Date</option>
+                            <option value="part_e_received_date">Part E Received Date</option>
+                            <option value="part_e_status">Part E Status</option>
+                            <option value="ncr_current_status">NCR Current Status</option>
                         </select>
                     </div>
                     <div class="form-group m-0 flex-grow-[2]">
@@ -1221,7 +1221,7 @@
                     <label for="pivotGroupingSelect" class="font-medium">Group By:</label>
                     <select id="pivotGroupingSelect" onchange="generatePivotTable()" class="flex-grow">
                         <option value="discipline">Discipline</option>
-                        <option value="docType">Document Type</option>
+                        <option value="doc_type">Document Type</option>
                         <option value="section">Section</option>
                     </select>
                     <button class="secondary-button" onclick="hidePivotTable()">Hide Pivot</button>
@@ -1331,7 +1331,7 @@
                         </div>
                         <div class="flex space-x-2">
                             <button class="action-button" onclick="searchOutgoingCorrespondences()"><i class="fas fa-search"></i> Search</button>
-                            <button class="secondary-button" onclick="clearOutgoingSearch()"><i class="fas fa-redo"></i> Reset Filters</button>
+                            <button class="secondary-button" onclick="clearOutgoingSearch()"><i class="fas fa-redo"></i> Reset</button>
                         </div>
                     </div>
 
@@ -1440,7 +1440,7 @@
                         </div>
                         <div class="flex space-x-2">
                             <button class="action-button" onclick="searchIncomingCorrespondences()"><i class="fas fa-search"></i> Search</button>
-                            <button class="secondary-button" onclick="clearIncomingSearch()"><i class="fas fa-redo"></i> Reset Filters</button>
+                            <button class="secondary-button" onclick="clearIncomingSearch()"><i class="fas fa-redo"></i> Reset</button>
                         </div>
                     </div>
 
@@ -1452,7 +1452,7 @@
                                     <th>Date of Receipt</th>
                                     <th>Originator</th>
                                     <th>Addressee</th>
-                                    <th>Letter Subject</th>
+                                <th>Letter Subject</th>
                                     <th>Reply To Ref.</th>
                                     <th>Keyword</th>
                                     <th>Status</th>
@@ -1508,13 +1508,13 @@
     </div>
 
    <script type="module">
-        // Import Firebase modules
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, doc, getDoc, addDoc, setDoc, deleteDoc, onSnapshot, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-        
-        // You will also need to add Firebase Storage if you want to store files
-        // import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js";
+        // Import Supabase client
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.44.2/+esm';
+
+        // --- Supabase Credentials ---
+        const SUPABASE_URL = 'https://qhwnefogyciixxweog.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFoaHduZXRvZ3F5Y2lpeHh3ZW9nIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUzMjE1MjIsImV4cCI6MjA3MDg5NzUyMn0.rLt8q62CutMNUNIH__wAJB5RwaNXU8HDUT0vYMOQpQQ';
+        const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         // --- Global Variables ---
         let inspectionsData = [];
@@ -1525,8 +1525,8 @@
         let incomingCorrespondenceData = [];
         let staffEmailsData = [];
         
-        // Stores unsubscribe functions for Firestore listeners
-        const firestoreUnsubscribes = {};
+        // Stores Supabase subscription handles
+        const supabaseSubscriptions = {};
         
         let inspectionsEditingDocumentId = null;
         let mirEditingDocumentId = null;
@@ -1544,6 +1544,7 @@
         
         let customConfirmResolve;
         let authMode = 'signIn';
+        let userId = null;
 
         let emailModalDocData = null;
         let emailModalDocType = '';
@@ -1640,11 +1641,6 @@
             { code: 'Check Latest Revision', description: 'Check Latest Revision' }
         ];
 
-        let app;
-        let db;
-        let auth;
-        let userId;
-        let appId;
 
         function showPage(pageId) {
             document.querySelectorAll('.page-content').forEach(page => {
@@ -1766,25 +1762,24 @@
                 showMessageModal("Please enter your email address to reset your password.", "Missing Email");
                 return;
             }
-            if (!auth) {
-                showMessageModal("Firebase Authentication is not ready. Please wait a moment and try again.", "Initialization Error");
+            if (!supabase) {
+                showMessageModal("Supabase is not ready. Please wait a moment and try again.", "Initialization Error");
                 return;
             }
 
             showLoadingOverlay('Sending password reset email...');
             try {
-                await sendPasswordResetEmail(auth, email);
+                const { error } = await supabase.auth.resetPasswordForEmail(email, {
+                    redirectTo: window.location.origin
+                });
+                if (error) throw error;
                 hideForgotPasswordModal();
                 showMessageModal("A password reset link has been sent to your email address.", "Password Reset Sent");
             } catch (error) {
                 console.error("Password reset error:", error);
                 let errorMessage = "Failed to send password reset email.";
-                if (error.code === 'auth/user-not-found') {
-                    errorMessage = "No user found with that email address. Please check your email or sign up.";
-                } else if (error.code === 'auth/invalid-email') {
-                    errorMessage = "The email address is not valid.";
-                } else if (error.code === 'auth/network-request-failed') {
-                    errorMessage = "Network error. Please check your internet connection.";
+                if (error.code === 400) {
+                    errorMessage = "Invalid email address or user not found.";
                 } else {
                     errorMessage += " " + error.message;
                 }
@@ -1806,37 +1801,37 @@
                 case 'inspections':
                     docDetails = inspectionsData.find(d => d.id === docId);
                     if (docDetails) {
-                        document.getElementById('emailModalTitle').textContent = `Email: ${docDetails.workToBeInspected}`;
+                        document.getElementById('emailModalTitle').textContent = `Email: ${docDetails.work_to_be_inspected}`;
                     }
                     break;
                 case 'mir':
                     docDetails = mirData.find(d => d.id === docId);
                     if (docDetails) {
-                        document.getElementById('emailModalTitle').textContent = `Email: ${docDetails.descriptionMaterial}`;
+                        document.getElementById('emailModalTitle').textContent = `Email: ${docDetails.description_material}`;
                     }
                     break;
                 case 'ncr':
                     docDetails = ncrData.find(d => d.id === docId);
                     if (docDetails) {
-                        document.getElementById('emailModalTitle').textContent = `Email: ${docDetails.ncrDescription}`;
+                        document.getElementById('emailModalTitle').textContent = `Email: ${docDetails.ncr_description}`;
                     }
                     break;
                 case 'submissions':
                     docDetails = submissionData.find(d => d.id === docId);
                     if (docDetails) {
-                        document.getElementById('emailModalTitle').textContent = `Email: ${docDetails.docTitle}`;
+                        document.getElementById('emailModalTitle').textContent = `Email: ${docDetails.doc_title}`;
                     }
                     break;
                 case 'outgoing_correspondences':
                     docDetails = outgoingCorrespondenceData.find(d => d.id === docId);
                     if (docDetails) {
-                        document.getElementById('emailModalTitle').textContent = `Email: ${docDetails.letterSubject}`;
+                        document.getElementById('emailModalTitle').textContent = `Email: ${docDetails.letter_subject}`;
                     }
                     break;
                 case 'incoming_correspondences':
                     docDetails = incomingCorrespondenceData.find(d => d.id === docId);
                     if (docDetails) {
-                        document.getElementById('emailModalTitle').textContent = `Email: ${docDetails.letterSubject}`;
+                        document.getElementById('emailModalTitle').textContent = `Email: ${docDetails.letter_subject}`;
                     }
                     break;
             }
@@ -1882,75 +1877,75 @@
 
             if (emailModalDocData) {
                 if (emailModalDocType === 'inspections') {
-                    subject = `Details: Inspection ${emailModalDocData.insNumber}`;
-                    docInfo = `Inspection: ${emailModalDocData.insNumber} - ${emailModalDocData.workToBeInspected}\n\n`;
+                    subject = `Details: Inspection ${emailModalDocData.ins_number}`;
+                    docInfo = `Inspection: ${emailModalDocData.ins_number} - ${emailModalDocData.work_to_be_inspected}\n\n`;
                     for (const key in emailModalDocData) {
-                        if (key !== 'id' && key !== 'inspectionsDocumentUrl') {
+                        if (key !== 'id' && key !== 'inspections_document_url' && key !== 'user_id') {
                             let value = emailModalDocData[key];
                             if (key.toLowerCase().includes('date')) {
                                 value = formatDateForDisplay(value);
                             }
-                            docInfo += `${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}\n`;
+                            docInfo += `${key.replace(/_/g, ' ').charAt(0).toUpperCase() + key.replace(/_/g, ' ').slice(1)}: ${value}\n`;
                         }
                     }
                 } else if (emailModalDocType === 'mir') {
-                    subject = `Details: MIR ${emailModalDocData.mirNumber}`;
-                    docInfo = `Material Inspection Request: ${emailModalDocData.mirNumber} - ${emailModalDocData.descriptionMaterial}\n\n`;
+                    subject = `Details: MIR ${emailModalDocData.mir_number}`;
+                    docInfo = `Material Inspection Request: ${emailModalDocData.mir_number} - ${emailModalDocData.description_material}\n\n`;
                     for (const key in emailModalDocData) {
-                        if (key !== 'id' && key !== 'mirDocumentUrl') {
+                        if (key !== 'id' && key !== 'mir_document_url' && key !== 'user_id') {
                             let value = emailModalDocData[key];
                             if (key.toLowerCase().includes('date')) {
                                 value = formatDateForDisplay(value);
                             }
-                            docInfo += `${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}\n`;
+                            docInfo += `${key.replace(/_/g, ' ').charAt(0).toUpperCase() + key.replace(/_/g, ' ').slice(1)}: ${value}\n`;
                         }
                     }
                 } else if (emailModalDocType === 'ncr') {
-                    subject = `Details: NCR ${emailModalDocData.ncrRefNumber}`;
-                    docInfo = `Non-Conformance Report: ${emailModalDocData.ncrRefNumber} - ${emailModalDocData.ncrDescription}\n\n`;
+                    subject = `Details: NCR ${emailModalDocData.ncr_ref_number}`;
+                    docInfo = `Non-Conformance Report: ${emailModalDocData.ncr_ref_number} - ${emailModalDocData.ncr_description}\n\n`;
                     for (const key in emailModalDocData) {
-                        if (key !== 'id' && key !== 'ncrDocumentUrl') {
+                        if (key !== 'id' && key !== 'ncr_document_url' && key !== 'user_id') {
                             let value = emailModalDocData[key];
                             if (key.toLowerCase().includes('date')) {
                                 value = formatDateForDisplay(value);
                             }
-                            docInfo += `${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}\n`;
+                            docInfo += `${key.replace(/_/g, ' ').charAt(0).toUpperCase() + key.replace(/_/g, ' ').slice(1)}: ${value}\n`;
                         }
                     }
                 } else if (emailModalDocType === 'submissions') {
-                    subject = `Details: Submission ${emailModalDocData.docNumber} - ${emailModalDocData.docTitle}`;
-                    docInfo = `Submission Document: ${emailModalDocData.docNumber}\n\n`;
+                    subject = `Details: Submission ${emailModalDocData.doc_number} - ${emailModalDocData.doc_title}`;
+                    docInfo = `Submission Document: ${emailModalDocData.doc_number}\n\n`;
                     for (const key in emailModalDocData) {
-                        if (key !== 'id' && key !== 'documentUrl') {
+                        if (key !== 'id' && key !== 'document_url' && key !== 'user_id') {
                             let value = emailModalDocData[key];
                             if (key.toLowerCase().includes('date')) {
                                 value = formatDateForDisplay(value);
                             }
-                            docInfo += `${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}\n`;
+                            docInfo += `${key.replace(/_/g, ' ').charAt(0).toUpperCase() + key.replace(/_/g, ' ').slice(1)}: ${value}\n`;
                         }
                     }
                 } else if (emailModalDocType === 'outgoing_correspondences') {
-                    subject = `Details: Outgoing Correspondence ${emailModalDocData.letterRef}`;
-                    docInfo = `Outgoing Correspondence: ${emailModalDocData.letterRef}\n\n`;
+                    subject = `Details: Outgoing Correspondence ${emailModalDocData.letter_ref}`;
+                    docInfo = `Outgoing Correspondence: ${emailModalDocData.letter_ref}\n\n`;
                     for (const key in emailModalDocData) {
-                        if (key !== 'id' && key !== 'outgoingDocumentUrl') {
+                        if (key !== 'id' && key !== 'outgoing_document_url' && key !== 'user_id') {
                             let value = emailModalDocData[key];
                             if (key.toLowerCase().includes('date')) {
                                 value = formatDateForDisplay(value);
                             }
-                            docInfo += `${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}\n`;
+                            docInfo += `${key.replace(/_/g, ' ').charAt(0).toUpperCase() + key.replace(/_/g, ' ').slice(1)}: ${value}\n`;
                         }
                     }
                 } else if (emailModalDocType === 'incoming_correspondences') {
-                    subject = `Details: Incoming Correspondence ${emailModalDocData.incomingRef}`;
-                    docInfo = `Incoming Correspondence: ${emailModalDocData.incomingRef}\n\n`;
+                    subject = `Details: Incoming Correspondence ${emailModalDocData.incoming_ref}`;
+                    docInfo = `Incoming Correspondence: ${emailModalDocData.incoming_ref}\n\n`;
                     for (const key in emailModalDocData) {
-                        if (key !== 'id' && key !== 'incomingDocumentUrl') {
+                        if (key !== 'id' && key !== 'incoming_document_url' && key !== 'user_id') {
                             let value = emailModalDocData[key];
                             if (key.toLowerCase().includes('date')) {
                                 value = formatDateForDisplay(value);
                             }
-                            docInfo += `${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}\n`;
+                            docInfo += `${key.replace(/_/g, ' ').charAt(0).toUpperCase() + key.replace(/_/g, ' ').slice(1)}: ${value}\n`;
                         }
                     }
                 }
@@ -1987,7 +1982,7 @@
             document.querySelector(`#correspondencePage .tab-buttons button[onclick="showCorrespondenceSection('${sectionId}')"]`).classList.add('active');
         }
 
-        function disableFirestoreUI() {
+        function disableSupabaseUI() {
             const appContentElements = document.querySelectorAll('#appContainer input, #appContainer select, #appContainer textarea, #appContainer button, #appContainer .tab-button');
             appContentElements.forEach(element => {
                 element.style.opacity = '0.5';
@@ -1995,7 +1990,7 @@
             });
         }
 
-        function enableFirestoreUI() {
+        function enableSupabaseUI() {
             const appContentElements = document.querySelectorAll('#appContainer input, #appContainer select, #appContainer textarea, #appContainer button, #appContainer .tab-button');
             appContentElements.forEach(element => {
                 element.style.pointerEvents = 'auto';
@@ -2010,11 +2005,11 @@
             if (isAuthenticated) {
                 if (authContainer) authContainer.classList.add('hidden');
                 if (appContainer) appContainer.classList.remove('hidden');
-                enableFirestoreUI();
+                enableSupabaseUI();
             } else {
                 if (authContainer) authContainer.classList.remove('hidden');
                 if (appContainer) appContainer.classList.add('hidden');
-                disableFirestoreUI();
+                disableSupabaseUI();
             }
         }
 
@@ -2040,8 +2035,8 @@
             const email = document.getElementById('authEmail').value;
             const password = document.getElementById('authPassword').value;
 
-            if (!auth) {
-                showMessageModal("Firebase Authentication is not ready. Please wait a moment and try again.", "Initialization Error");
+            if (!supabase) {
+                showMessageModal("Supabase is not ready. Please wait a moment and try again.", "Initialization Error");
                 return;
             }
 
@@ -2060,19 +2055,19 @@
         async function handleSignUp(email, password) {
             showLoadingOverlay('Signing up...');
             try {
-                await createUserWithEmailAndPassword(auth, email, password);
-                showMessageModal("Account created successfully! You are now signed in.", "Success");
+                const { data, error } = await supabase.auth.signUp({
+                    email,
+                    password
+                });
+                if (error) throw error;
+                showMessageModal("Account created successfully! Please check your email for a verification link.", "Success");
             } catch (error) {
                 console.error("Sign Up Error:", error);
                 let errorMessage = "Failed to create account.";
-                if (error.code === 'auth/email-already-in-use') {
+                if (error.message.includes('already registered')) {
                     errorMessage = "This email is already in use. Please sign in or use a different email.";
-                } else if (error.code === 'auth/weak-password') {
+                } else if (error.message.includes('weak password')) {
                     errorMessage = "Password is too weak. Please choose a stronger password (at least 6 characters).";
-                } else if (error.code === 'auth/invalid-email') {
-                    errorMessage = "Invalid email address.";
-                } else if (error.code === 'auth/operation-not-allowed') {
-                    errorMessage = "Email/Password sign-up is not enabled. Please enable it in your Firebase project's Authentication settings.";
                 }
                 showMessageModal(errorMessage, "Sign Up Failed");
             } finally {
@@ -2083,17 +2078,17 @@
         async function handleSignIn(email, password) {
             showLoadingOverlay('Signing in...');
             try {
-                await signInWithEmailAndPassword(auth, email, password);
+                const { error } = await supabase.auth.signInWithPassword({
+                    email,
+                    password
+                });
+                if (error) throw error;
                 showMessageModal("Signed in successfully!", "Success");
             } catch (error) {
                 console.error("Sign In Error:", error);
                 let errorMessage = "Failed to sign in.";
-                if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
+                if (error.message.includes('invalid credentials')) {
                     errorMessage = "Invalid email or password.";
-                } else if (error.code === 'auth/invalid-email') {
-                    errorMessage = "Invalid email address.";
-                } else if (error.code === 'auth/operation-not-allowed') {
-                    errorMessage = "Email/Password sign-in is not enabled. Please enable it in your Firebase project's Authentication settings.";
                 }
                 showMessageModal(errorMessage, "Sign In Failed");
             } finally {
@@ -2104,10 +2099,11 @@
         async function handleSignOut() {
             showLoadingOverlay('Signing out...');
             try {
-                await signOut(auth);
+                const { error } = await supabase.auth.signOut();
+                if (error) throw error;
                 document.getElementById('authEmail').value = '';
                 document.getElementById('authPassword').value = '';
-                showMessageModal("Signed out successfully. You can sign in again or continue anonymously.", "Signed Out");
+                showMessageModal("Signed out successfully. You can sign in again.", "Signed Out");
             } catch (error) {
                 console.error("Sign Out Error:", error);
                 showMessageModal("Failed to sign out: " + error.message, "Error");
@@ -2116,168 +2112,65 @@
             }
         }
 
-        async function signInAnonymouslyUser() {
-            showLoadingOverlay('Signing in anonymously...');
-            if (!auth) {
-                showMessageModal("Firebase Authentication is not ready. Please wait a moment and try again.", "Initialization Error");
-                return;
-            }
-            try {
-                await signInAnonymously(auth);
-            } catch (error) {
-                console.error("Anonymous Sign In Error:", error);
-                let errorMessage = "Failed to sign in anonymously. ";
-                if (error.code === 'auth/operation-not-allowed') {
-                    errorMessage += "Anonymous authentication is not enabled. Please enable it in your Firebase project's Authentication settings.";
-                } else if (error.code === 'auth/network-request-failed') {
-                    errorMessage += "Network error. Please check your internet connection.";
-                } else {
-                    errorMessage += error.message;
-                }
-                showMessageModal(errorMessage, "Authentication Error");
-                disableFirestoreUI();
-            } finally {
-                hideLoadingOverlay();
-            }
-        }
-
-        async function initializeFirebaseAndAuth() {
-            showLoadingOverlay('Connecting to Firebase...');
-            console.log("Starting Firebase initialization...");
+        async function initializeSupabase() {
+            console.log("Starting Supabase initialization...");
 
             const displayUserIdSpan = document.getElementById('displayUserId');
             const appIdStatusSpan = document.getElementById('appIdStatus');
             const firebaseConfigStatusSpan = document.getElementById('firebaseConfigStatus');
+            
             if (displayUserIdSpan) displayUserIdSpan.textContent = 'Authenticating...';
             if (appIdStatusSpan) appIdStatusSpan.textContent = 'Checking...';
             if (firebaseConfigStatusSpan) firebaseConfigStatusSpan.textContent = 'Checking...';
 
-            let firebaseConfigParsed;
-            let configSource = 'Hardcoded (Fallback)';
-
-            if (typeof __firebase_config !== 'undefined' && __firebase_config) {
-                try {
-                    firebaseConfigParsed = JSON.parse(__firebase_config);
-                    configSource = 'Canvas Environment';
-                } catch (e) {
-                    console.error("Error parsing __firebase_config from Canvas environment:", e);
-                    firebaseConfigParsed = {
-                        apiKey: "AIzaSyA8oy4qdXi8Us_wPvAVMv0pR46qbh2B3LM",
-                        authDomain: "document-control-register.firebaseapp.com",
-                        projectId: "document-control-register",
-                        storageBucket: "document-control-register.firebasestorage.app",
-                        messagingSenderId: "1073131236663",
-                        appId: "1:1073131236663:web:0c72a5ab59e23e30c3feb2",
-                        measurementId: "G-SGJPX3X791"
-                    };
-                    console.warn("Falling back to hardcoded firebaseConfig due to Canvas config parsing error. IMPORTANT: Please replace this with your actual Firebase project config from the Firebase Console if you encounter authentication issues.");
-                }
-            } else {
-                console.warn("__firebase_config is undefined or empty. Falling back to hardcoded firebaseConfig for local testing. IMPORTANT: Please replace this with your actual Firebase project config from the Firebase Console if you encounter authentication issues.");
-                firebaseConfigParsed = {
-                    apiKey: "AIzaSyA8oy4qdXi8Us_wPvAVMv0pR46qbh2B3LM",
-                    authDomain: "document-control-register.firebaseapp.com",
-                    projectId: "document-control-register",
-                    storageBucket: "document-control-register.firebasestorage.app",
-                    messagingSenderId: "1073131236663",
-                    appId: "1:1073131236663:web:0c72a5ab59e23e30c3feb2",
-                    measurementId: "G-SGJPX3X791"
-                };
-            }
-
-            console.log("Firebase config being used:", firebaseConfigParsed);
-            appId = typeof __app_id !== 'undefined' ? __app_id : firebaseConfigParsed.appId;
-
-            if (appId && appId !== 'default-app-id' && !appId.includes('YOUR_APP_ID')) {
-                if (appIdStatusSpan) {
-                    appIdStatusSpan.textContent = `Set: ${appId}`;
-                    appIdStatusSpan.classList.add('ok');
-                    appIdStatusSpan.classList.remove('error');
-                }
-                console.log("App ID detected:", appId);
-            } else {
-                if (appIdStatusSpan) {
-                    appIdStatusSpan.textContent = 'Not Found (Using Fallback)';
-                    appIdStatusSpan.classList.add('error');
-                    appIdStatusSpan.classList.remove('ok');
-                }
-                console.warn("App ID is not found in Canvas environment or firebaseConfig. Using fallback appId from firebaseConfig.");
-            }
-
-            if (firebaseConfigStatusSpan) {
-                firebaseConfigStatusSpan.textContent = `Using: ${configSource}`;
-                firebaseConfigStatusSpan.classList.add('ok');
-                firebaseConfigStatusSpan.classList.remove('error');
-            }
-
-            try {
-                app = initializeApp(firebaseConfigParsed);
-                auth = getAuth(app);
-                db = getFirestore(app);
-
-                console.log("Firebase services initialized successfully.");
+            // Check if Supabase client is initialized
+            if (supabase) {
                 if (firebaseConfigStatusSpan) {
-                    firebaseConfigStatusSpan.textContent = `${configSource} (Initialized OK)`;
+                    firebaseConfigStatusSpan.textContent = `Supabase (Initialized OK)`;
                     firebaseConfigStatusSpan.classList.add('ok');
                     firebaseConfigStatusSpan.classList.remove('error');
                 }
-
-                onAuthStateChanged(auth, async (user) => {
-                    if (user) {
-                        userId = user.uid;
-                        console.log(`[Auth State] User signed in with UID: ${userId} (Auth type: ${user.isAnonymous ? 'Anonymous' : 'Email/Password'})`);
-                        if (displayUserIdSpan) displayUserIdSpan.textContent = userId;
-                        console.log(`Current userId: ${userId}, Current appId: ${appId}`);
-                        toggleAppUI(true);
-                        await loadAllDataListeners();
-                        let persistenceMessage = "Welcome! Your data is being loaded.";
-                        if (user.isAnonymous) {
-                            persistenceMessage += " Please note that data saved under an anonymous session might be lost if you clear 'All Site Data' or 'Cookies and other site data' in your browser.";
-                            showMessageModal(persistenceMessage + " For permanent data, please sign up with email and password.", "Welcome Back (Anonymous)");
-                        } else {
-                            showMessageModal(persistenceMessage, "Welcome Back!");
-                        }
-                    } else {
-                        console.log("[Auth State] No user found or signed out. Displaying authentication options.");
-                        toggleAppUI(false);
-                        if (displayUserIdSpan) displayUserIdSpan.textContent = 'Not Authenticated';
-                        detachAllFirestoreListeners();
-                        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-                        if (initialAuthToken) {
-                            console.log("Attempting sign-in with custom token...");
-                            try {
-                                await signInWithCustomToken(auth, initialAuthToken);
-                            } catch (tokenError) {
-                                console.error("Custom token sign-in failed:", tokenError);
-                                showMessageModal('Custom token sign-in failed. Please ensure Firebase Auth is properly configured: ' + tokenError.message, 'Authentication Error');
-                            }
-                        }
-                    }
-                    hideLoadingOverlay();
-                });
-            } catch (error) {
-                console.error("Critical error during Firebase app or service initialization:", error);
-                if (displayUserIdSpan) displayUserIdSpan.textContent = 'Error: Firebase Init Failed';
+            } else {
                 if (firebaseConfigStatusSpan) {
                     firebaseConfigStatusSpan.textContent = 'Initialization Failed';
                     firebaseConfigStatusSpan.classList.add('error');
                     firebaseConfigStatusSpan.classList.remove('ok');
                 }
                 showMessageModal(
-                    'A critical error occurred while initializing Firebase. Please check the console for details ' +
-                    'and ensure your Firebase setup is correct. Data persistence will not work.',
+                    'A critical error occurred while initializing Supabase. Please check the console for details ' +
+                    'and ensure your Supabase setup is correct. Data persistence will not work.',
                     'Critical Error'
                 );
-                disableFirestoreUI();
+                disableSupabaseUI();
                 hideLoadingOverlay();
+                return;
             }
+
+            // Listen for auth state changes
+            supabase.auth.onAuthStateChange((event, session) => {
+                if (session) {
+                    userId = session.user.id;
+                    console.log(`[Auth State] User signed in with UID: ${userId}`);
+                    if (displayUserIdSpan) displayUserIdSpan.textContent = userId;
+                    toggleAppUI(true);
+                    loadAllDataListeners();
+                    showMessageModal("Welcome! Your data is being loaded.", "Welcome Back!");
+                } else {
+                    console.log("[Auth State] No user found or signed out. Displaying authentication options.");
+                    userId = null;
+                    toggleAppUI(false);
+                    if (displayUserIdSpan) displayUserIdSpan.textContent = 'Not Authenticated';
+                    detachAllSupabaseListeners();
+                }
+                hideLoadingOverlay();
+            });
         }
 
-        function detachAllFirestoreListeners() {
-            for (const collectionName in firestoreUnsubscribes) {
-                if (typeof firestoreUnsubscribes[collectionName] === 'function') {
-                    firestoreUnsubscribes[collectionName]();
-                    console.log(`[Firestore] Detached listener for ${collectionName}`);
+        function detachAllSupabaseListeners() {
+            for (const table in supabaseSubscriptions) {
+                if (supabaseSubscriptions[table]) {
+                    supabaseSubscriptions[table].unsubscribe();
+                    console.log(`[Supabase] Detached listener for ${table}`);
                 }
             }
             inspectionsData = [];
@@ -2294,6 +2187,76 @@
             searchOutgoingCorrespondences();
             searchIncomingCorrespondences();
             renderStaffEmails();
+        }
+
+        async function subscribeToTable(tableName) {
+            console.log(`[Supabase] Setting up real-time listener for: ${tableName}`);
+            const channel = supabase.channel(`public_channel_${tableName}`);
+            
+            channel.on('postgres_changes', { event: '*', schema: 'public', table: tableName }, async (payload) => {
+                console.log(`[Supabase Realtime] Change detected in ${tableName}:`, payload);
+                await fetchAndRenderData(tableName);
+            })
+            .subscribe();
+
+            supabaseSubscriptions[tableName] = channel;
+        }
+
+        async function fetchAndRenderData(tableName) {
+            const { data, error } = await supabase.from(tableName).select('*').eq('user_id', userId);
+            if (error) {
+                console.error(`[Supabase Error] Error fetching data for ${tableName}:`, error);
+                return;
+            }
+            switch (tableName) {
+                case 'inspections':
+                    inspectionsData = data;
+                    performInspectionsSearch();
+                    break;
+                case 'mir':
+                    mirData = data;
+                    performMirSearch();
+                    break;
+                case 'ncr':
+                    ncrData = data;
+                    performNcrSearch();
+                    break;
+                case 'submissions':
+                    submissionData = data;
+                    searchSubmissionDocuments();
+                    break;
+                case 'outgoing_correspondences':
+                    outgoingCorrespondenceData = data;
+                    searchOutgoingCorrespondences();
+                    break;
+                case 'incoming_correspondences':
+                    incomingCorrespondenceData = data;
+                    searchIncomingCorrespondences();
+                    break;
+                case 'staff_emails':
+                    staffEmailsData = data;
+                    renderStaffEmails();
+                    break;
+            }
+            console.log(`[Supabase] Fetched ${data.length} documents for ${tableName}`);
+        }
+
+        async function loadAllDataListeners() {
+            console.log("Loading all data listeners...");
+            if (!userId) {
+                console.warn("User not authenticated. Cannot load data listeners.");
+                return;
+            }
+            subscribeToTable('inspections');
+            subscribeToTable('mir');
+            subscribeToTable('ncr');
+            subscribeToTable('submissions');
+            subscribeToTable('outgoing_correspondences');
+            subscribeToTable('incoming_correspondences');
+            subscribeToTable('staff_emails');
+
+            updateNextInsNumber();
+            updateNextMirNumber();
         }
 
         function compareRevisions(rev1, rev2) {
@@ -2356,21 +2319,25 @@
         }
 
 
-        async function generateNextDocNumber(collectionName, prefix, numberField, discipline = '') {
-            if (!db || !userId || typeof appId === 'undefined' || appId === 'default-app-id') {
-                console.warn("Firebase, User ID, or App ID not ready for generating next doc number. Returning fallback message.");
+        async function generateNextDocNumber(tableName, prefix, numberField, discipline = '') {
+            if (!supabase || !userId) {
+                console.warn("Supabase or User ID not ready for generating next doc number. Returning fallback message.");
                 return 'Loading...';
             }
 
-            const colRef = collection(db, `/artifacts/${appId}/users/${userId}/${collectionName}`);
             let maxNumber = 0;
 
             try {
-                const querySnapshot = await getDocs(colRef);
-                querySnapshot.forEach(docSnap => {
-                    const data = docSnap.data();
-                    if (data[numberField]) {
-                        const parts = String(data[numberField]).split('-');
+                const { data, error } = await supabase
+                    .from(tableName)
+                    .select(numberField)
+                    .eq('user_id', userId);
+                if (error) throw error;
+                
+                data.forEach(item => {
+                    const value = item[numberField];
+                    if (value) {
+                        const parts = String(value).split('-');
                         if (parts.length > 0) {
                             const lastPart = parts[parts.length - 1];
                             const num = parseInt(lastPart, 10);
@@ -2397,16 +2364,16 @@
         }
 
 
-        function calculateDaysOverdue(submittedDate, respondedDate) {
-            if (!submittedDate) return '';
-            const subDate = new Date(submittedDate);
+        function calculateDaysOverdue(submitted_date, responded_date) {
+            if (!submitted_date) return '';
+            const subDate = new Date(submitted_date);
             const dueDate = new Date(subDate);
             dueDate.setDate(subDate.getDate() + 14);
 
             const today = new Date();
             today.setHours(0, 0, 0, 0);
 
-            let actualResponseDate = respondedDate ? new Date(respondedDate) : today;
+            let actualResponseDate = responded_date ? new Date(responded_date) : today;
             actualResponseDate.setHours(0, 0, 0, 0);
             if (actualResponseDate > dueDate) {
                 const diffTime = Math.abs(actualResponseDate.getTime() - dueDate.getTime());
@@ -2487,25 +2454,21 @@
         }
 
         async function saveDocument(collectionName, docId, data) {
-            if (!db || !userId || typeof appId === 'undefined' || appId === 'default-app-id') {
-                console.error(`[Firestore Check] Firestore not ready for saving document to ${collectionName}. DB: ${db}, User ID: ${userId}, App ID: ${appId}`);
-                showMessageModal("Data persistence is not available. Please ensure Firebase is correctly configured and authenticated.", "Error Saving Data");
-                return { success: false, error: new Error("Firestore or User ID or App ID not ready.") };
+            if (!supabase || !userId) {
+                console.error(`[Supabase Check] Supabase not ready for saving document to ${collectionName}.`);
+                showMessageModal("Data persistence is not available. Please ensure Supabase is correctly configured and authenticated.", "Error Saving Data");
+                return { success: false, error: new Error("Supabase or User ID not ready.") };
             }
             showLoadingOverlay('Saving document...');
-            const docRefPath = `/artifacts/${appId}/users/${userId}/${collectionName}`;
-            console.log(`[Firestore] Attempting to save document to path: ${docRefPath} with ID: ${docId}`);
+            data.user_id = userId;
+            console.log(`[Supabase] Attempting to save document to table: ${collectionName} with ID: ${docId}`);
             try {
-                const savePromise = setDoc(doc(db, docRefPath, docId), data, { merge: true });
-                const timeoutPromise = new Promise((_, reject) =>
-                    setTimeout(() => reject(new Error('Firestore save operation timed out')), 15000)
-                );
-                await Promise.race([savePromise, timeoutPromise]);
-
-                console.log(`[Firestore] Document saved successfully to ${collectionName} with ID: ${docId}`);
+                const { error } = await supabase.from(collectionName).update(data).eq('id', docId);
+                if (error) throw error;
+                console.log(`[Supabase] Document saved successfully to ${collectionName} with ID: ${docId}`);
                 return { success: true, id: docId };
             } catch (e) {
-                console.error(`[Firestore Error] Error adding/updating document in ${collectionName} with ID ${docId}: `, e);
+                console.error(`[Supabase Error] Error adding/updating document in ${collectionName} with ID ${docId}: `, e);
                 showMessageModal("Error saving document: " + e.message, "Error");
                 return { success: false, error: e };
             } finally {
@@ -2514,21 +2477,23 @@
         }
 
         async function addDocument(collectionName, data) {
-            if (!db || !userId || typeof appId === 'undefined' || appId === 'default-app-id') {
-                console.error(`[Firestore Check] Firestore not ready for adding document to ${collectionName}. DB: ${db}, User ID: ${userId}, App ID: ${appId}`);
-                showMessageModal("Data persistence is not available. Please ensure Firebase is correctly configured and authenticated.", "Error Adding Data");
-                return { success: false, error: new Error("Firestore or User ID or App ID not ready.") };
+            if (!supabase || !userId) {
+                console.error(`[Supabase Check] Supabase not ready for adding document to ${collectionName}.`);
+                showMessageModal("Data persistence is not available. Please ensure Supabase is correctly configured and authenticated.", "Error Adding Data");
+                return { success: false, error: new Error("Supabase or User ID not ready.") };
             }
             showLoadingOverlay('Adding new document...');
-            const colRefPath = `/artifacts/${appId}/users/${userId}/${collectionName}`;
-            console.log(`[Firestore] Attempting to add document to collection path: ${colRefPath}`);
+            data.user_id = userId;
+            console.log(`[Supabase] Attempting to add document to table: ${collectionName}`);
 
             try {
-                const docRef = await addDoc(collection(db, colRefPath), data);
-                console.log(`[Firestore] New document added to ${collectionName} with ID: ${docRef.id}`);
-                return { success: true, id: docRef.id };
+                const { data: newDoc, error } = await supabase.from(collectionName).insert([data]).select();
+                if (error) throw error;
+                const newDocId = newDoc[0].id;
+                console.log(`[Supabase] New document added to ${collectionName} with ID: ${newDocId}`);
+                return { success: true, id: newDocId };
             } catch (e) {
-                console.error(`[Firestore Error] Error adding new document to ${collectionName}: `, e);
+                console.error(`[Supabase Error] Error adding new document to ${collectionName}: `, e);
                 showMessageModal("Error adding document: " + e.message, "Error");
                 return { success: false, error: e };
             } finally {
@@ -2543,64 +2508,26 @@
                 return { success: false, error: new Error("User cancelled deletion.") };
             }
 
-            if (!db || !userId || typeof appId === 'undefined' || appId === 'default-app-id') {
-                console.error(`[Firestore Check] Firestore not ready for deleting document from ${collectionName}. DB: ${db}, User ID: ${userId}, App ID: ${appId}`);
-                showMessageModal("Data persistence is not available. Please ensure Firebase is correctly configured and authenticated.", "Error Deleting Data");
-                return { success: false, error: new Error("Firestore or User ID or App ID not ready.") };
+            if (!supabase || !userId) {
+                console.error(`[Supabase Check] Supabase not ready for deleting document from ${collectionName}.`);
+                showMessageModal("Data persistence is not available. Please ensure Supabase is correctly configured and authenticated.", "Error Deleting Data");
+                return { success: false, error: new Error("Supabase or User ID not ready.") };
             }
             showLoadingOverlay('Deleting document...');
             try {
-                const docPath = `/artifacts/${appId}/users/${userId}/${collectionName}`;
-                console.log(`[Firestore] Attempting to delete document from path: ${docPath} with ID: ${docId}`);
-
-                const deletePromise = deleteDoc(doc(db, docPath, docId));
-                const timeoutPromise = new Promise((_, reject) =>
-                    setTimeout(() => reject(new Error('Firestore delete operation timed out')), 15000)
-                );
-                await Promise.race([deletePromise, timeoutPromise]);
-
-                console.log(`[Firestore] Document deleted from ${collectionName} with ID: ${docId}`);
+                console.log(`[Supabase] Attempting to delete document from table: ${collectionName} with ID: ${docId}`);
+                const { error } = await supabase.from(collectionName).delete().eq('id', docId);
+                if (error) throw error;
+                console.log(`[Supabase] Document deleted from ${collectionName} with ID: ${docId}`);
                 showMessageModal("Document deleted successfully!", "Success");
                 return { success: true };
             } catch (e) {
-                console.error(`[Firestore Error] Error deleting document: `, e);
+                console.error(`[Supabase Error] Error deleting document: `, e);
                 showMessageModal("Error deleting document: " + e.message, "Error");
                 return { success: false, error: e };
             } finally {
                 hideLoadingOverlay();
             }
-        }
-
-        function setupRealtimeListener(collectionName) {
-            if (!db || !userId || typeof appId === 'undefined' || appId === 'default-app-id') {
-                console.warn(`[Firestore Check] Skipping listener setup for ${collectionName}: Firestore, User ID, or App ID not ready.`);
-                return;
-            }
-
-            const colRefPath = `/artifacts/${appId}/users/${userId}/${collectionName}`;
-            const colRef = collection(db, colRefPath);
-            console.log(`[Firestore] Setting up real-time listener for: ${colRefPath}`);
-            firestoreUnsubscribes[collectionName] = onSnapshot(colRef, (snapshot) => {
-                let documents = [];
-                snapshot.forEach(docSnap => {
-                    documents.push({ id: docSnap.id, ...docSnap.data() });
-                });
-
-                switch(collectionName) {
-                    case 'inspections': inspectionsData = documents; performInspectionsSearch(); break;
-                    case 'mir': mirData = documents; performMirSearch(); break;
-                    case 'ncr': ncrData = documents; performNcrSearch(); break;
-                    case 'submissions': submissionData = documents; searchSubmissionDocuments(); break;
-                    case 'outgoing_correspondences': outgoingCorrespondenceData = documents; searchOutgoingCorrespondences(); break;
-                    case 'incoming_correspondences': incomingCorrespondenceData = documents; searchIncomingCorrespondences(); break;
-                    case 'staff_emails': staffEmailsData = documents; renderStaffEmails(); break;
-                }
-
-                console.log(`[Firestore] Loaded ${documents.length} documents for ${collectionName}`);
-            }, (error) => {
-                console.error(`[Firestore Error] Error listening to ${collectionName}:`, error);
-                showMessageModal(`Error loading data for ${collectionName}: ${error.message}`, "Data Load Error");
-            });
         }
 
         // --- Specific Register Functions (Add/Update/Edit/Clear) ---
@@ -2612,23 +2539,23 @@
 
             const data = {
                 date: document.getElementById('date').value,
-                insNumber: document.getElementById('insNumber').value,
+                ins_number: document.getElementById('insNumber').value,
                 revision: document.getElementById('revision').value,
                 discipline: document.getElementById('discipline').value,
                 location: document.getElementById('location').value,
-                workToBeInspected: document.getElementById('workToBeInspected').value,
-                inspectionDate: document.getElementById('inspectionDate').value,
-                inspectionTime: document.getElementById('inspectionTime').value,
-                approvedDrawingRef: document.getElementById('approvedDrawingRef').value,
-                specificationRef: document.getElementById('specificationRef').value,
-                approvedMethodStatementRef: document.getElementById('approvedMethodStatementRef').value,
-                qcsReference: document.getElementById('qcsReference').value,
-                commentReceivedDate: document.getElementById('commentReceivedDate').value,
-                documentStatus: document.getElementById('documentStatus').value,
-                revStatus: '',
-                approvalSummaryStatus: getApprovalSummaryText(document.getElementById('documentStatus').value)
+                work_to_be_inspected: document.getElementById('workToBeInspected').value,
+                inspection_date: document.getElementById('inspectionDate').value,
+                inspection_time: document.getElementById('inspectionTime').value,
+                approved_drawing_ref: document.getElementById('approvedDrawingRef').value,
+                specification_ref: document.getElementById('specificationRef').value,
+                approved_method_statement_ref: document.getElementById('approvedMethodStatementRef').value,
+                qcs_reference: document.getElementById('qcsReference').value,
+                comment_received_date: document.getElementById('commentReceivedDate').value,
+                document_status: document.getElementById('documentStatus').value,
+                rev_status: '',
+                approval_summary_status: getApprovalSummaryText(document.getElementById('documentStatus').value)
             };
-            if (!data.date || !data.insNumber || !data.revision || !data.discipline || !data.documentStatus) {
+            if (!data.date || !data.ins_number || !data.revision || !data.discipline || !data.document_status) {
                 showMessageModal("Please fill in all required fields: Date, INS Number, Revision, Discipline, and Document Status.", "Missing Information");
                 console.warn("[Inspections] Required fields missing. Operation aborted.");
                 return;
@@ -2640,15 +2567,15 @@
                     console.log(`[Inspections] Updating existing document with ID: ${docId}`, data);
                     const currentDoc = inspectionsData.find(d => d.id === docId);
                     if (currentDoc) {
-                        data.revStatus = currentDoc.revStatus;
+                        data.rev_status = currentDoc.rev_status;
                     }
                     result = await saveDocument('inspections', docId, data);
                 } else {
                     console.log("[Inspections] Adding new document or new revision:", data);
                     const existingLatestInspections = inspectionsData.filter(d =>
-                        d.insNumber === data.insNumber &&
+                        d.ins_number === data.ins_number &&
                         d.discipline === data.discipline &&
-                        d.revStatus === 'Latest'
+                        d.rev_status === 'Latest'
                     );
                     let previousLatestDoc = null;
                     if (existingLatestInspections.length > 0) {
@@ -2658,14 +2585,13 @@
 
                     if (previousLatestDoc && compareRevisions(data.revision, previousLatestDoc.revision) > 0) {
                         console.log(`[Inspections] Marking previous latest inspection (${previousLatestDoc.id}) as Superseded.`);
-                        await saveDocument('inspections', previousLatestDoc.id, { revStatus: 'Superseded' });
+                        await saveDocument('inspections', previousLatestDoc.id, { rev_status: 'Superseded' });
                     } else if (previousLatestDoc && compareRevisions(data.revision, previousLatestDoc.revision) < 0) {
                         showMessageModal("The revision you are adding is older than an existing 'Latest' revision for this INS Number and Discipline. Please check the revision number.", "Warning: Older Revision");
-                        data.revStatus = 'Superseded';
+                        data.rev_status = 'Superseded';
                     }
 
-                    data.revStatus = 'Latest';
-
+                    data.rev_status = 'Latest';
                     result = await addDocument('inspections', data);
                 }
 
@@ -2694,30 +2620,34 @@
 
         async function editInspection(docId) {
             showLoadingOverlay('Loading inspection data...');
-            if (!db || !userId || typeof appId === 'undefined' || appId === 'default-app-id') {
-                showMessageModal("Application not fully loaded or Firebase not connected. Please wait and try again.", "Error");
+            if (!supabase || !userId) {
+                showMessageModal("Application not fully loaded or Supabase not connected. Please wait and try again.", "Error");
                 hideLoadingOverlay();
                 return;
             }
             try {
-                const docSnap = await getDoc(doc(db, `/artifacts/${appId}/users/${userId}/inspections`, docId));
-                if (docSnap.exists()) {
-                    const data = docSnap.data();
+                const { data, error } = await supabase
+                    .from('inspections')
+                    .select('*')
+                    .eq('id', docId)
+                    .single();
+                if (error) throw error;
+                if (data) {
                     document.getElementById('date').value = formatDateForInput(data.date) || '';
-                    document.getElementById('insNumber').value = data.insNumber || '';
+                    document.getElementById('insNumber').value = data.ins_number || '';
                     document.getElementById('revision').value = data.revision || '';
                     document.getElementById('discipline').value = data.discipline || '';
                     document.getElementById('location').value = data.location || '';
-                    document.getElementById('workToBeInspected').value = data.workToBeInspected || '';
-                    document.getElementById('inspectionDate').value = formatDateForInput(data.inspectionDate) || '';
-                    document.getElementById('inspectionTime').value = data.inspectionTime || '';
-                    document.getElementById('approvedDrawingRef').value = data.approvedDrawingRef || '';
-                    document.getElementById('specificationRef').value = data.specificationRef || '';
-                    document.getElementById('approvedMethodStatementRef').value = data.approvedMethodStatementRef || '';
-                    document.getElementById('qcsReference').value = data.qcsReference || '';
-                    document.getElementById('commentReceivedDate').value = formatDateForInput(data.commentReceivedDate) || '';
-                    document.getElementById('documentStatus').value = data.documentStatus || '';
-                    document.getElementById('revStatus').value = data.revStatus || '';
+                    document.getElementById('workToBeInspected').value = data.work_to_be_inspected || '';
+                    document.getElementById('inspectionDate').value = formatDateForInput(data.inspection_date) || '';
+                    document.getElementById('inspectionTime').value = data.inspection_time || '';
+                    document.getElementById('approvedDrawingRef').value = data.approved_drawing_ref || '';
+                    document.getElementById('specificationRef').value = data.specification_ref || '';
+                    document.getElementById('approvedMethodStatementRef').value = data.approved_method_statement_ref || '';
+                    document.getElementById('qcsReference').value = data.qcs_reference || '';
+                    document.getElementById('commentReceivedDate').value = formatDateForInput(data.comment_received_date) || '';
+                    document.getElementById('documentStatus').value = data.document_status || '';
+                    document.getElementById('revStatus').value = data.rev_status || '';
 
                     document.getElementById('inspectionForm').dataset.docId = docId;
                     document.getElementById('addUpdateButton').textContent = 'Update Document';
@@ -2741,26 +2671,26 @@
             const form = document.getElementById('mirForm');
             const docId = form.dataset.docId;
             const data = {
-                mirDate: document.getElementById('mirDate').value,
-                mirNumber: document.getElementById('mirNumber').value,
-                mirRevision: document.getElementById('mirRevision').value,
-                mirDiscipline: document.getElementById('mirDiscipline').value,
-                dateMaterialReceived: document.getElementById('dateMaterialReceived').value,
-                mirInspectionDate: document.getElementById('mirInspectionDate').value,
-                mirInspectionTime: document.getElementById('mirInspectionTime').value,
-                materialApprovalRef: document.getElementById('materialApprovalRef').value,
-                descriptionMaterial: document.getElementById('descriptionMaterial').value,
-                deliveryNoteNumber: document.getElementById('deliveryNoteNumber').value,
+                mir_date: document.getElementById('mirDate').value,
+                mir_number: document.getElementById('mirNumber').value,
+                mir_revision: document.getElementById('mirRevision').value,
+                mir_discipline: document.getElementById('mirDiscipline').value,
+                date_material_received: document.getElementById('dateMaterialReceived').value,
+                mir_inspection_date: document.getElementById('mirInspectionDate').value,
+                mir_inspection_time: document.getElementById('mirInspectionTime').value,
+                material_approval_ref: document.getElementById('materialApprovalRef').value,
+                description_material: document.getElementById('descriptionMaterial').value,
+                delivery_note_number: document.getElementById('deliveryNoteNumber').value,
                 manufacturer: document.getElementById('manufacturer').value,
                 supplier: document.getElementById('supplier').value,
-                countryOrigin: document.getElementById('countryOrigin').value,
-                mirSubmissionDate: document.getElementById('mirSubmissionDate').value,
-                mirResponseDate: document.getElementById('mirResponseDate').value,
-                mirApprovalStatus: document.getElementById('mirApprovalStatus').value,
-                mirRevStatus: '',
-                mirApprovalSummaryStatus: getApprovalSummaryText(document.getElementById('mirApprovalStatus').value)
+                country_origin: document.getElementById('countryOrigin').value,
+                mir_submission_date: document.getElementById('mirSubmissionDate').value,
+                mir_response_date: document.getElementById('mirResponseDate').value,
+                mir_approval_status: document.getElementById('mirApprovalStatus').value,
+                mir_rev_status: '',
+                mir_approval_summary_status: getApprovalSummaryText(document.getElementById('mirApprovalStatus').value)
             };
-            if (!data.mirDate || !data.mirNumber || !data.mirRevision || !data.mirDiscipline || !data.mirApprovalStatus) {
+            if (!data.mir_date || !data.mir_number || !data.mir_revision || !data.mir_discipline || !data.mir_approval_status) {
                 showMessageModal("Please fill in all required fields: Date, MIR Number, Revision, Discipline, and Approval Status.", "Missing Information");
                 console.warn("[MIR] Required fields missing. Operation aborted.");
                 return;
@@ -2771,32 +2701,31 @@
                     console.log(`[MIR] Updating existing document with ID: ${docId}`, data);
                     const currentDoc = mirData.find(d => d.id === docId);
                     if (currentDoc) {
-                        data.mirRevStatus = currentDoc.mirRevStatus;
+                        data.mir_rev_status = currentDoc.mir_rev_status;
                     }
                     result = await saveDocument('mir', docId, data);
                 } else {
                     console.log("[MIR] Adding new document or a new revision:", data);
                     const existingLatestMir = mirData.filter(d =>
-                        d.mirNumber === data.mirNumber &&
-                        d.mirDiscipline === data.mirDiscipline &&
-                        d.mirRevStatus === 'Latest'
+                        d.mir_number === data.mir_number &&
+                        d.mir_discipline === data.mir_discipline &&
+                        d.mir_rev_status === 'Latest'
                     );
                     let previousLatestDoc = null;
                     if (existingLatestMir.length > 0) {
-                        existingLatestMir.sort((a, b) => compareRevisions(a.mirRevision, b.mirRevision));
+                        existingLatestMir.sort((a, b) => compareRevisions(a.mir_revision, b.mir_revision));
                         previousLatestDoc = existingLatestMir[existingLatestMir.length - 1];
                     }
 
-                    if (previousLatestDoc && compareRevisions(data.mirRevision, previousLatestDoc.mirRevision) > 0) {
+                    if (previousLatestDoc && compareRevisions(data.mir_revision, previousLatestDoc.mir_revision) > 0) {
                         console.log(`[MIR] Marking previous latest MIR (${previousLatestDoc.id}) as Superseded.`);
-                        await saveDocument('mir', previousLatestDoc.id, { mirRevStatus: 'Superseded' });
-                    } else if (previousLatestDoc && compareRevisions(data.mirRevision, previousLatestDoc.mirRevision) < 0) {
+                        await saveDocument('mir', previousLatestDoc.id, { mir_rev_status: 'Superseded' });
+                    } else if (previousLatestDoc && compareRevisions(data.mir_revision, previousLatestDoc.mir_revision) < 0) {
                         showMessageModal("The revision you are adding is older than an existing 'Latest' revision for this MIR Number and Discipline. Please check the revision number.", "Warning: Older Revision");
-                        data.mirRevStatus = 'Superseded';
+                        data.mir_rev_status = 'Superseded';
                     }
 
-                    data.mirRevStatus = 'Latest';
-
+                    data.mir_rev_status = 'Latest';
                     result = await addDocument('mir', data);
                 }
 
@@ -2825,32 +2754,36 @@
 
         async function editMir(docId) {
             showLoadingOverlay('Loading MIR data...');
-            if (!db || !userId || typeof appId === 'undefined' || appId === 'default-app-id') {
-                showMessageModal("Application not fully loaded or Firebase not connected. Please wait and try again.", "Error");
+            if (!supabase || !userId) {
+                showMessageModal("Application not fully loaded or Supabase not connected. Please wait and try again.", "Error");
                 hideLoadingOverlay();
                 return;
             }
             try {
-                const docSnap = await getDoc(doc(db, `/artifacts/${appId}/users/${userId}/mir`, docId));
-                if (docSnap.exists()) {
-                    const data = docSnap.data();
-                    document.getElementById('mirDate').value = formatDateForInput(data.mirDate) || '';
-                    document.getElementById('mirNumber').value = data.mirNumber || '';
-                    document.getElementById('mirRevision').value = data.mirRevision || '';
-                    document.getElementById('mirDiscipline').value = data.mirDiscipline || '';
-                    document.getElementById('dateMaterialReceived').value = formatDateForInput(data.dateMaterialReceived) || '';
-                    document.getElementById('mirInspectionDate').value = formatDateForInput(data.mirInspectionDate) || '';
-                    document.getElementById('mirInspectionTime').value = data.mirInspectionTime || '';
-                    document.getElementById('materialApprovalRef').value = data.materialApprovalRef || '';
-                    document.getElementById('descriptionMaterial').value = data.descriptionMaterial || '';
-                    document.getElementById('deliveryNoteNumber').value = data.deliveryNoteNumber || '';
+                const { data, error } = await supabase
+                    .from('mir')
+                    .select('*')
+                    .eq('id', docId)
+                    .single();
+                if (error) throw error;
+                if (data) {
+                    document.getElementById('mirDate').value = formatDateForInput(data.mir_date) || '';
+                    document.getElementById('mirNumber').value = data.mir_number || '';
+                    document.getElementById('mirRevision').value = data.mir_revision || '';
+                    document.getElementById('mirDiscipline').value = data.mir_discipline || '';
+                    document.getElementById('dateMaterialReceived').value = formatDateForInput(data.date_material_received) || '';
+                    document.getElementById('mirInspectionDate').value = formatDateForInput(data.mir_inspection_date) || '';
+                    document.getElementById('mirInspectionTime').value = data.mir_inspection_time || '';
+                    document.getElementById('materialApprovalRef').value = data.material_approval_ref || '';
+                    document.getElementById('descriptionMaterial').value = data.description_material || '';
+                    document.getElementById('deliveryNoteNumber').value = data.delivery_note_number || '';
                     document.getElementById('manufacturer').value = data.manufacturer || '';
                     document.getElementById('supplier').value = data.supplier || '';
-                    document.getElementById('countryOrigin').value = data.countryOrigin || '';
-                    document.getElementById('mirSubmissionDate').value = formatDateForInput(data.mirSubmissionDate) || '';
-                    document.getElementById('mirResponseDate').value = formatDateForInput(data.mirResponseDate) || '';
-                    document.getElementById('mirApprovalStatus').value = data.mirApprovalStatus || '';
-                    document.getElementById('mirRevStatus').value = data.mirRevStatus || '';
+                    document.getElementById('countryOrigin').value = data.country_origin || '';
+                    document.getElementById('mirSubmissionDate').value = formatDateForInput(data.mir_submission_date) || '';
+                    document.getElementById('mirResponseDate').value = formatDateForInput(data.mir_response_date) || '';
+                    document.getElementById('mirApprovalStatus').value = data.mir_approval_status || '';
+                    document.getElementById('mirRevStatus').value = data.mir_rev_status || '';
 
                     document.getElementById('mirForm').dataset.docId = docId;
                     document.getElementById('addUpdateMirButton').textContent = 'Update Document';
@@ -2869,14 +2802,14 @@
         }
 
         async function updateNextInsNumber() {
-            if (typeof appId === 'undefined' || appId === 'default-app-id' || !db || !userId) {
+            if (!supabase || !userId) {
                 document.getElementById('nextInsNumber').textContent = 'Loading...';
                 return;
             }
             const disciplineSelect = document.getElementById('discipline');
             const discipline = disciplineSelect ? disciplineSelect.value : '';
             if (discipline) {
-                const nextNumber = await generateNextDocNumber('inspections', 'CP837-INS', 'insNumber', discipline);
+                const nextNumber = await generateNextDocNumber('inspections', 'CP837-INS', 'ins_number', discipline);
                 document.getElementById('nextInsNumber').textContent = nextNumber;
             } else {
                 document.getElementById('nextInsNumber').textContent = 'Select Discipline';
@@ -2884,14 +2817,14 @@
         }
 
         async function updateNextMirNumber() {
-            if (typeof appId === 'undefined' || appId === 'default-app-id' || !db || !userId) {
+            if (!supabase || !userId) {
                 document.getElementById('nextMirNumber').textContent = 'Loading...';
                 return;
             }
             const disciplineSelect = document.getElementById('mirDiscipline');
             const discipline = disciplineSelect ? disciplineSelect.value : '';
             if (discipline) {
-                const nextNumber = await generateNextDocNumber('mir', 'CP837-MIR', 'mirNumber', discipline);
+                const nextNumber = await generateNextDocNumber('mir', 'CP837-MIR', 'mir_number', discipline);
                 document.getElementById('nextMirNumber').textContent = nextNumber;
             } else {
                 document.getElementById('nextMirNumber').textContent = 'Select Discipline';
@@ -2904,27 +2837,27 @@
             const docId = form.dataset.docId;
 
             const data = {
-                ncrDiscipline: document.getElementById('ncrDiscipline').value,
-                ncrRefNumber: document.getElementById('ncrRefNumber').value,
-                ncrDescription: document.getElementById('ncrDescription').value,
-                partAReceivedDate: document.getElementById('partAReceivedDate').value,
-                ncrRev_PartB: document.getElementById('ncrRev_PartB').value,
-                ncrRevisedParts_PartB: document.getElementById('ncrRevisedParts_PartB').value,
-                immediateAction: document.getElementById('immediateAction').value,
-                rootCause: document.getElementById('rootCause').value,
-                correctiveAction: document.getElementById('correctiveAction').value,
-                partBSubmittedDate: document.getElementById('partBSubmittedDate').value,
-                partCReceivedDate: document.getElementById('partCReceivedDate').value,
-                partBAcceptedByGEC: document.getElementById('partBAcceptedByGEC').value,
-                ifPartBAccepted: document.getElementById('ifPartBAccepted').value,
-                partDRev: document.getElementById('partDRev').value,
-                partDRevisedParts: document.getElementById('partDRevisedParts').value,
-                partDSubmittedDate: document.getElementById('partDSubmittedDate').value,
-                partEReceivedDate: document.getElementById('partEReceivedDate').value,
-                partEStatus: document.getElementById('partEStatus').value,
-                ncrCurrentStatus: document.getElementById('ncrCurrentStatus').value,
+                ncr_discipline: document.getElementById('ncrDiscipline').value,
+                ncr_ref_number: document.getElementById('ncrRefNumber').value,
+                ncr_description: document.getElementById('ncrDescription').value,
+                part_a_received_date: document.getElementById('partAReceivedDate').value,
+                ncr_rev_part_b: document.getElementById('ncrRev_PartB').value,
+                ncr_revised_parts_part_b: document.getElementById('ncrRevisedParts_PartB').value,
+                immediate_action: document.getElementById('immediateAction').value,
+                root_cause: document.getElementById('rootCause').value,
+                corrective_action: document.getElementById('correctiveAction').value,
+                part_b_submitted_date: document.getElementById('partBSubmittedDate').value,
+                part_c_received_date: document.getElementById('partCReceivedDate').value,
+                part_b_accepted_by_gec: document.getElementById('partBAcceptedByGEC').value,
+                if_part_b_accepted: document.getElementById('ifPartBAccepted').value,
+                part_d_rev: document.getElementById('partDRev').value,
+                part_d_revised_parts: document.getElementById('partDRevisedParts').value,
+                part_d_submitted_date: document.getElementById('partDSubmittedDate').value,
+                part_e_received_date: document.getElementById('partEReceivedDate').value,
+                part_e_status: document.getElementById('partEStatus').value,
+                ncr_current_status: document.getElementById('ncrCurrentStatus').value,
             };
-            if (!data.ncrDiscipline || !data.ncrRefNumber || (data.ncrRev_PartB === null || data.ncrRev_PartB === undefined || data.ncrRev_PartB === '')) {
+            if (!data.ncr_discipline || !data.ncr_ref_number || (data.ncr_rev_part_b === null || data.ncr_rev_part_b === undefined || data.ncr_rev_part_b === '')) {
                 showMessageModal("Please fill in required fields: Discipline, NCR Ref. Number, and Part B Revision.", "Missing Information");
                 console.warn("[NCR] Required fields missing. Operation aborted.");
                 return;
@@ -2940,21 +2873,21 @@
                     }
                 } else {
                     const existingLatestNCRS = ncrData.filter(d =>
-                        d.ncrRefNumber === data.ncrRefNumber &&
-                        d.ncrDiscipline === data.ncrDiscipline &&
-                        d.ncrLifecycleStatus === 'Latest'
+                        d.ncr_ref_number === data.ncr_ref_number &&
+                        d.ncr_discipline === data.ncr_discipline &&
+                        d.ncr_lifecycle_status === 'Latest'
                     );
                     if (existingLatestNCRS.length > 0) {
-                        existingLatestNCRS.sort((a, b) => compareRevisions(a.ncrRev_PartB, b.ncrRev_PartB));
+                        existingLatestNCRS.sort((a, b) => compareRevisions(a.ncr_rev_part_b, b.ncr_rev_part_b));
                         const previousLatestNcr = existingLatestNCRS[existingLatestNCRS.length - 1];
 
                         console.log(`[NCR] Marking previous latest NCR (${previousLatestNcr.id}) as Superseded.`);
-                        await saveDocument('ncr', previousLatestNcr.id, { ncrLifecycleStatus: 'Superseded' });
+                        await saveDocument('ncr', previousLatestNcr.id, { ncr_lifecycle_status: 'Superseded' });
                     }
 
-                    data.ncrLifecycleStatus = 'Latest';
-                    if (!data.ncrRev_PartB) {
-                        data.ncrRev_PartB = '0';
+                    data.ncr_lifecycle_status = 'Latest';
+                    if (!data.ncr_rev_part_b) {
+                        data.ncr_rev_part_b = '0';
                     }
                     console.log("[NCR] Adding new NCR (or revision) document:", data);
                     result = await addDocument('ncr', data);
@@ -2989,28 +2922,28 @@
         }
 
         function fillNcrForm(data, docId = null, forNewRevision = false) {
-            document.getElementById('ncrDiscipline').value = data.ncrDiscipline || '';
-            document.getElementById('ncrRefNumber').value = data.ncrRefNumber || '';
-            document.getElementById('ncrDescription').value = data.ncrDescription || '';
-            document.getElementById('partAReceivedDate').value = formatDateForInput(data.partAReceivedDate) || '';
+            document.getElementById('ncrDiscipline').value = data.ncr_discipline || '';
+            document.getElementById('ncrRefNumber').value = data.ncr_ref_number || '';
+            document.getElementById('ncrDescription').value = data.ncr_description || '';
+            document.getElementById('partAReceivedDate').value = formatDateForInput(data.part_a_received_date) || '';
             if (forNewRevision) {
-                document.getElementById('ncrRev_PartB').value = getNextRevision(data.ncrRev_PartB || '0');
+                document.getElementById('ncrRev_PartB').value = getNextRevision(data.ncr_rev_part_b || '0');
                 document.getElementById('ncrRevisedParts_PartB').value = '';
                 document.getElementById('immediateAction').value = '';
                 document.getElementById('rootCause').value = '';
                 document.getElementById('correctiveAction').value = '';
                 document.getElementById('partBSubmittedDate').value = '';
             } else {
-                document.getElementById('ncrRev_PartB').value = data.ncrRev_PartB || '';
-                document.getElementById('ncrRevisedParts_PartB').value = data.ncrRevisedParts_PartB || '';
-                document.getElementById('immediateAction').value = data.immediateAction || '';
-                document.getElementById('rootCause').value = data.rootCause || '';
-                document.getElementById('correctiveAction').value = data.correctiveAction || '';
-                document.getElementById('partBSubmittedDate').value = formatDateForInput(data.partBSubmittedDate) || '';
+                document.getElementById('ncrRev_PartB').value = data.ncr_rev_part_b || '';
+                document.getElementById('ncrRevisedParts_PartB').value = data.ncr_revised_parts_part_b || '';
+                document.getElementById('immediateAction').value = data.immediate_action || '';
+                document.getElementById('rootCause').value = data.root_cause || '';
+                document.getElementById('correctiveAction').value = data.corrective_action || '';
+                document.getElementById('partBSubmittedDate').value = formatDateForInput(data.part_b_submitted_date) || '';
             }
 
-            document.getElementById('partCReceivedDate').value = formatDateForInput(data.partCReceivedDate) || '';
-            document.getElementById('partBAcceptedByGEC').value = data.partBAcceptedByGEC || '';
+            document.getElementById('partCReceivedDate').value = formatDateForInput(data.part_c_received_date) || '';
+            document.getElementById('partBAcceptedByGEC').value = data.part_b_accepted_by_gec || '';
 
             if (forNewRevision) {
                 document.getElementById('partDRev').value = '';
@@ -3020,12 +2953,12 @@
                 document.getElementById('partEStatus').value = '';
                 document.getElementById('ncrCurrentStatus').value = '';
             } else {
-                document.getElementById('partDRev').value = data.partDRev || '';
-                document.getElementById('partDRevisedParts').value = data.partDRevisedParts || '';
-                document.getElementById('partDSubmittedDate').value = formatDateForInput(data.partDSubmittedDate) || '';
-                document.getElementById('partEReceivedDate').value = formatDateForInput(data.partEReceivedDate) || '';
-                document.getElementById('partEStatus').value = data.partEStatus || '';
-                document.getElementById('ncrCurrentStatus').value = data.ncrCurrentStatus || '';
+                document.getElementById('partDRev').value = data.part_d_rev || '';
+                document.getElementById('partDRevisedParts').value = data.part_d_revised_parts || '';
+                document.getElementById('partDSubmittedDate').value = formatDateForInput(data.part_d_submitted_date) || '';
+                document.getElementById('partEReceivedDate').value = formatDateForInput(data.part_e_received_date) || '';
+                document.getElementById('partEStatus').value = data.part_e_status || '';
+                document.getElementById('ncrCurrentStatus').value = data.ncr_current_status || '';
             }
 
             const formElement = document.getElementById('ncrForm');
@@ -3057,18 +2990,18 @@
                 return;
             }
 
-            if (!db || !userId || typeof appId === 'undefined' || appId === 'default-app-id') {
-                console.warn("Firebase, User ID, or App ID not ready for auto-fill.");
-                showMessageModal("Application not fully loaded or Firebase not connected. Cannot auto-fill.", "Error");
+            if (!supabase || !userId) {
+                console.warn("Supabase or User ID not ready for auto-fill.");
+                showMessageModal("Application not fully loaded or Supabase not connected. Cannot auto-fill.", "Error");
                 return;
             }
 
             const matchingNCRS = ncrData.filter(doc =>
-                doc.ncrRefNumber === ncrRefNumber &&
-                doc.ncrDiscipline === ncrDiscipline
+                doc.ncr_ref_number === ncrRefNumber &&
+                doc.ncr_discipline === ncrDiscipline
             );
             if (matchingNCRS.length > 0) {
-                matchingNCRS.sort((a, b) => compareRevisions(a.ncrRev_PartB, b.ncrRev_PartB));
+                matchingNCRS.sort((a, b) => compareRevisions(a.ncr_rev_part_b, b.ncr_rev_part_b));
                 const latestNcr = matchingNCRS[matchingNCRS.length - 1];
 
                 fillNcrForm(latestNcr, null, true);
@@ -3091,16 +3024,20 @@
 
         async function editNcr(docId) {
             showLoadingOverlay('Loading NCR data...');
-            if (!db || !userId || typeof appId === 'undefined' || appId === 'default-app-id') {
-                showMessageModal("Application not fully loaded or Firebase not connected. Please wait and try again.", "Error");
+            if (!supabase || !userId) {
+                showMessageModal("Application not fully loaded or Supabase not connected. Please wait and try again.", "Error");
                 hideLoadingOverlay();
                 return;
             }
             try {
-                const docSnap = await getDoc(doc(db, `/artifacts/${appId}/users/${userId}/ncr`, docId));
-                if (docSnap.exists()) {
-                    const data = docSnap.data();
-                    fillNcrForm(data, docSnap.id, false);
+                const { data, error } = await supabase
+                    .from('ncr')
+                    .select('*')
+                    .eq('id', docId)
+                    .single();
+                if (error) throw error;
+                if (data) {
+                    fillNcrForm(data, docId, false);
                     console.log(`[NCR] Data for ${docId} loaded into form for editing.`);
                 } else {
                     console.error("No such NCR document!");
@@ -3121,21 +3058,21 @@
             const docId = form.dataset.docId;
 
             const data = {
-                docNumber: document.getElementById('newDocNumber').value,
+                doc_number: document.getElementById('newDocNumber').value,
                 rev: document.getElementById('newRev').value,
                 discipline: document.getElementById('newDiscipline').value,
-                docType: document.getElementById('newDocType').value,
+                doc_type: document.getElementById('newDocType').value,
                 section: document.getElementById('newSection').value,
-                docTitle: document.getElementById('newDocTitle').value,
-                subRef: document.getElementById('newSubRef').value,
-                submittedDate: document.getElementById('newSubmittedDate').value,
-                respondedDate: document.getElementById('newRespondedDate').value,
-                gecDueDate: document.getElementById('newSubmittedDate').value ? new Date(new Date(document.getElementById('newSubmittedDate').value).setDate(new Date(document.getElementById('newSubmittedDate').value).getDate() + 14)).toISOString().split('T')[0] : '',
+                doc_title: document.getElementById('newDocTitle').value,
+                sub_ref: document.getElementById('newSubRef').value,
+                submitted_date: document.getElementById('newSubmittedDate').value,
+                responded_date: document.getElementById('newRespondedDate').value,
+                gec_due_date: document.getElementById('newSubmittedDate').value ? new Date(new Date(document.getElementById('newSubmittedDate').value).setDate(new Date(document.getElementById('newSubmittedDate').value).getDate() + 14)).toISOString().split('T')[0] : '',
                 status: document.getElementById('newStatus').value,
-                verifyRev: 'Latest',
-                daysOverdue: calculateDaysOverdue(document.getElementById('newSubmittedDate').value, document.getElementById('newRespondedDate').value)
+                verify_rev: 'Latest',
+                days_overdue: calculateDaysOverdue(document.getElementById('newSubmittedDate').value, document.getElementById('newRespondedDate').value)
             };
-            if (!data.docNumber || !data.rev || !data.discipline || !data.docType || !data.docTitle || !data.submittedDate) {
+            if (!data.doc_number || !data.rev || !data.discipline || !data.doc_type || !data.doc_title || !data.submitted_date) {
                 showMessageModal("Please fill in all required fields for Submission: Document Number, Revision, Discipline, Document Type, Document Title, Submitted Date.", "Missing Information");
                 console.warn("[Submission] Required fields missing. Operation aborted.");
                 return;
@@ -3148,7 +3085,7 @@
                     console.log(`[Submission] Updating existing document with ID: ${docId}. Its lifecycle status will be preserved.`);
                     const existingDoc = submissionData.find(d => d.id === docId);
                     if (existingDoc) {
-                        data.verifyRev = existingDoc.verifyRev;
+                        data.verify_rev = existingDoc.verify_rev;
                     }
                     result = await saveDocument('submissions', docId, data);
                     if (result.success) {
@@ -3161,54 +3098,44 @@
                     }
                 } else {
                     console.log("[Submission] Adding new document or new revision.");
-                    console.log("[Submission Debug] Current submissionData before filter:", JSON.stringify(submissionData.map(d => ({id: d.id, docNumber: d.docNumber, rev: d.rev, verifyRev: d.verifyRev}))));
                     const existingLatestCandidates = submissionData.filter(d =>
-                        d.docNumber === data.docNumber &&
+                        d.doc_number === data.doc_number &&
                         d.discipline === data.discipline &&
-                        (d.verifyRev !== 'Superseded' && d.verifyRev !== 'superseded')
+                        (d.verify_rev !== 'Superseded' && d.verify_rev !== 'superseded')
                     );
-                    console.log("[Submission Debug] Found existingLatestCandidates (before sorting, i.e., not 'Superseded'):", JSON.stringify(existingLatestCandidates.map(d => ({id: d.id, rev: d.rev, verifyRev: d.verifyRev}))));
                     let previousLatestDoc = null;
                     if (existingLatestCandidates.length > 0) {
                         existingLatestCandidates.sort((a, b) => compareRevisions(a.rev, b.rev));
                         previousLatestDoc = existingLatestCandidates[existingLatestCandidates.length - 1];
-                        console.log("[Submission Debug] Identified previousLatestDoc based on candidates:", JSON.stringify({id: previousLatestDoc.id, rev: previousLatestDoc.rev, verifyRev: previousLatestDoc.verifyRev}));
                     }
 
                     if (previousLatestDoc) {
                         const comparisonResult = compareRevisions(data.rev, previousLatestDoc.rev);
-                        console.log(`[Submission Debug] Comparing new revision (${data.rev}) with previous latest (${previousLatestDoc.rev}). Comparison Result: ${comparisonResult}`);
                         if (comparisonResult > 0) {
-                            console.log(`[Submission Debug] New revision (${data.rev}) is higher than previous latest (${previousLatestDoc.rev}). Marking previous latest (${previousLatestDoc.id}) as Superseded.`);
-                            const supersedeResult = await saveDocument('submissions', previousLatestDoc.id, { verifyRev: 'Superseded' });
+                            const supersedeResult = await saveDocument('submissions', previousLatestDoc.id, { verify_rev: 'Superseded' });
                             if (!supersedeResult.success) {
                                 showMessageModal("Failed to mark previous document as superseded. Data inconsistency may occur.", "Supersede Error");
-                                console.error("[Submission Debug] Supersede operation failed:", supersedeResult.error);
+                                console.error("[Submission] Supersede operation failed:", supersedeResult.error);
                             } else {
-                                console.log(`[Submission Debug] Previous document ${previousLatestDoc.id} successfully superseded.`);
+                                console.log(`[Submission] Previous document ${previousLatestDoc.id} successfully superseded.`);
                             }
-                            data.verifyRev = 'Latest';
+                            data.verify_rev = 'Latest';
                         } else if (comparisonResult < 0) {
                             showMessageModal("The revision you are adding is older than an existing 'Latest' revision for this Document Number and Discipline. It will be added as 'Superseded'.", "Warning: Older Revision");
-                            data.verifyRev = 'Superseded';
-                            console.log("[Submission Debug] New revision is older. Marking new document as Superseded.");
+                            data.verify_rev = 'Superseded';
                         } else {
                             showMessageModal("A document with the exact same Document Number, Discipline, and Revision already exists and is not 'Superseded'. This new entry will be added as 'Superseded'. If you intended to edit, please use the 'Edit' button for the existing document.", "Warning: Duplicate Revision");
-                            data.verifyRev = 'Superseded';
-                            console.log("[Submission Debug] Exact duplicate of existing 'Latest' revision detected. Marking new document as Superseded.");
+                            data.verify_rev = 'Superseded';
                         }
                     } else {
-                        console.log("[Submission Debug] No non-superseded document found for this Doc Number and Discipline. This new document will be 'Latest'.");
-                        data.verifyRev = 'Latest';
+                        data.verify_rev = 'Latest';
                     }
 
-                    console.log("[Submission Debug] Adding new document with final data:", JSON.stringify(data));
                     result = await addDocument('submissions', data);
                     if (result.success) {
                         showMessageModal("New submission document added successfully!", "Success");
                         clearNewSubmissionDocumentForm();
                         showPage('submissionPage');
-                        console.log("[Submission] Add operation successful.");
                     } else {
                         console.error("[Submission] Document add failed:", result.error);
                     }
@@ -3232,28 +3159,32 @@
 
         async function editSubmission(docId) {
             showLoadingOverlay('Loading submission data...');
-            if (!db || !userId || typeof appId === 'undefined' || appId === 'default-app-id') {
-                showMessageModal("Application not fully loaded or Firebase not connected. Please wait and try again.", "Error");
+            if (!supabase || !userId) {
+                showMessageModal("Application not fully loaded or Supabase not connected. Please wait and try again.", "Error");
                 hideLoadingOverlay();
                 return;
             }
             try {
-                const docSnap = await getDoc(doc(db, `/artifacts/${appId}/users/${userId}/submissions`, docId));
-                if (docSnap.exists()) {
-                    const data = docSnap.data();
-                    document.getElementById('newDocNumber').value = data.docNumber || '';
+                const { data, error } = await supabase
+                    .from('submissions')
+                    .select('*')
+                    .eq('id', docId)
+                    .single();
+                if (error) throw error;
+                if (data) {
+                    document.getElementById('newDocNumber').value = data.doc_number || '';
                     document.getElementById('newRev').value = data.rev || '';
                     document.getElementById('newDiscipline').value = data.discipline || '';
-                    document.getElementById('newDocType').value = data.docType || '';
+                    document.getElementById('newDocType').value = data.doc_type || '';
                     document.getElementById('newSection').value = data.section || '';
-                    document.getElementById('newDocTitle').value = data.docTitle || '';
-                    document.getElementById('newSubRef').value = data.subRef || '';
-                    document.getElementById('newSubmittedDate').value = formatDateForInput(data.submittedDate) || '';
-                    document.getElementById('newRespondedDate').value = formatDateForInput(data.respondedDate) || '';
+                    document.getElementById('newDocTitle').value = data.doc_title || '';
+                    document.getElementById('newSubRef').value = data.sub_ref || '';
+                    document.getElementById('newSubmittedDate').value = formatDateForInput(data.submitted_date) || '';
+                    document.getElementById('newRespondedDate').value = formatDateForInput(data.responded_date) || '';
                     document.getElementById('newStatus').value = data.status || '';
-                    document.getElementById('lifecycleStatus').value = data.verifyRev || '';
-                    document.getElementById('daysOverdue').value = data.daysOverdue || '';
-                    document.getElementById('gecDueDate').value = formatDateForInput(data.gecDueDate) || '';
+                    document.getElementById('lifecycleStatus').value = data.verify_rev || '';
+                    document.getElementById('daysOverdue').value = data.days_overdue || '';
+                    document.getElementById('gecDueDate').value = formatDateForInput(data.gec_due_date) || '';
 
                     const form = document.getElementById('submissionForm');
                     form.dataset.docId = docId;
@@ -3281,16 +3212,16 @@
             const data = {
                 initiator: document.getElementById('newOutgoingInitiator').value,
                 addressee: document.getElementById('newOutgoingAddressee').value,
-                letterRef: document.getElementById('newOutgoingLetterRef').value,
-                letterDate: document.getElementById('newOutgoingLetterDate').value,
-                letterSubject: document.getElementById('newOutgoingLetterSubject').value,
-                inReplyToRef: document.getElementById('newOutgoingInReplyToRef').value,
+                letter_ref: document.getElementById('newOutgoingLetterRef').value,
+                letter_date: document.getElementById('newOutgoingLetterDate').value,
+                letter_subject: document.getElementById('newOutgoingLetterSubject').value,
+                in_reply_to_ref: document.getElementById('newOutgoingInReplyToRef').value,
                 keyword: document.getElementById('newOutgoingKeyword').value,
-                replyRequired: document.getElementById('newOutgoingReplyRequired').value,
-                dateSent: document.getElementById('newOutgoingDateSent').value,
+                reply_required: document.getElementById('newOutgoingReplyRequired').value,
+                date_sent: document.getElementById('newOutgoingDateSent').value,
                 status: document.getElementById('newOutgoingReplyRequired').value === 'Yes' ? 'OPEN' : 'CLOSED'
             };
-            if (!data.letterRef || !data.letterSubject || !data.replyRequired) {
+            if (!data.letter_ref || !data.letter_subject || !data.reply_required) {
                 showMessageModal("Please fill in all required fields for Outgoing Correspondence: Outgoing Letter Ref., Letter Subject, Reply Required.", "Missing Information");
                 console.warn("[Outgoing Correspondence] Required fields missing. Operation aborted.");
                 return;
@@ -3329,24 +3260,28 @@
 
         async function editOutgoing(docId) {
             showLoadingOverlay('Loading outgoing correspondence data...');
-            if (!db || !userId || typeof appId === 'undefined' || appId === 'default-app-id') {
-                showMessageModal("Application not fully loaded or Firebase not connected. Please wait and try again.", "Error");
+            if (!supabase || !userId) {
+                showMessageModal("Application not fully loaded or Supabase not connected. Please wait and try again.", "Error");
                 hideLoadingOverlay();
                 return;
             }
             try {
-                const docSnap = await getDoc(doc(db, `/artifacts/${appId}/users/${userId}/outgoing_correspondences`, docId));
-                if (docSnap.exists()) {
-                    const data = docSnap.data();
+                const { data, error } = await supabase
+                    .from('outgoing_correspondences')
+                    .select('*')
+                    .eq('id', docId)
+                    .single();
+                if (error) throw error;
+                if (data) {
                     document.getElementById('newOutgoingInitiator').value = data.initiator || '';
                     document.getElementById('newOutgoingAddressee').value = data.addressee || '';
-                    document.getElementById('newOutgoingLetterRef').value = data.letterRef || '';
-                    document.getElementById('newOutgoingLetterDate').value = formatDateForInput(data.letterDate) || '';
-                    document.getElementById('newOutgoingLetterSubject').value = data.letterSubject || '';
-                    document.getElementById('newOutgoingInReplyToRef').value = data.inReplyToRef || '';
+                    document.getElementById('newOutgoingLetterRef').value = data.letter_ref || '';
+                    document.getElementById('newOutgoingLetterDate').value = formatDateForInput(data.letter_date) || '';
+                    document.getElementById('newOutgoingLetterSubject').value = data.letter_subject || '';
+                    document.getElementById('newOutgoingInReplyToRef').value = data.in_reply_to_ref || '';
                     document.getElementById('newOutgoingKeyword').value = data.keyword || '';
-                    document.getElementById('newOutgoingReplyRequired').value = data.replyRequired || '';
-                    document.getElementById('newOutgoingDateSent').value = formatDateForInput(data.dateSent) || '';
+                    document.getElementById('newOutgoingReplyRequired').value = data.reply_required || '';
+                    document.getElementById('newOutgoingDateSent').value = formatDateForInput(data.date_sent) || '';
 
                     const form = document.getElementById('outgoingCorrespondenceForm');
                     form.dataset.docId = docId;
@@ -3372,17 +3307,17 @@
             const docId = form.dataset.docId;
 
             const data = {
-                incomingRef: document.getElementById('newIncomingRef').value,
-                dateOfReceipt: document.getElementById('newIncomingDateOfReceipt').value,
+                incoming_ref: document.getElementById('newIncomingRef').value,
+                date_of_receipt: document.getElementById('newIncomingDateOfReceipt').value,
                 originator: document.getElementById('newIncomingOriginator').value,
                 addressee: document.getElementById('newIncomingAddressee').value,
-                letterSubject: document.getElementById('newIncomingLetterSubject').value,
-                replyToRef: document.getElementById('newIncomingReplyToRef').value,
+                letter_subject: document.getElementById('newIncomingLetterSubject').value,
+                reply_to_ref: document.getElementById('newIncomingReplyToRef').value,
                 keyword: document.getElementById('newIncomingKeyword').value,
-                replyRequired: document.getElementById('newIncomingReplyRequired').value,
+                reply_required: document.getElementById('newIncomingReplyRequired').value,
                 status: document.getElementById('newIncomingReplyRequired').value === 'Yes' ? 'OPEN' : 'CLOSED'
             };
-            if (!data.incomingRef || !data.letterSubject || !data.replyRequired) {
+            if (!data.incoming_ref || !data.letter_subject || !data.reply_required) {
                 showMessageModal("Please fill in all required fields for Incoming Correspondence: Incoming Reference, Letter Subject, Reply Required.", "Missing Information");
                 console.warn("[Incoming Correspondence] Required fields missing. Operation aborted.");
                 return;
@@ -3420,23 +3355,27 @@
 
         async function editIncoming(docId) {
             showLoadingOverlay('Loading incoming correspondence data...');
-            if (!db || !userId || typeof appId === 'undefined' || appId === 'default-app-id') {
-                showMessageModal("Application not fully loaded or Firebase not connected. Please wait and try again.", "Error");
+            if (!supabase || !userId) {
+                showMessageModal("Application not fully loaded or Supabase not connected. Please wait and try again.", "Error");
                 hideLoadingOverlay();
                 return;
             }
             try {
-                const docSnap = await getDoc(doc(db, `/artifacts/${appId}/users/${userId}/incoming_correspondences`, docId));
-                if (docSnap.exists()) {
-                    const data = docSnap.data();
-                    document.getElementById('newIncomingRef').value = data.incomingRef || '';
-                    document.getElementById('newIncomingDateOfReceipt').value = formatDateForInput(data.dateOfReceipt) || '';
+                const { data, error } = await supabase
+                    .from('incoming_correspondences')
+                    .select('*')
+                    .eq('id', docId)
+                    .single();
+                if (error) throw error;
+                if (data) {
+                    document.getElementById('newIncomingRef').value = data.incoming_ref || '';
+                    document.getElementById('newIncomingDateOfReceipt').value = formatDateForInput(data.date_of_receipt) || '';
                     document.getElementById('newIncomingOriginator').value = data.originator || '';
                     document.getElementById('newIncomingAddressee').value = data.addressee || '';
-                    document.getElementById('newIncomingLetterSubject').value = data.letterSubject || '';
-                    document.getElementById('newIncomingReplyToRef').value = data.replyToRef || '';
+                    document.getElementById('newIncomingLetterSubject').value = data.letter_subject || '';
+                    document.getElementById('newIncomingReplyToRef').value = data.reply_to_ref || '';
                     document.getElementById('newIncomingKeyword').value = data.keyword || '';
-                    document.getElementById('newIncomingReplyRequired').value = data.replyRequired || '';
+                    document.getElementById('newIncomingReplyRequired').value = data.reply_required || '';
                     
                     const form = document.getElementById('incomingCorrespondenceForm');
                     form.dataset.docId = docId;
@@ -3467,13 +3406,13 @@
             }
 
             const data = { name, email };
-            const collectionName = 'staff_emails';
+            const tableName = 'staff_emails';
             let result;
 
             if (docId) {
-                result = await saveDocument(collectionName, docId, data);
+                result = await saveDocument(tableName, docId, data);
             } else {
-                result = await addDocument(collectionName, data);
+                result = await addDocument(tableName, data);
             }
 
             if (result.success) {
@@ -3517,7 +3456,7 @@
                     <td>${staff.email || ''}</td>
                     <td class="action-buttons">
                         <button class="edit-button" onclick="editStaffEmail('${staff.id}')">Edit</button>
-                        <button class="danger-button" onclick="deleteStaffEmail('${staff.id}')">Delete</button>
+                        <button class="danger-button" onclick="deleteDocument('staff_emails', '${staff.id}')">Delete</button>
                     </td>
                 `;
                 tableBody.appendChild(tr);
@@ -3531,19 +3470,19 @@
             tr.innerHTML = `
                 <td>${formatDateForDisplay(doc.date)}</td>
                 <td>${doc.discipline || ''}</td>
-                <td>${doc.insNumber || ''}</td>
+                <td>${doc.ins_number || ''}</td>
                 <td>${doc.revision || ''}</td>
                 <td>${doc.location || ''}</td>
-                <td>${doc.workToBeInspected || ''}</td>
-                <td>${formatDateForDisplay(doc.inspectionDate)}</td>
-                <td>${doc.inspectionTime || ''}</td>
-                <td>${doc.approvedDrawingRef || ''}</td>
-                <td>${doc.specificationRef || ''}</td>
-                <td>${doc.approvedMethodStatementRef || ''}</td>
-                <td>${doc.qcsReference || ''}</td>
-                <td>${formatDateForDisplay(doc.commentReceivedDate)}</td>
-                <td>${doc.documentStatus || ''}</td>
-                <td>${doc.revStatus || ''}</td>
+                <td>${doc.work_to_be_inspected || ''}</td>
+                <td>${formatDateForDisplay(doc.inspection_date)}</td>
+                <td>${doc.inspection_time || ''}</td>
+                <td>${doc.approved_drawing_ref || ''}</td>
+                <td>${doc.specification_ref || ''}</td>
+                <td>${doc.approved_method_statement_ref || ''}</td>
+                <td>${doc.qcs_reference || ''}</td>
+                <td>${formatDateForDisplay(doc.comment_received_date)}</td>
+                <td>${doc.document_status || ''}</td>
+                <td>${doc.rev_status || ''}</td>
                 <td class="action-buttons">
                     <button class="edit-button" onclick="editInspection('${doc.id}')">Edit</button>
                     <button class="danger-button" onclick="deleteDocument('inspections', '${doc.id}')">Delete</button>
@@ -3556,23 +3495,23 @@
         function renderMirRow(doc, collectionName) {
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td>${formatDateForDisplay(doc.mirDate)}</td>
-                <td>${doc.mirDiscipline || ''}</td>
-                <td>${doc.mirNumber || ''}</td>
-                <td>${doc.mirRevision || ''}</td>
-                <td>${formatDateForDisplay(doc.dateMaterialReceived)}</td>
-                <td>${formatDateForDisplay(doc.mirInspectionDate)}</td>
-                <td>${doc.mirInspectionTime || ''}</td>
-                <td>${doc.materialApprovalRef || ''}</td>
-                <td>${doc.descriptionMaterial || ''}</td>
-                <td>${doc.deliveryNoteNumber || ''}</td>
+                <td>${formatDateForDisplay(doc.mir_date)}</td>
+                <td>${doc.mir_discipline || ''}</td>
+                <td>${doc.mir_number || ''}</td>
+                <td>${doc.mir_revision || ''}</td>
+                <td>${formatDateForDisplay(doc.date_material_received)}</td>
+                <td>${formatDateForDisplay(doc.mir_inspection_date)}</td>
+                <td>${doc.mir_inspection_time || ''}</td>
+                <td>${doc.material_approval_ref || ''}</td>
+                <td>${doc.description_material || ''}</td>
+                <td>${doc.delivery_note_number || ''}</td>
                 <td>${doc.manufacturer || ''}</td>
                 <td>${doc.supplier || ''}</td>
-                <td>${doc.countryOrigin || ''}</td>
-                <td>${formatDateForDisplay(doc.mirSubmissionDate)}</td>
-                <td>${formatDateForDisplay(doc.mirResponseDate)}</td>
-                <td>${doc.mirApprovalStatus || ''}</td>
-                <td>${doc.mirRevStatus || ''}</td>
+                <td>${doc.country_origin || ''}</td>
+                <td>${formatDateForDisplay(doc.mir_submission_date)}</td>
+                <td>${formatDateForDisplay(doc.mir_response_date)}</td>
+                <td>${doc.mir_approval_status || ''}</td>
+                <td>${doc.mir_rev_status || ''}</td>
                 <td class="action-buttons">
                     <button class="edit-button" onclick="editMir('${doc.id}')">Edit</button>
                     <button class="danger-button" onclick="deleteDocument('mir', '${doc.id}')">Delete</button>
@@ -3585,26 +3524,26 @@
         function renderNcrRow(doc, collectionName) {
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td>${doc.ncrRefNumber || ''}</td>
-                <td>${doc.ncrDiscipline || ''}</td>
-                <td>${doc.ncrLifecycleStatus || ''}</td>
-                <td>${doc.ncrDescription || ''}</td>
-                <td>${formatDateForDisplay(doc.partAReceivedDate)}</td>
-                <td>${doc.ncrRev_PartB || ''}</td>
-                <td>${doc.ncrRevisedParts_PartB || ''}</td>
-                <td>${doc.immediateAction || ''}</td>
-                <td>${doc.rootCause || ''}</td>
-                <td>${doc.correctiveAction || ''}</td>
-                <td>${formatDateForDisplay(doc.partBSubmittedDate)}</td>
-                <td>${formatDateForDisplay(doc.partCReceivedDate)}</td>
-                <td>${doc.partBAcceptedByGEC || ''}</td>
-                <td>${doc.ifPartBAccepted || ''}</td>
-                <td>${doc.partDRev || ''}</td>
-                <td>${doc.partDRevisedParts || ''}</td>
-                <td>${formatDateForDisplay(doc.partDSubmittedDate)}</td>
-                <td>${formatDateForDisplay(doc.partEReceivedDate)}</td>
-                <td>${doc.partEStatus || ''}</td>
-                <td>${doc.ncrCurrentStatus || ''}</td>
+                <td>${doc.ncr_ref_number || ''}</td>
+                <td>${doc.ncr_discipline || ''}</td>
+                <td>${doc.ncr_lifecycle_status || ''}</td>
+                <td>${doc.ncr_description || ''}</td>
+                <td>${formatDateForDisplay(doc.part_a_received_date)}</td>
+                <td>${doc.ncr_rev_part_b || ''}</td>
+                <td>${doc.ncr_revised_parts_part_b || ''}</td>
+                <td>${doc.immediate_action || ''}</td>
+                <td>${doc.root_cause || ''}</td>
+                <td>${doc.corrective_action || ''}</td>
+                <td>${formatDateForDisplay(doc.part_b_submitted_date)}</td>
+                <td>${formatDateForDisplay(doc.part_c_received_date)}</td>
+                <td>${doc.part_b_accepted_by_gec || ''}</td>
+                <td>${doc.if_part_b_accepted || ''}</td>
+                <td>${doc.part_d_rev || ''}</td>
+                <td>${doc.part_d_revised_parts || ''}</td>
+                <td>${formatDateForDisplay(doc.part_d_submitted_date)}</td>
+                <td>${doc.part_e_received_date || ''}</td>
+                <td>${doc.part_e_status || ''}</td>
+                <td>${doc.ncr_current_status || ''}</td>
                 <td class="action-buttons">
                     <button class="edit-button" onclick="editNcr('${doc.id}')">Edit</button>
                     <button class="danger-button" onclick="deleteDocument('ncr', '${doc.id}')">Delete</button>
@@ -3617,29 +3556,29 @@
         function renderSubmissionRow(doc, collectionName) {
             const tr = document.createElement('tr');
             let lifecycleStatusForDisplay = '';
-            if (doc.verifyRev) {
-                const match = doc.verifyRev.match(/^(Latest|Superseded)/i);
+            if (doc.verify_rev) {
+                const match = doc.verify_rev.match(/^(Latest|Superseded)/i);
                 if (match) {
                     lifecycleStatusForDisplay = match[0];
                 } else {
-                    lifecycleStatusForDisplay = doc.verifyRev;
+                    lifecycleStatusForDisplay = doc.verify_rev;
                 }
             }
 
             tr.innerHTML = `
-                <td>${doc.docNumber || ''}</td>
+                <td>${doc.doc_number || ''}</td>
                 <td>${doc.rev || ''}</td>
                 <td>${doc.discipline || ''}</td>
-                <td>${doc.docType || ''}</td>
+                <td>${doc.doc_type || ''}</td>
                 <td>${doc.section || ''}</td>
-                <td>${doc.docTitle || ''}</td>
-                <td>${doc.subRef || ''}</td>
-                <td>${formatDateForDisplay(doc.submittedDate)}</td>
-                <td>${formatDateForDisplay(doc.gecDueDate)}</td>
-                <td>${formatDateForDisplay(doc.respondedDate)}</td>
+                <td>${doc.doc_title || ''}</td>
+                <td>${doc.sub_ref || ''}</td>
+                <td>${formatDateForDisplay(doc.submitted_date)}</td>
+                <td>${formatDateForDisplay(doc.gec_due_date)}</td>
+                <td>${formatDateForDisplay(doc.responded_date)}</td>
                 <td>${doc.status || ''}</td>
                 <td>${lifecycleStatusForDisplay}</td>
-                <td>${doc.daysOverdue || ''}</td>
+                <td>${doc.days_overdue || ''}</td>
                 <td class="action-buttons">
                     <button class="edit-button" onclick="editSubmission('${doc.id}')">Edit</button>
                     <button class="danger-button" onclick="deleteDocument('submissions', '${doc.id}')">Delete</button>
@@ -3654,13 +3593,13 @@
             tr.innerHTML = `
                 <td>${doc.initiator || ''}</td>
                 <td>${doc.addressee || ''}</td>
-                <td>${doc.letterRef || ''}</td>
-                <td>${formatDateForDisplay(doc.letterDate)}</td>
-                <td>${doc.letterSubject || ''}</td>
-                <td>${doc.inReplyToRef || ''}</td>
+                <td>${doc.letter_ref || ''}</td>
+                <td>${formatDateForDisplay(doc.letter_date)}</td>
+                <td>${doc.letter_subject || ''}</td>
+                <td>${doc.in_reply_to_ref || ''}</td>
                 <td>${doc.keyword || ''}</td>
-                <td>${doc.replyRequired || ''}</td>
-                <td>${formatDateForDisplay(doc.dateSent)}</td>
+                <td>${doc.reply_required || ''}</td>
+                <td>${formatDateForDisplay(doc.date_sent)}</td>
                 <td>${doc.status || ''}</td>
                 <td class="action-buttons">
                     <button class="edit-button" onclick="editOutgoing('${doc.id}')">Edit</button>
@@ -3674,14 +3613,14 @@
         function renderIncomingCorrespondenceRow(doc, collectionName) {
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td>${doc.incomingRef || ''}</td>
-                <td>${formatDateForDisplay(doc.dateOfReceipt)}</td>
+                <td>${doc.incoming_ref || ''}</td>
+                <td>${formatDateForDisplay(doc.date_of_receipt)}</td>
                 <td>${doc.originator || ''}</td>
                 <td>${doc.addressee || ''}</td>
-                <td>${doc.letterSubject || ''}</td>
-                <td>${doc.replyToRef || ''}</td>
+                <td>${doc.letter_subject || ''}</td>
+                <td>${doc.reply_to_ref || ''}</td>
                 <td>${doc.keyword || ''}</td>
-                <td>${doc.replyRequired || ''}</td>
+                <td>${doc.reply_required || ''}</td>
                 <td>${doc.status || ''}</td>
                 <td class="action-buttons">
                     <button class="edit-button" onclick="editIncoming('${doc.id}')">Edit</button>
@@ -3700,8 +3639,8 @@
             const term = document.getElementById('inspectionsSearchTerm').value.toLowerCase();
             let filtered = inspectionsData.filter(doc => {
                 if (!term) return true;
-                if (field === 'revStatus' && doc.revStatus) {
-                    return String(doc.revStatus).toLowerCase().includes(term);
+                if (field === 'rev_status' && doc.rev_status) {
+                    return String(doc.rev_status).toLowerCase().includes(term);
                 } else if (field && doc[field]) {
                     if (field.toLowerCase().includes('date')) {
                         return formatDateForDisplay(doc[field]).toLowerCase().includes(term);
@@ -3722,7 +3661,7 @@
                 if (dateA.getTime() !== dateB.getTime()) {
                     return dateA.getTime() - dateB.getTime();
                 }
-                const insNumComparison = String(a.insNumber || '').localeCompare(String(b.insNumber || ''));
+                const insNumComparison = String(a.ins_number || '').localeCompare(String(b.ins_number || ''));
                 if (insNumComparison !== 0) {
                     return insNumComparison;
                 }
@@ -3744,8 +3683,8 @@
             const term = document.getElementById('mirSearchTerm').value.toLowerCase();
             let filtered = mirData.filter(doc => {
                 if (!term) return true;
-                if (field === 'mirRevStatus' && doc.mirRevStatus) {
-                    return String(doc.mirRevStatus).toLowerCase().includes(term);
+                if (field === 'mir_rev_status' && doc.mir_rev_status) {
+                    return String(doc.mir_rev_status).toLowerCase().includes(term);
                 } else if (field && doc[field]) {
                     if (field.toLowerCase().includes('date')) {
                         return formatDateForDisplay(doc[field]).toLowerCase().includes(term);
@@ -3761,16 +3700,16 @@
             });
 
             filtered.sort((a, b) => {
-                const dateA = new Date(a.mirDate);
-                const dateB = new Date(b.mirDate);
+                const dateA = new Date(a.mir_date);
+                const dateB = new Date(b.mir_date);
                 if (dateA.getTime() !== dateB.getTime()) {
                     return dateA.getTime() - dateB.getTime();
                 }
-                const mirNumComparison = String(a.mirNumber || '').localeCompare(String(b.mirNumber || ''));
+                const mirNumComparison = String(a.mir_number || '').localeCompare(String(b.mir_number || ''));
                 if (mirNumComparison !== 0) {
                     return mirNumComparison;
                 }
-                return compareRevisions(a.mirRevision, b.mirRevision);
+                return compareRevisions(a.mir_revision, b.mir_revision);
             });
             filtered.forEach(doc => tableBody.appendChild(renderMirRow(doc, 'mir')));
         }
@@ -3788,8 +3727,8 @@
             const term = document.getElementById('ncrSearchTerm').value.toLowerCase();
             const groupedNCRS = {};
             ncrData.forEach(doc => {
-                const refNumber = doc.ncrRefNumber;
-                const discipline = doc.ncrDiscipline;
+                const refNumber = doc.ncr_ref_number;
+                const discipline = doc.ncr_discipline;
                 const groupKey = `${refNumber}-${discipline}`;
                 if (!groupedNCRS[groupKey]) {
                     groupedNCRS[groupKey] = [];
@@ -3800,19 +3739,19 @@
             for (const groupKey in groupedNCRS) {
                 const group = groupedNCRS[groupKey];
                 if (group.length === 0) continue;
-                group.sort((a, b) => compareRevisions(a.ncrRev_PartB, b.ncrRev_PartB));
+                group.sort((a, b) => compareRevisions(a.ncr_rev_part_b, b.ncr_rev_part_b));
                 const latestDoc = group[group.length - 1];
                 group.forEach(doc => {
                     const newDoc = { ...doc };
-                    newDoc.ncrLifecycleStatus = (newDoc.id === latestDoc.id) ? 'Latest' : 'Superseded';
+                    newDoc.ncr_lifecycle_status = (newDoc.id === latestDoc.id) ? 'Latest' : 'Superseded';
                     ncrDataWithLifecycleStatus.push(newDoc);
                 });
             }
 
             let filtered = ncrDataWithLifecycleStatus.filter(doc => {
                 if (!term) return true;
-                if (field === 'ncrLifecycleStatus' && doc.ncrLifecycleStatus) {
-                    return String(doc.ncrLifecycleStatus).toLowerCase().includes(term);
+                if (field === 'ncr_lifecycle_status' && doc.ncr_lifecycle_status) {
+                    return String(doc.ncr_lifecycle_status).toLowerCase().includes(term);
                 } else if (field && doc[field]) {
                     if (field.toLowerCase().includes('date')) {
                         return formatDateForDisplay(doc[field]).toLowerCase().includes(term);
@@ -3828,19 +3767,19 @@
             });
 
             filtered.sort((a, b) => {
-                const dateA = new Date(a.partAReceivedDate);
-                const dateB = new Date(b.partAReceivedDate);
+                const dateA = new Date(a.part_a_received_date);
+                const dateB = new Date(b.part_a_received_date);
 
                 if (dateA.getTime() !== dateB.getTime()) {
                     return dateA.getTime() - dateB.getTime();
                 }
 
-                const refComparison = String(a.ncrRefNumber || '').localeCompare(String(b.ncrRefNumber || ''));
+                const refComparison = String(a.ncr_ref_number || '').localeCompare(String(b.ncr_ref_number || ''));
                 if (refComparison !== 0) {
                     return refComparison;
                 }
 
-                return compareRevisions(a.ncrRev_PartB, b.ncrRev_PartB);
+                return compareRevisions(a.ncr_rev_part_b, b.ncr_rev_part_b);
             });
             filtered.forEach(doc => tableBody.appendChild(renderNcrRow(doc, 'ncr')));
         }
@@ -3873,12 +3812,12 @@
             }
 
             filtered.sort((a, b) => {
-                const dateA = new Date(a.submittedDate);
-                const dateB = new Date(b.submittedDate);
+                const dateA = new Date(a.submitted_date);
+                const dateB = new Date(b.submitted_date);
                 if (dateA.getTime() !== dateB.getTime()) {
                     return dateA.getTime() - dateB.getTime();
                 }
-                return String(a.docNumber || '').localeCompare(String(b.docNumber || ''));
+                return String(a.doc_number || '').localeCompare(String(b.doc_number || ''));
             });
             filtered.forEach(doc => tableBody.appendChild(renderSubmissionRow(doc, 'submissions')));
         }
@@ -3920,12 +3859,12 @@
             }
 
             filtered.sort((a, b) => {
-                const dateA = new Date(a.letterDate);
-                const dateB = new Date(b.letterDate);
+                const dateA = new Date(a.letter_date);
+                const dateB = new Date(b.letter_date);
                 if (dateA.getTime() !== dateB.getTime()) {
                     return dateA.getTime() - dateB.getTime();
                 }
-                return String(a.letterRef || '').localeCompare(String(b.letterRef || ''));
+                return String(a.letter_ref || '').localeCompare(String(b.letter_ref || ''));
             });
             filtered.forEach(doc => tableBody.appendChild(renderOutgoingCorrespondenceRow(doc, 'outgoing_correspondences')));
         }
@@ -3974,12 +3913,12 @@
             }
 
             filtered.sort((a, b) => {
-                const dateA = new Date(a.dateOfReceipt);
-                const dateB = new Date(b.dateOfReceipt);
+                const dateA = new Date(a.date_of_receipt);
+                const dateB = new Date(b.date_of_receipt);
                 if (dateA.getTime() !== dateB.getTime()) {
                     return dateA.getTime() - dateB.getTime();
                 }
-                return String(a.incomingRef || '').localeCompare(String(b.incomingRef || ''));
+                return String(a.incoming_ref || '').localeCompare(String(b.incoming_ref || ''));
             });
             filtered.forEach(doc => tableBody.appendChild(renderIncomingCorrespondenceRow(doc, 'incoming_correspondences')));
         }
@@ -4045,29 +3984,29 @@
         
         function downloadInspectionsCSV() {
             downloadCSV(inspectionsData, 'inspections_register.csv', [
-                'date', 'discipline', 'insNumber', 'revision', 'location',
-                'workToBeInspected', 'inspectionDate', 'inspectionTime',
-                'approvedDrawingRef', 'specificationRef', 'approvedMethodStatementRef',
-                'qcsReference', 'commentReceivedDate', 'documentStatus', 'revStatus',
-                'approvalSummaryStatus'
+                'date', 'discipline', 'ins_number', 'revision', 'location',
+                'work_to_be_inspected', 'inspection_date', 'inspection_time',
+                'approved_drawing_ref', 'specification_ref', 'approved_method_statement_ref',
+                'qcs_reference', 'comment_received_date', 'document_status', 'rev_status',
+                'approval_summary_status'
             ]);
         }
 
         function downloadMirCSV() {
             downloadCSV(mirData, 'mir_register.csv', [
-                'mirDate', 'mirDiscipline', 'mirNumber', 'mirRevision', 'dateMaterialReceived',
-                'mirInspectionDate', 'mirInspectionTime', 'materialApprovalRef', 'descriptionMaterial',
-                'deliveryNoteNumber', 'manufacturer', 'supplier', 'countryOrigin',
-                'mirSubmissionDate', 'mirResponseDate', 'mirApprovalStatus', 'mirRevStatus',
-                'mirApprovalSummaryStatus'
+                'mir_date', 'mir_discipline', 'mir_number', 'mir_revision', 'date_material_received',
+                'mir_inspection_date', 'mir_inspection_time', 'material_approval_ref', 'description_material',
+                'delivery_note_number', 'manufacturer', 'supplier', 'country_origin',
+                'mir_submission_date', 'mir_response_date', 'mir_approval_status', 'mir_rev_status',
+                'mir_approval_summary_status'
             ]);
         }
 
         function downloadNcrCSV() {
             const groupedNCRS = {};
             ncrData.forEach(doc => {
-                const refNumber = doc.ncrRefNumber;
-                const groupKey = `${refNumber}-${doc.ncrDiscipline}`;
+                const refNumber = doc.ncr_ref_number;
+                const groupKey = `${refNumber}-${doc.ncr_discipline}`;
                 if (!groupedNCRS[groupKey]) {
                     groupedNCRS[groupKey] = [];
                 }
@@ -4077,44 +4016,44 @@
             for (const groupKey in groupedNCRS) {
                 const group = groupedNCRS[groupKey];
                 if (group.length === 0) continue;
-                group.sort((a, b) => compareRevisions(a.ncrRev_PartB, b.ncrRev_PartB));
+                group.sort((a, b) => compareRevisions(a.ncr_rev_part_b, b.ncr_rev_part_b));
                 const latestDoc = group[group.length - 1];
                 group.forEach(doc => {
                     const newDoc = { ...doc };
-                    newDoc.ncrLifecycleStatus = (newDoc.id === latestDoc.id) ? 'Latest' : 'Superseded';
+                    newDoc.ncr_lifecycle_status = (newDoc.id === latestDoc.id) ? 'Latest' : 'Superseded';
                     ncrDataWithLifecycleStatus.push(newDoc);
                 });
             }
             downloadCSV(ncrDataWithLifecycleStatus, 'ncr_register.csv', [
-                'ncrRefNumber', 'ncrDiscipline', 'ncrLifecycleStatus', 'ncrDescription',
-                'partAReceivedDate', 'ncrRev_PartB', 'ncrRevisedParts_PartB', 'immediateAction',
-                'rootCause', 'correctiveAction', 'partBSubmittedDate', 'partCReceivedDate',
-                'partBAcceptedByGEC', 'ifPartBAccepted', 'partDRev', 'partDRevisedParts',
-                'partDSubmittedDate', 'partEReceivedDate', 'partEStatus', 'ncrCurrentStatus'
+                'ncr_ref_number', 'ncr_discipline', 'ncr_lifecycle_status', 'ncr_description',
+                'part_a_received_date', 'ncr_rev_part_b', 'ncr_revised_parts_part_b', 'immediate_action',
+                'root_cause', 'corrective_action', 'part_b_submitted_date', 'part_c_received_date',
+                'part_b_accepted_by_gec', 'if_part_b_accepted', 'part_d_rev', 'part_d_revised_parts',
+                'part_d_submitted_date', 'part_e_received_date', 'part_e_status', 'ncr_current_status'
             ]);
         }
 
         function downloadSubmissionCSV() {
             downloadCSV(submissionData, 'submission_register.csv', [
-                'docNumber', 'rev', 'discipline', 'docType', 'section', 'docTitle',
-                'subRef', 'submittedDate', 'gecDueDate', 'respondedDate', 'status',
-                'verifyRev',
-                'daysOverdue'
+                'doc_number', 'rev', 'discipline', 'doc_type', 'section', 'doc_title',
+                'sub_ref', 'submitted_date', 'gec_due_date', 'responded_date', 'status',
+                'verify_rev',
+                'days_overdue'
             ]);
         }
 
         function prepareOutgoingForCSV() {
             return outgoingCorrespondenceData.map(doc => ({
                 Type: 'Outgoing',
-                Reference: doc.letterRef || '',
-                Date: doc.letterDate || '',
+                Reference: doc.letter_ref || '',
+                Date: doc.letter_date || '',
                 From: doc.initiator || '',
                 To: doc.addressee || '',
-                Subject: doc.letterSubject || '',
-                Reply_Reference: doc.inReplyToRef || '',
+                Subject: doc.letter_subject || '',
+                Reply_Reference: doc.in_reply_to_ref || '',
                 Keyword: doc.keyword || '',
-                Reply_Required: doc.replyRequired || '',
-                Date_Sent: doc.dateSent || '',
+                Reply_Required: doc.reply_required || '',
+                Date_Sent: doc.date_sent || '',
                 Status: doc.status || ''
             }));
         }
@@ -4122,14 +4061,14 @@
         function prepareIncomingForCSV() {
             return incomingCorrespondenceData.map(doc => ({
                 Type: 'Incoming',
-                Reference: doc.incomingRef || '',
-                Date: doc.dateOfReceipt || '',
+                Reference: doc.incoming_ref || '',
+                Date: doc.date_of_receipt || '',
                 From: doc.originator || '',
                 To: doc.addressee || '',
-                Subject: doc.letterSubject || '',
-                Reply_Reference: doc.replyToRef || '',
+                Subject: doc.letter_subject || '',
+                Reply_Reference: doc.reply_to_ref || '',
                 Keyword: doc.keyword || '',
-                Reply_Required: doc.replyRequired || '',
+                Reply_Required: doc.reply_required || '',
                 Date_Sent: '',
                 Status: doc.status || ''
             }));
@@ -4250,7 +4189,7 @@
         // --- Event Listeners and Initial Load ---
 
         document.addEventListener('DOMContentLoaded', () => {
-            console.log("DOMContentLoaded fired. Initializing UI elements and then Firebase.");
+            console.log("DOMContentLoaded fired. Initializing UI elements and then Supabase.");
 
             populateFixedDropdowns();
             showPage('inspectionsPage');
@@ -4300,22 +4239,9 @@
                 document.getElementById('daysOverdue').value = calculateDaysOverdue(submittedDate, respondedDate);
             });
             
-            initializeFirebaseAndAuth();
+            initializeSupabase();
         });
 
-        async function loadAllDataListeners() {
-            console.log("Loading all data listeners...");
-            setupRealtimeListener('inspections');
-            setupRealtimeListener('mir');
-            setupRealtimeListener('ncr');
-            setupRealtimeListener('submissions');
-            setupRealtimeListener('outgoing_correspondences');
-            setupRealtimeListener('incoming_correspondences');
-            setupRealtimeListener('staff_emails');
-
-            updateNextInsNumber();
-            updateNextMirNumber();
-        }
 
         window.showPage = showPage;
         window.handleCustomConfirm = handleCustomConfirm;
@@ -4328,7 +4254,6 @@
         window.toggleAuthMode = toggleAuthMode;
         window.handleAuthSubmit = handleAuthSubmit;
         window.handleSignOut = handleSignOut;
-        window.signInAnonymouslyUser = signInAnonymouslyUser;
         window.showForgotPasswordModal = showForgotPasswordModal;
         window.hideForgotPasswordModal = hideForgotPasswordModal;
         window.sendPasswordReset = sendPasswordReset;
@@ -4401,4 +4326,3 @@
     </script>
 </body>
 </html>
-
