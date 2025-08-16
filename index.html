@@ -3639,9 +3639,7 @@
             const term = document.getElementById('inspectionsSearchTerm').value.toLowerCase();
             let filtered = inspectionsData.filter(doc => {
                 if (!term) return true;
-                if (field === 'rev_status' && doc.rev_status) {
-                    return String(doc.rev_status).toLowerCase().includes(term);
-                } else if (field && doc[field]) {
+                if (field && doc[field]) {
                     if (field.toLowerCase().includes('date')) {
                         return formatDateForDisplay(doc[field]).toLowerCase().includes(term);
                     }
@@ -3683,9 +3681,7 @@
             const term = document.getElementById('mirSearchTerm').value.toLowerCase();
             let filtered = mirData.filter(doc => {
                 if (!term) return true;
-                if (field === 'mir_rev_status' && doc.mir_rev_status) {
-                    return String(doc.mir_rev_status).toLowerCase().includes(term);
-                } else if (field && doc[field]) {
+                if (field && doc[field]) {
                     if (field.toLowerCase().includes('date')) {
                         return formatDateForDisplay(doc[field]).toLowerCase().includes(term);
                     }
@@ -3750,9 +3746,7 @@
 
             let filtered = ncrDataWithLifecycleStatus.filter(doc => {
                 if (!term) return true;
-                if (field === 'ncr_lifecycle_status' && doc.ncr_lifecycle_status) {
-                    return String(doc.ncr_lifecycle_status).toLowerCase().includes(term);
-                } else if (field && doc[field]) {
+                if (field && doc[field]) {
                     if (field.toLowerCase().includes('date')) {
                         return formatDateForDisplay(doc[field]).toLowerCase().includes(term);
                     }
