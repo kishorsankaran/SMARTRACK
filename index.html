@@ -173,7 +173,7 @@
             width: 100%;
             border-collapse: collapse;
             background-color: #fff;
-            border-radius: 8-px;
+            border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
@@ -486,7 +486,7 @@
                 <label for="resetEmail" class="sr-only">Email</label>
                 <input type="email" id="resetEmail" placeholder="your.email@example.com" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
-            <div class="flex justify-end space-x-4 mt-6">
+            <div class="flex justify-end space-x-2 mt-6">
                 <button type="button" class="action-button" onclick="sendPasswordReset()">Send Reset Email</button>
                 <button type="button" class="secondary-button" onclick="hideForgotPasswordModal()">Cancel</button>
             </div>
@@ -2453,22 +2453,22 @@
             return statusMap[statusCode] || statusCode || '';
         }
 
-        async function saveDocument(collectionName, docId, data) {
+        async function saveDocument(tableName, docId, data) {
             if (!supabase || !userId) {
-                console.error(`[Supabase Check] Supabase not ready for saving document to ${collectionName}.`);
+                console.error(`[Supabase Check] Supabase not ready for saving document to ${tableName}.`);
                 showMessageModal("Data persistence is not available. Please ensure Supabase is correctly configured and authenticated.", "Error Saving Data");
                 return { success: false, error: new Error("Supabase or User ID not ready.") };
             }
             showLoadingOverlay('Saving document...');
             data.user_id = userId;
-            console.log(`[Supabase] Attempting to save document to table: ${collectionName} with ID: ${docId}`);
+            console.log(`[Supabase] Attempting to save document to table: ${tableName} with ID: ${docId}`);
             try {
-                const { error } = await supabase.from(collectionName).update(data).eq('id', docId);
+                const { error } = await supabase.from(tableName).update(data).eq('id', docId);
                 if (error) throw error;
-                console.log(`[Supabase] Document saved successfully to ${collectionName} with ID: ${docId}`);
+                console.log(`[Supabase] Document saved successfully to ${tableName} with ID: ${docId}`);
                 return { success: true, id: docId };
             } catch (e) {
-                console.error(`[Supabase Error] Error adding/updating document in ${collectionName} with ID ${docId}: `, e);
+                console.error(`[Supabase Error] Error adding/updating document in ${tableName} with ID ${docId}: `, e);
                 showMessageModal("Error saving document: " + e.message, "Error");
                 return { success: false, error: e };
             } finally {
@@ -2476,24 +2476,24 @@
             }
         }
 
-        async function addDocument(collectionName, data) {
+        async function addDocument(tableName, data) {
             if (!supabase || !userId) {
-                console.error(`[Supabase Check] Supabase not ready for adding document to ${collectionName}.`);
+                console.error(`[Supabase Check] Supabase not ready for adding document to ${tableName}.`);
                 showMessageModal("Data persistence is not available. Please ensure Supabase is correctly configured and authenticated.", "Error Adding Data");
                 return { success: false, error: new Error("Supabase or User ID not ready.") };
             }
             showLoadingOverlay('Adding new document...');
             data.user_id = userId;
-            console.log(`[Supabase] Attempting to add document to table: ${collectionName}`);
+            console.log(`[Supabase] Attempting to add document to table: ${tableName}`);
 
             try {
-                const { data: newDoc, error } = await supabase.from(collectionName).insert([data]).select();
+                const { data: newDoc, error } = await supabase.from(tableName).insert([data]).select();
                 if (error) throw error;
                 const newDocId = newDoc[0].id;
-                console.log(`[Supabase] New document added to ${collectionName} with ID: ${newDocId}`);
+                console.log(`[Supabase] New document added to ${tableName} with ID: ${newDocId}`);
                 return { success: true, id: newDocId };
             } catch (e) {
-                console.error(`[Supabase Error] Error adding new document to ${collectionName}: `, e);
+                console.error(`[Supabase Error] Error adding new document to ${tableName}: `, e);
                 showMessageModal("Error adding document: " + e.message, "Error");
                 return { success: false, error: e };
             } finally {
@@ -2501,7 +2501,7 @@
             }
         }
 
-        async function deleteDocument(collectionName, docId) {
+        async function deleteDocument(tableName, docId) {
             const confirmDelete = await showCustomConfirm('Are you sure you want to delete this document? This action cannot be undone.');
             if (!confirmDelete) {
                 showMessageModal("Document deletion cancelled.", "Cancelled");
@@ -2509,16 +2509,16 @@
             }
 
             if (!supabase || !userId) {
-                console.error(`[Supabase Check] Supabase not ready for deleting document from ${collectionName}.`);
+                console.error(`[Supabase Check] Supabase not ready for deleting document from ${tableName}.`);
                 showMessageModal("Data persistence is not available. Please ensure Supabase is correctly configured and authenticated.", "Error Deleting Data");
                 return { success: false, error: new Error("Supabase or User ID not ready.") };
             }
             showLoadingOverlay('Deleting document...');
             try {
-                console.log(`[Supabase] Attempting to delete document from table: ${collectionName} with ID: ${docId}`);
-                const { error } = await supabase.from(collectionName).delete().eq('id', docId);
+                console.log(`[Supabase] Attempting to delete document from table: ${tableName} with ID: ${docId}`);
+                const { error } = await supabase.from(tableName).delete().eq('id', docId);
                 if (error) throw error;
-                console.log(`[Supabase] Document deleted from ${collectionName} with ID: ${docId}`);
+                console.log(`[Supabase] Document deleted from ${tableName} with ID: ${docId}`);
                 showMessageModal("Document deleted successfully!", "Success");
                 return { success: true };
             } catch (e) {
