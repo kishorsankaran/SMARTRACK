@@ -446,9 +446,77 @@
             font-size: 12px;
             color: #6b7280;
         }
+
+        /* Projects page specific styles */
+        .projects-list {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+
+        .project-card {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1rem;
+        }
+
+        .project-card p {
+            color: #4b5563;
+            margin-top: 0.5rem;
+        }
+
+        .project-icon {
+            font-size: 3rem;
+            color: #3b82f6;
+        }
+
+        .create-project-form {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        @media (min-width: 640px) {
+            .create-project-form {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .create-project-form button {
+            grid-column: span 2;
+            margin-top: 1rem;
+        }
+
+        .active-project-bar {
+            background-color: #e2e8f0;
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
     </style>
 </head>
-<body class="bg-gray-100">
+<body>
 
     <div id="loadingOverlay" class="hidden">
         <div class="flex flex-col items-center">
@@ -555,915 +623,47 @@
             </div>
         </header>
 
-        <nav class="tab-buttons">
-            <button class="tab-button active" onclick="showPage('inspectionsPage')">Inspections Register</button>
-            <button class="tab-button" onclick="showPage('mirPage')">MIR Register</button>
-            <button class="tab-button" onclick="showPage('ncrPage')">NCR Register</button>
-            <button class="tab-button" onclick="showPage('submissionPage')">Submission Register</button>
-            <button class="tab-button" onclick="showPage('correspondencePage')">Correspondence Register</button>
-            <button class="tab-button" onclick="showPage('staffEmailsPage')">Staff Emails</button>
+        <div id="activeProjectBar" class="active-project-bar hidden">
+            <span>Active Project: <span id="activeProjectName"></span></span>
+            <button class="secondary-button" onclick="returnToProjects()">Change Project</button>
+        </div>
+
+        <nav class="tab-buttons" id="main-nav-tabs">
+            <button class="tab-button active" id="projectsPageNav" onclick="showPage('projectsPage')">Projects</button>
+            <button class="tab-button" id="staffEmailsPageNav" onclick="showPage('staffEmailsPage')">Staff Emails</button>
+            <button class="tab-button hidden" id="inspectionsPageNav" onclick="showPage('inspectionsPage')">Inspections Register</button>
+            <button class="tab-button hidden" id="mirPageNav" onclick="showPage('mirPage')">MIR Register</button>
+            <button class="tab-button hidden" id="ncrPageNav" onclick="showPage('ncrPage')">NCR Register</button>
+            <button class="tab-button hidden" id="submissionPageNav" onclick="showPage('submissionPage')">Submission Register</button>
+            <button class="tab-button hidden" id="correspondencePageNav" onclick="showPage('correspondencePage')">Correspondence Register</button>
         </nav>
-
-        <div id="inspectionsPage" class="page-content">
-            <h2 class="text-2xl font-bold mb-4 text-gray-800">Inspections Register</h2>
-
+        
+        <div id="projectsPage" class="page-content">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">Your Projects</h2>
             <div class="form-section">
-                <h3 class="text-xl font-semibold mb-4 text-gray-700">Add/Edit Inspection</h3>
-                <form id="inspectionForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <h3 class="text-xl font-semibold mb-4 text-gray-700">Add New Project</h3>
+                <form id="newProjectForm" class="create-project-form">
                     <div class="form-group">
-                        <label for="date">Date:</label>
-                        <input type="date" id="date" required>
+                        <label for="projectName">Project Name:</label>
+                        <input type="text" id="projectName" placeholder="e.g., Al Rayyan Highway" required>
                     </div>
                     <div class="form-group">
-                        <label for="discipline">Discipline:</label>
-                        <select id="discipline" required>
-                            <option value="">--Select--</option>
-                        </select>
+                        <label for="projectCode">Project Code:</label>
+                        <input type="text" id="projectCode" placeholder="e.g., CP837" required>
                     </div>
-                    <div class="form-group">
-                        <label for="insNumber">INS Number:</label>
-                        <input type="text" id="insNumber" placeholder="e.g., CP837-INS-CIV-0001" required>
-                        <span class="text-xs text-gray-500 mt-1">Next: <span id="nextInsNumber">Loading...</span></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="revision">Revision:</label>
-                        <input type="text" id="revision" placeholder="e.g., 0, 1, A" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="location">Location:</label>
-                        <input type="text" id="location" placeholder="e.g., Area 1">
-                    </div>
-                    <div class="form-group">
-                        <label for="workToBeInspected">Work To Be Inspected:</label>
-                        <textarea id="workToBeInspected" rows="2" placeholder="Description of work"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="inspectionDate">Inspection Date:</label>
-                        <input type="date" id="inspectionDate">
-                    </div>
-                    <div class="form-group">
-                        <label for="inspectionTime">Inspection Time:</label>
-                        <input type="time" id="inspectionTime">
-                    </div>
-                    <div class="form-group">
-                        <label for="approvedDrawingRef">Approved Drawing Ref.:</label>
-                        <input type="text" id="approvedDrawingRef" placeholder="e.g., DWG-001">
-                    </div>
-                    <div class="form-group">
-                        <label for="specificationRef">Specification Ref.:</label>
-                        <input type="text" id="specificationRef" placeholder="e.g., SPE-001">
-                    </div>
-                    <div class="form-group">
-                        <label for="approvedMethodStatementRef">Approved Method Statement Ref.:</label>
-                        <input type="text" id="approvedMethodStatementRef" placeholder="e.g., MST-001">
-                    </div>
-                    <div class="form-group">
-                        <label for="qcsReference">QCS Reference:</label>
-                        <input type="text" id="qcsReference" placeholder="e.g., QCS-2014">
-                    </div>
-                    <div class="form-group">
-                        <label for="commentReceivedDate">Comment Received Date:</label>
-                        <input type="date" id="commentReceivedDate">
-                    </div>
-                    <div class="form-group">
-                        <label for="documentStatus">Document Status:</label>
-                        <select id="documentStatus" required>
-                            <option value="">--Select--</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="revStatus">Lifecycle Status:</label>
-                        <input type="text" id="revStatus" readonly class="bg-gray-100 text-gray-500">
-                    </div>
-                    <div class="form-group">
-                        <label for="inspectionDocument">Upload Document:</label>
-                        <input type="file" id="inspectionDocument">
-                    </div>
-                    <div class="form-group col-span-full flex justify-end space-x-2">
-                        <button type="button" id="addUpdateButton" class="action-button" onclick="addUpdateInspectionDocument()">Add Document</button>
-                        <button type="button" class="secondary-button" onclick="clearInspectionsForm()">Clear Form</button>
+                    <div class="col-span-full flex justify-end">
+                        <button type="button" class="action-button" onclick="addNewProject()">Add Project</button>
                     </div>
                 </form>
             </div>
-
+            
             <div class="table-section mt-8">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-xl font-semibold text-gray-700">All Inspections</h3>
-                    <div class="flex space-x-2">
-                        <button class="secondary-button" id="toggleInspectionsTableBtn" onclick="toggleTableVisibility('inspectionsTableContainer', 'toggleInspectionsTableBtn')">Hide Table</button>
-                        <button class="action-button" onclick="downloadInspectionsCSV()">Download CSV</button>
+                <h3 class="text-xl font-semibold text-gray-700">Select a Project</h3>
+                <p id="noProjectsMessage" class="text-center text-gray-500 my-8 hidden">
+                    No projects found. Please add a new project above to get started.
+                </p>
+                <div id="projectsList" class="projects-list">
                     </div>
-                </div>
-
-                <div class="flex flex-wrap items-end gap-4 mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <div class="form-group m-0 flex-grow">
-                        <label for="inspectionsSearchField" class="text-sm">Search Field:</label>
-                        <select id="inspectionsSearchField" class="w-full">
-                            <option value="">All Fields</option>
-                            <option value="date">Date</option>
-                            <option value="discipline">Discipline</option>
-                            <option value="ins_number">INS Number</option>
-                            <option value="revision">Revision</option>
-                            <option value="location">Location</option>
-                            <option value="work_to_be_inspected">Work To Be Inspected</option>
-                            <option value="inspection_date">Inspection Date</option>
-                            <option value="inspection_time">Inspection Time</option>
-                            <option value="approved_drawing_ref">Approved Drawing Ref.</option>
-                            <option value="specification_ref">Specification Ref.</option>
-                            <option value="approved_method_statement_ref">Approved Method Statement Ref.</option>
-                            <option value="qcs_reference">QCS Reference</option>
-                            <option value="comment_received_date">Comment Received Date</option>
-                            <option value="document_status">Document Status</option>
-                            <option value="rev_status">Lifecycle Status</option>
-                            <option value="approval_summary_status">Approval Summary</option>
-                        </select>
-                    </div>
-                    <div class="form-group m-0 flex-grow-[2]">
-                        <label for="inspectionsSearchTerm" class="text-sm">Search Term:</label>
-                        <input type="text" id="inspectionsSearchTerm" placeholder="Enter search term" class="w-full">
-                    </div>
-                    <div class="flex space-x-2">
-                        <button class="action-button" onclick="performInspectionsSearch()"><i class="fas fa-search"></i> Search</button>
-                        <button class="secondary-button" onclick="clearInspectionsSearch()"><i class="fas fa-redo"></i> Reset</button>
-                    </div>
-                </div>
-
-                <div id="inspectionsTableContainer" class="table-container">
-                    <table id="inspectionsTable">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Discipline</th>
-                                <th>INS No.</th>
-                                <th>Rev.</th>
-                                <th>Location</th>
-                                <th>Work to be Inspected</th>
-                                <th>Insp. Date</th>
-                                <th>Insp. Time</th>
-                                <th>Appr. Drawing Ref.</th>
-                                <th>Spec. Ref.</th>
-                                <th>Appr. MS Ref.</th>
-                                <th>QCS Ref.</th>
-                                <th>Comment Rec. Date</th>
-                                <th>Doc. Status</th>
-                                <th>Lifecycle Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div id="mirPage" class="page-content hidden">
-            <h2 class="text-2xl font-bold mb-4 text-gray-800">Material Inspection Request (MIR) Register</h2>
-
-            <div class="form-section">
-                <h3 class="text-xl font-semibold mb-4 text-gray-700">Add/Edit MIR</h3>
-                <form id="mirForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div class="form-group">
-                        <label for="mirDate">MIR Date:</label>
-                        <input type="date" id="mirDate" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="mirDiscipline">Discipline:</label>
-                        <select id="mirDiscipline" required>
-                            <option value="">--Select--</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="mirNumber">MIR Number:</label>
-                        <input type="text" id="mirNumber" placeholder="e.g., CP837-MIR-CIV-0001" required>
-                        <span class="text-xs text-gray-500 mt-1">Next: <span id="nextMirNumber">Loading...</span></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="mirRevision">Revision:</label>
-                        <input type="text" id="mirRevision" placeholder="e.g., 0, 1, A" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="dateMaterialReceived">Date Material Received:</label>
-                        <input type="date" id="dateMaterialReceived">
-                    </div>
-                    <div class="form-group">
-                        <label for="mirInspectionDate">MIR Inspection Date:</label>
-                        <input type="date" id="mirInspectionDate">
-                    </div>
-                    <div class="form-group">
-                        <label for="mirInspectionTime">MIR Inspection Time:</label>
-                        <input type="time" id="mirInspectionTime">
-                    </div>
-                    <div class="form-group">
-                        <label for="materialApprovalRef">Material Approval Ref.:</label>
-                        <input type="text" id="materialApprovalRef" placeholder="e.g., MAT-APP-001">
-                    </div>
-                    <div class="form-group">
-                        <label for="descriptionMaterial">Description of Material:</label>
-                        <textarea id="descriptionMaterial" rows="2" placeholder="Description"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="deliveryNoteNumber">Delivery Note Number:</label>
-                        <input type="text" id="deliveryNoteNumber" placeholder="e.g., DN-12345">
-                    </div>
-                    <div class="form-group">
-                        <label for="manufacturer">Manufacturer:</label>
-                        <input type="text" id="manufacturer" placeholder="e.g., Company A">
-                    </div>
-                    <div class="form-group">
-                        <label for="supplier">Supplier:</label>
-                        <input type="text" id="supplier" placeholder="e.g., Supplier X">
-                    </div>
-                    <div class="form-group">
-                        <label for="countryOrigin">Country of Origin:</label>
-                        <input type="text" id="countryOrigin" placeholder="e.g., China">
-                    </div>
-                    <div class="form-group">
-                        <label for="mirSubmissionDate">MIR Submission Date:</label>
-                        <input type="date" id="mirSubmissionDate">
-                    </div>
-                    <div class="form-group">
-                        <label for="mirResponseDate">MIR Response Date:</label>
-                        <input type="date" id="mirResponseDate">
-                    </div>
-                    <div class="form-group">
-                        <label for="mirApprovalStatus">Approval Status:</label>
-                        <select id="mirApprovalStatus" required>
-                            <option value="">--Select--</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="mirRevStatus">Lifecycle Status:</label>
-                        <input type="text" id="mirRevStatus" readonly class="bg-gray-100 text-gray-500">
-                    </div>
-                    <div class="form-group">
-                        <label for="mirDocument">Upload Document:</label>
-                        <input type="file" id="mirDocument">
-                    </div>
-                    <div class="form-group col-span-full flex justify-end space-x-2">
-                        <button type="button" id="addUpdateMirButton" class="action-button" onclick="addUpdateMirDocument()">Add Document</button>
-                        <button type="button" class="secondary-button" onclick="clearMirForm()">Clear Form</button>
-                    </div>
-                </form>
-            </div>
-
-            <div class="table-section mt-8">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-xl font-semibold text-gray-700">All MIRs</h3>
-                    <div class="flex space-x-2">
-                        <button class="secondary-button" id="toggleMirTableBtn" onclick="toggleTableVisibility('mirTableContainer', 'toggleMirTableBtn')">Hide Table</button>
-                        <button class="action-button" onclick="downloadMirCSV()">Download CSV</button>
-                    </div>
-                </div>
-
-                <div class="flex flex-wrap items-end gap-4 mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <div class="form-group m-0 flex-grow">
-                        <label for="mirSearchField" class="text-sm">Search Field:</label>
-                        <select id="mirSearchField" class="w-full">
-                            <option value="">All Fields</option>
-                            <option value="mir_date">MIR Date</option>
-                            <option value="mir_discipline">Discipline</option>
-                            <option value="mir_number">MIR Number</option>
-                            <option value="mir_revision">Revision</option>
-                            <option value="date_material_received">Date Material Received</option>
-                            <option value="mir_inspection_date">MIR Inspection Date</option>
-                            <option value="mir_inspection_time">MIR Inspection Time</option>
-                            <option value="material_approval_ref">Material Approval Ref.</option>
-                            <option value="description_material">Description of Material</option>
-                            <option value="delivery_note_number">Delivery Note Number</option>
-                            <option value="manufacturer">Manufacturer</option>
-                            <option value="supplier">Supplier</option>
-                            <option value="country_origin">Country of Origin</option>
-                            <option value="mir_submission_date">MIR Submission Date</option>
-                            <option value="mir_response_date">MIR Response Date</option>
-                            <option value="mir_approval_status">Approval Status</option>
-                            <option value="mir_rev_status">Lifecycle Status</option>
-                            <option value="mir_approval_summary_status">Approval Summary</option>
-                        </select>
-                    </div>
-                    <div class="form-group m-0 flex-grow-[2]">
-                        <label for="mirSearchTerm" class="text-sm">Search Term:</label>
-                        <input type="text" id="mirSearchTerm" placeholder="Enter search term" class="w-full">
-                    </div>
-                    <div class="flex space-x-2">
-                        <button class="action-button" onclick="performMirSearch()"><i class="fas fa-search"></i> Search</button>
-                        <button class="secondary-button" onclick="clearMirSearch()"><i class="fas fa-redo"></i> Reset</button>
-                    </div>
-                </div>
-
-                <div id="mirTableContainer" class="table-container">
-                    <table id="mirTable">
-                        <thead>
-                            <tr>
-                                <th>MIR Date</th>
-                                <th>Discipline</th>
-                                <th>MIR No.</th>
-                                <th>Rev.</th>
-                                <th>Date Mat. Rec.</th>
-                                <th>MIR Insp. Date</th>
-                                <th>MIR Insp. Time</th>
-                                <th>Mat. Appr. Ref.</th>
-                                <th>Description of Material</th>
-                                <th>Delivery Note No.</th>
-                                <th>Manufacturer</th>
-                                <th>Supplier</th>
-                                <th>Country of Origin</th>
-                                <th>MIR Sub. Date</th>
-                                <th>MIR Resp. Date</th>
-                                <th>Appr. Status</th>
-                                <th>Lifecycle Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div id="ncrPage" class="page-content hidden">
-            <h2 class="text-2xl font-bold mb-4 text-gray-800">Non-Conformance Report (NCR) Register</h2>
-
-            <div class="form-section">
-                <h3 class="text-xl font-semibold mb-4 text-gray-700">Add/Edit NCR</h3>
-                <form id="ncrForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <h4 class="col-span-full text-lg font-semibold text-blue-700 mt-2 mb-2">Part A: Non-Conformance Details</h4>
-                    <div class="form-group">
-                        <label for="ncrDiscipline">Discipline:</label>
-                        <select id="ncrDiscipline" required onchange="autoFillNcrDetails()">
-                            <option value="">--Select--</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="ncrRefNumber">NCR Ref. Number:</label>
-                        <input type="text" id="ncrRefNumber" placeholder="e.g., CP837-NCR-CIV-0001" required onchange="autoFillNcrDetails()">
-                    </div>
-                    <div class="form-group">
-                        <label for="ncrDescription">NCR Description:</label>
-                        <textarea id="ncrDescription" rows="2" placeholder="Describe the non-conformance"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="partAReceivedDate">Part A Received Date:</label>
-                        <input type="date" id="partAReceivedDate">
-                    </div>
-                    <div class="form-group">
-                        <label for="ncrDocument">Upload Document:</label>
-                        <input type="file" id="ncrDocument">
-                    </div>
-
-                    <h4 class="col-span-full text-lg font-semibold text-blue-700 mt-4 mb-2">Part B: Root Cause & Corrective Action</h4>
-                    <div class="form-group">
-                        <label for="ncrRev_PartB">Part B Revision:</label>
-                        <input type="text" id="ncrRev_PartB" placeholder="e.g., 0, 1, A" required readonly class="bg-gray-100 text-gray-500">
-                    </div>
-                    <div class="form-group">
-                        <label for="ncrRevisedParts_PartB">Revised Parts (Part B):</label>
-                        <input type="text" id="ncrRevisedParts_PartB" placeholder="e.g., Part A & B">
-                    </div>
-                    <div class="form-group">
-                        <label for="immediateAction">Immediate Action:</label>
-                        <textarea id="immediateAction" rows="2" placeholder="Action taken immediately"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="rootCause">Root Cause:</label>
-                        <textarea id="rootCause" rows="2" placeholder="Identify the root cause"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="correctiveAction">Corrective Action:</label>
-                        <textarea id="correctiveAction" rows="2" placeholder="Plan for corrective action"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="partBSubmittedDate">Part B Submitted Date:</label>
-                        <input type="date" id="partBSubmittedDate">
-                    </div>
-
-                    <h4 class="col-span-full text-lg font-semibold text-blue-700 mt-4 mb-2">Part C: GEC Review</h4>
-                    <div class="form-group">
-                        <label for="partCReceivedDate">Part C Received Date:</label>
-                        <input type="date" id="partCReceivedDate">
-                    </div>
-                    <div class="form-group">
-                        <label for="partBAcceptedByGEC">Part B Accepted by GEC?:</label>
-                        <select id="partBAcceptedByGEC">
-                            <option value="">--Select--</option>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="ifPartBAccepted">If Part B Accepted:</label>
-                        <input type="text" id="ifPartBAccepted" readonly class="bg-gray-100 text-gray-500">
-                    </div>
-
-                    <h4 class="col-span-full text-lg font-semibold text-blue-700 mt-4 mb-2">Part D: Proposed Corrective Action Implementation</h4>
-                    <div class="form-group">
-                        <label for="partDRev">Part D Revision:</label>
-                        <input type="text" id="partDRev" placeholder="e.g., 0, 1, A">
-                    </div>
-                    <div class="form-group">
-                        <label for="partDRevisedParts">Revised Parts (Part D):</label>
-                        <input type="text" id="partDRevisedParts" placeholder="e.g., Part A, B & D">
-                    </div>
-                    <div class="form-group">
-                        <label for="partDSubmittedDate">Part D Submitted Date:</label>
-                        <input type="date" id="partDSubmittedDate">
-                    </div>
-
-                    <h4 class="col-span-full text-lg font-semibold text-blue-700 mt-4 mb-2">Part E: Verification of Corrective Action Effectiveness</h4>
-                    <div class="form-group">
-                        <label for="partEReceivedDate">Part E Received Date:</label>
-                        <input type="date" id="partEReceivedDate">
-                    </div>
-                    <div class="form-group">
-                        <label for="partEStatus">Part E Status:</label>
-                        <input type="text" id="partEStatus" placeholder="e.g., Closed, Verified">
-                    </div>
-                    <div class="form-group">
-                        <label for="ncrCurrentStatus">NCR Current Status:</label>
-                        <select id="ncrCurrentStatus">
-                            <option value="">--Select--</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group col-span-full flex justify-end space-x-2">
-                        <button type="button" id="addUpdateNcrButton" class="action-button" onclick="handleNcrFormSubmission()">Add Document</button>
-                        <button type="button" class="secondary-button" onclick="clearNcrForm()">Clear Form</button>
-                    </div>
-                </form>
-            </div>
-
-            <div class="table-section mt-8">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-xl font-semibold text-gray-700">All NCRs</h3>
-                    <div class="flex space-x-2">
-                        <button class="secondary-button" id="toggleNcrTableBtn" onclick="toggleTableVisibility('ncrTableContainer', 'toggleNcrTableBtn')">Hide Table</button>
-                        <button class="action-button" onclick="downloadNcrCSV()">Download CSV</button>
-                    </div>
-                </div>
-
-                <div class="flex flex-wrap items-end gap-4 mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <div class="form-group m-0 flex-grow">
-                        <label for="ncrSearchField" class="text-sm">Search Field:</label>
-                        <select id="ncrSearchField" class="w-full">
-                            <option value="">All Fields</option>
-                            <option value="ncr_ref_number">NCR Ref. Number</option>
-                            <option value="ncr_discipline">Discipline</option>
-                            <option value="ncr_lifecycle_status">Lifecycle Status</option>
-                            <option value="ncr_description">NCR Description</option>
-                            <option value="part_a_received_date">Part A Received Date</option>
-                            <option value="ncr_rev_part_b">Part B Revision</option>
-                            <option value="ncr_revised_parts_part_b">Revised Parts (Part B)</option>
-                            <option value="immediate_action">Immediate Action</option>
-                            <option value="root_cause">Root Cause</option>
-                            <option value="corrective_action">Corrective Action</option>
-                            <option value="part_b_submitted_date">Part B Submitted Date</option>
-                            <option value="part_c_received_date">Part C Received Date</option>
-                            <option value="part_b_accepted_by_gec">Part B Acc. by GEC?</option>
-                            <option value="if_part_b_accepted">If Part B Accepted</option>
-                            <option value="part_d_rev">Part D Revision</option>
-                            <option value="part_d_revised_parts">Revised Parts (Part D)</option>
-                            <option value="part_d_submitted_date">Part D Submitted Date</option>
-                            <option value="part_e_received_date">Part E Received Date</option>
-                            <option value="part_e_status">Part E Status</option>
-                            <option value="ncr_current_status">NCR Current Status</option>
-                        </select>
-                    </div>
-                    <div class="form-group m-0 flex-grow-[2]">
-                        <label for="ncrSearchTerm" class="text-sm">Search Term:</label>
-                        <input type="text" id="ncrSearchTerm" placeholder="Enter search term" class="w-full">
-                    </div>
-                    <div class="flex space-x-2">
-                        <button class="action-button" onclick="performNcrSearch()"><i class="fas fa-search"></i> Search</button>
-                        <button class="secondary-button" onclick="clearNcrSearch()"><i class="fas fa-redo"></i> Reset</button>
-                    </div>
-                </div>
-
-                <div id="ncrTableContainer" class="table-container">
-                    <table id="ncrTable">
-                        <thead>
-                            <tr>
-                                <th>NCR Ref. No.</th>
-                                <th>Discipline</th>
-                                <th>Lifecycle Status</th>
-                                <th>Description</th>
-                                <th>Part A Rec. Date</th>
-                                <th>Part B Rev.</th>
-                                <th>Rev. Parts (B)</th>
-                                <th>Imm. Action</th>
-                                <th>Root Cause</th>
-                                <th>Corr. Action</th>
-                                <th>Part B Sub. Date</th>
-                                <th>Part C Rec. Date</th>
-                                <th>Part B Acc. by GEC?</th>
-                                <th>If Part B Acc.</th>
-                                <th>Part D Rev.</th>
-                                <th>Rev. Parts (D)</th>
-                                <th>Part D Sub. Date</th>
-                                <th>Part E Rec. Date</th>
-                                <th>Part E Status</th>
-                                <th>Current Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div id="submissionPage" class="page-content hidden">
-            <h2 class="text-2xl font-bold mb-4 text-gray-800">Submission Register</h2>
-
-            <div class="form-section">
-                <h3 class="text-xl font-semibold mb-4 text-gray-700">Add/Edit Submission Document</h3>
-                <form id="submissionForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div class="form-group">
-                        <label for="newDocNumber">Document Number:</label>
-                        <input type="text" id="newDocNumber" placeholder="e.g., CP837-ENG-CIV-DRW-0001" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="newRev">Revision:</label>
-                        <input type="text" id="newRev" placeholder="e.g., 0, A, B1" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="newDiscipline">Discipline:</label>
-                        <select id="newDiscipline" required>
-                            <option value="">--Select--</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="newDocType">Document Type:</label>
-                        <select id="newDocType" required>
-                            <option value="">--Select--</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="newSection">Section (Optional):</label>
-                        <input type="text" id="newSection" placeholder="e.g., Foundations">
-                    </div>
-                    <div class="form-group">
-                        <label for="newDocTitle">Document Title:</label>
-                        <textarea id="newDocTitle" rows="2" placeholder="Full title of the document" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="newSubRef">Submission Reference (Optional):</label>
-                        <input type="text" id="newSubRef" placeholder="e.g., SUB-001">
-                    </div>
-                    <div class="form-group">
-                        <label for="newSubmittedDate">Submitted Date:</label>
-                        <input type="date" id="newSubmittedDate" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="gecDueDate">GEC Due Date (Auto):</label>
-                        <input type="date" id="gecDueDate" readonly class="bg-gray-100 text-gray-500">
-                    </div>
-                    <div class="form-group">
-                        <label for="newRespondedDate">Responded Date (Optional):</label>
-                        <input type="date" id="newRespondedDate">
-                    </div>
-                    <div class="form-group">
-                        <label for="newStatus">Status:</label>
-                        <select id="newStatus">
-                            <option value="">--Select--</option>
-                            <option value="UR">UR - Under Review</option>
-                            <option value="A">A - Approved as Submitted</option>
-                            <option value="B">B - Approved with Comments</option>
-                            <option value="C">C - Revised and Resubmit</option>
-                            <option value="D">D - Returned</option>
-                            <option value="E">E - For Information</option>
-                            <option value="X">X - Cancelled</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="lifecycleStatus">Lifecycle Status:</label>
-                        <input type="text" id="lifecycleStatus" readonly class="bg-gray-100 text-gray-500">
-                    </div>
-                    <div class="form-group">
-                        <label for="daysOverdue">Days Overdue:</label>
-                        <input type="text" id="daysOverdue" readonly class="bg-gray-100 text-gray-500">
-                    </div>
-                    <div class="form-group">
-                        <label for="submissionDocument">Upload Document:</label>
-                        <input type="file" id="submissionDocument">
-                    </div>
-                    <div class="form-group col-span-full flex justify-end space-x-2">
-                        <button type="button" class="action-button" onclick="addNewSubmissionDocument()">Add Document</button>
-                        <button type="button" class="secondary-button" onclick="clearNewSubmissionDocumentForm()">Clear Form</button>
-                    </div>
-                </form>
-            </div>
-
-            <div id="submissionTableContainer" class="table-section mt-8">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-xl font-semibold text-gray-700">All Submissions</h3>
-                    <div class="flex space-x-2">
-                        <button class="secondary-button" id="toggleSubmissionsTableBtn" onclick="toggleTableVisibility('submissionTableContainer', 'toggleSubmissionsTableBtn')">Hide Table</button>
-                        <button class="action-button" onclick="downloadSubmissionCSV()">Download CSV</button>
-                        <button class="secondary-button" onclick="showPivotTableOptions()">Show Pivot</button>
-                    </div>
-                </div>
-
-                <div class="flex flex-wrap items-end gap-4 mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <div class="form-group m-0 flex-grow">
-                        <label for="submissionSearchInput" class="text-sm">Search All Fields:</label>
-                        <input type="text" id="submissionSearchInput" placeholder="Enter search term" class="w-full">
-                    </div>
-                    <div class="form-group m-0">
-                        <label for="statusFilter" class="text-sm">Filter by Status:</label>
-                        <select id="statusFilter" onchange="filterSubmissionByStatus(this.value)" class="w-full">
-                            <option value="">All Statuses</option>
-                            <option value="UR">UR - Under Review</option>
-                            <option value="A">A - Approved as Submitted</option>
-                            <option value="B">B - Approved with Comments</option>
-                            <option value="C">C - Revised and Resubmit</option>
-                            <option value="D">D - Returned</option>
-                            <option value="E">E - For Information</option>
-                            <option value="X">X - Cancelled</option>
-                        </select>
-                    </div>
-                    <div class="flex space-x-2">
-                        <button class="action-button" onclick="searchSubmissionDocuments()"><i class="fas fa-search"></i> Search</button>
-                        <button class="secondary-button" onclick="clearSubmissionSearch()"><i class="fas fa-redo"></i> Reset Filters</button>
-                    </div>
-                </div>
-
-                <div id="submissionTableContainer" class="table-container">
-                    <table id="submissionDocumentTable">
-                        <thead>
-                            <tr>
-                                <th>Doc. No.</th>
-                                <th>Rev.</th>
-                                <th>Discipline</th>
-                                <th>Doc. Type</th>
-                                <th>Section</th>
-                                <th>Doc. Title</th>
-                                <th>Sub. Ref.</th>
-                                <th>Submitted Date</th>
-                                <th>GEC Due Date</th>
-                                <th>Responded Date</th>
-                                <th>Status</th>
-                                <th>Lifecycle Status</th>
-                                <th>Days Overdue</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div id="pivotTableContainer" class="form-section mt-8 hidden">
-                <h3 class="text-xl font-semibold mb-4 text-gray-700">Submission Status Pivot Table</h3>
-                <div class="form-group flex items-center gap-4 mb-4">
-                    <label for="pivotGroupingSelect" class="font-medium">Group By:</label>
-                    <select id="pivotGroupingSelect" onchange="generatePivotTable()" class="flex-grow">
-                        <option value="discipline">Discipline</option>
-                        <option value="doc_type">Document Type</option>
-                        <option value="section">Section</option>
-                    </select>
-                    <button class="secondary-button" onclick="hidePivotTable()">Hide Pivot</button>
-                    <button class="action-button" onclick="downloadPivotTableCSV()">Download Pivot CSV</button>
-                </div>
-                <div class="table-container">
-                    <table id="pivotTable">
-                        <thead>
-                            </thead>
-                        <tbody>
-                            </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div id="correspondencePage" class="page-content hidden">
-            <h2 class="text-2xl font-bold mb-4 text-gray-800">Correspondence Register</h2>
-
-            <div class="flex tab-buttons mt-4">
-                <button class="tab-button active" onclick="showCorrespondenceSection('outgoingCorrespondenceSection')">Outgoing</button>
-                <button class="tab-button" onclick="showCorrespondenceSection('incomingCorrespondenceSection')">Incoming</button>
-            </div>
-
-            <div id="outgoingCorrespondenceSection" class="correspondence-section">
-                <h3 class="text-xl font-semibold mb-4 text-gray-700">Add/Edit Outgoing Correspondence</h3>
-                <form id="outgoingCorrespondenceForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div class="form-group">
-                        <label for="newOutgoingInitiator">Initiator:</label>
-                        <input type="text" id="newOutgoingInitiator" placeholder="e.g., GEC">
-                    </div>
-                    <div class="form-group">
-                        <label for="newOutgoingAddressee">Addressee:</label>
-                        <input type="text" id="newOutgoingAddressee" placeholder="e.g., Main Contractor">
-                    </div>
-                    <div class="form-group">
-                        <label for="newOutgoingLetterRef">Outgoing Letter Ref.:</label>
-                        <input type="text" id="newOutgoingLetterRef" placeholder="e.g., GEC-L-001" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="newOutgoingLetterDate">Letter Date:</label>
-                        <input type="date" id="newOutgoingLetterDate">
-                    </div>
-                    <div class="form-group">
-                        <label for="newOutgoingLetterSubject">Letter Subject:</label>
-                        <textarea id="newOutgoingLetterSubject" rows="2" placeholder="Subject of the letter" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="newOutgoingInReplyToRef">In Reply To Ref. (Optional):</label>
-                        <input type="text" id="newOutgoingInReplyToRef" placeholder="e.g., MC-L-001">
-                    </div>
-                    <div class="form-group">
-                        <label for="newOutgoingKeyword">Keyword:</label>
-                        <select id="newOutgoingKeyword">
-                            <option value="">--Select--</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="newOutgoingReplyRequired">Reply Required?:</label>
-                        <select id="newOutgoingReplyRequired" required>
-                            <option value="">--Select--</option>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="newOutgoingDateSent">Date Sent:</label>
-                        <input type="date" id="newOutgoingDateSent">
-                    </div>
-                    <div class="form-group">
-                        <label for="outgoingDocument">Upload Document:</label>
-                        <input type="file" id="outgoingDocument">
-                    </div>
-                    <div class="form-group col-span-full flex justify-end space-x-2">
-                        <button type="button" class="action-button" onclick="addNewOutgoingCorrespondence()">Add Outgoing</button>
-                        <button type="button" class="secondary-button" onclick="clearNewOutgoingCorrespondenceForm()">Clear Form</button>
-                    </div>
-                </form>
-
-                <div class="table-section mt-8">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-xl font-semibold text-gray-700">All Outgoing Correspondences</h3>
-                        <div class="flex space-x-2">
-                            <button class="secondary-button" id="toggleOutgoingTableBtn" onclick="toggleTableVisibility('outgoingCorrespondenceTableContainer', 'toggleOutgoingTableBtn')">Hide Table</button>
-                            <button class="action-button" onclick="downloadOutgoingCSV()">Download CSV</button>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-wrap items-end gap-4 mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                        <div class="form-group m-0 flex-grow">
-                            <label for="outgoingSearchInput" class="text-sm">Search All Fields:</label>
-                            <input type="text" id="outgoingSearchInput" placeholder="Enter search term" class="w-full">
-                        </div>
-                        <div class="form-group m-0">
-                            <label for="outgoingStatusFilter" class="text-sm">Filter by Status:</label>
-                            <select id="outgoingStatusFilter" onchange="filterOutgoingByStatus(this.value)" class="w-full">
-                                <option value="">All</option>
-                                <option value="OPEN">OPEN</option>
-                                <option value="CLOSED">CLOSED</option>
-                            </select>
-                        </div>
-                        <div class="form-group m-0">
-                            <label for="outgoingKeywordFilter" class="text-sm">Filter by Keyword:</label>
-                            <select id="outgoingKeywordFilter" onchange="filterOutgoingByKeyword(this.value)" class="w-full">
-                                <option value="">All Keywords</option>
-                            </select>
-                        </div>
-                        <div class="flex space-x-2">
-                            <button class="action-button" onclick="searchOutgoingCorrespondences()"><i class="fas fa-search"></i> Search</button>
-                            <button class="secondary-button" onclick="clearOutgoingSearch()"><i class="fas fa-redo"></i> Reset</button>
-                        </div>
-                    </div>
-
-                    <div id="outgoingCorrespondenceTableContainer" class="table-container">
-                        <table id="outgoingCorrespondenceTable">
-                            <thead>
-                                <tr>
-                                    <th>Initiator</th>
-                                    <th>Addressee</th>
-                                    <th>Letter Ref.</th>
-                                    <th>Letter Date</th>
-                                    <th>Letter Subject</th>
-                                    <th>In Reply To Ref.</th>
-                                    <th>Keyword</th>
-                                    <th>Reply Required?</th>
-                                    <th>Date Sent</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <div id="incomingCorrespondenceSection" class="correspondence-section hidden">
-                <h3 class="text-xl font-semibold mb-4 text-gray-700">Add/Edit Incoming Correspondence</h3>
-                <form id="incomingCorrespondenceForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div class="form-group">
-                        <label for="newIncomingRef">Incoming Reference:</label>
-                        <input type="text" id="newIncomingRef" placeholder="e.g., MC-L-001" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="newIncomingDateOfReceipt">Date of Receipt:</label>
-                        <input type="date" id="newIncomingDateOfReceipt">
-                    </div>
-                    <div class="form-group">
-                        <label for="newIncomingOriginator">Originator:</label>
-                        <input type="text" id="newIncomingOriginator" placeholder="e.g., Main Contractor">
-                    </div>
-                    <div class="form-group">
-                        <label for="newIncomingAddressee">Addressee:</label>
-                        <input type="text" id="newIncomingAddressee" placeholder="e.g., GEC">
-                    </div>
-                    <div class="form-group">
-                        <label for="newIncomingLetterSubject">Letter Subject:</label>
-                        <textarea id="newIncomingLetterSubject" rows="2" placeholder="Subject of the letter" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="newIncomingReplyToRef">Reply To Ref. (Optional):</label>
-                        <input type="text" id="newIncomingReplyToRef" placeholder="e.g., GEC-L-001">
-                    </div>
-                    <div class="form-group">
-                        <label for="newIncomingKeyword">Keyword:</label>
-                        <select id="newIncomingKeyword">
-                            <option value="">--Select--</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="newIncomingReplyRequired">Reply Required?:</label>
-                        <select id="newIncomingReplyRequired" required>
-                            <option value="">--Select--</option>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="incomingDocument">Upload Document:</label>
-                        <input type="file" id="incomingDocument">
-                    </div>
-                    <div class="form-group col-span-full flex justify-end space-x-2">
-                        <button type="button" class="action-button" onclick="addNewIncomingCorrespondence()">Add Incoming</button>
-                        <button type="button" class="secondary-button" onclick="clearNewIncomingCorrespondenceForm()">Clear Form</button>
-                    </div>
-                </form>
-
-                <div class="table-section mt-8">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-xl font-semibold text-gray-700">All Incoming Correspondences</h3>
-                        <div class="flex space-x-2">
-                            <button class="secondary-button" id="toggleIncomingTableBtn" onclick="toggleTableVisibility('incomingCorrespondenceTableContainer', 'toggleIncomingTableBtn')">Hide Table</button>
-                            <button class="action-button" onclick="downloadIncomingCSV()">Download CSV</button>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-wrap items-end gap-4 mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                        <div class="form-group m-0 flex-grow">
-                            <label for="incomingSearchInput" class="text-sm">Search All Fields:</label>
-                            <input type="text" id="incomingSearchInput" placeholder="Enter search term" class="w-full">
-                        </div>
-                        <div class="form-group m-0">
-                            <label for="incomingStatusFilter" class="text-sm">Filter by Status:</label>
-                            <select id="incomingStatusFilter" onchange="filterIncomingByStatus(this.value)" class="w-full">
-                                <option value="">All</option>
-                                <option value="OPEN">OPEN</option>
-                                <option value="CLOSED">CLOSED</option>
-                            </select>
-                        </div>
-                        <div class="form-group m-0">
-                            <label for="incomingKeywordFilter" class="text-sm">Filter by Keyword:</label>
-                            <select id="incomingKeywordFilter" onchange="filterIncomingByKeyword(this.value)" class="w-full">
-                                <option value="">All Keywords</option>
-                            </select>
-                        </div>
-                        <div class="flex space-x-2">
-                            <button class="action-button" onclick="searchIncomingCorrespondences()"><i class="fas fa-search"></i> Search</button>
-                            <button class="secondary-button" onclick="clearIncomingSearch()"><i class="fas fa-redo"></i> Reset</button>
-                        </div>
-                    </div>
-
-                    <div id="incomingCorrespondenceTableContainer" class="table-container">
-                        <table id="incomingCorrespondenceTable">
-                            <thead>
-                                <tr>
-                                    <th>Incoming Ref.</th>
-                                    <th>Date of Receipt</th>
-                                    <th>Originator</th>
-                                    <th>Addressee</th>
-                                <th>Letter Subject</th>
-                                    <th>Reply To Ref.</th>
-                                    <th>Keyword</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                </tbody>
-                        </table>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -1504,7 +704,911 @@
                 </div>
             </div>
         </div>
+        
+        <div id="appContent" class="hidden">
+            <div id="inspectionsPage" class="page-content hidden">
+                <h2 class="text-2xl font-bold mb-4 text-gray-800">Inspections Register</h2>
 
+                <div class="form-section">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-700">Add/Edit Inspection</h3>
+                    <form id="inspectionForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="form-group">
+                            <label for="date">Date:</label>
+                            <input type="date" id="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="discipline">Discipline:</label>
+                            <select id="discipline" required>
+                                <option value="">--Select--</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="insNumber">INS Number:</label>
+                            <input type="text" id="insNumber" placeholder="e.g., CP837-INS-CIV-0001" required>
+                            <span class="text-xs text-gray-500 mt-1">Next: <span id="nextInsNumber">Loading...</span></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="revision">Revision:</label>
+                            <input type="text" id="revision" placeholder="e.g., 0, 1, A" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Location:</label>
+                            <input type="text" id="location" placeholder="e.g., Area 1">
+                        </div>
+                        <div class="form-group">
+                            <label for="workToBeInspected">Work To Be Inspected:</label>
+                            <textarea id="workToBeInspected" rows="2" placeholder="Description of work"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="inspectionDate">Inspection Date:</label>
+                            <input type="date" id="inspectionDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="inspectionTime">Inspection Time:</label>
+                            <input type="time" id="inspectionTime">
+                        </div>
+                        <div class="form-group">
+                            <label for="approvedDrawingRef">Approved Drawing Ref.:</label>
+                            <input type="text" id="approvedDrawingRef" placeholder="e.g., DWG-001">
+                        </div>
+                        <div class="form-group">
+                            <label for="specificationRef">Specification Ref.:</label>
+                            <input type="text" id="specificationRef" placeholder="e.g., SPE-001">
+                        </div>
+                        <div class="form-group">
+                            <label for="approvedMethodStatementRef">Approved Method Statement Ref.:</label>
+                            <input type="text" id="approvedMethodStatementRef" placeholder="e.g., MST-001">
+                        </div>
+                        <div class="form-group">
+                            <label for="qcsReference">QCS Reference:</label>
+                            <input type="text" id="qcsReference" placeholder="e.g., QCS-2014">
+                        </div>
+                        <div class="form-group">
+                            <label for="commentReceivedDate">Comment Received Date:</label>
+                            <input type="date" id="commentReceivedDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="documentStatus">Document Status:</label>
+                            <select id="documentStatus" required>
+                                <option value="">--Select--</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="revStatus">Lifecycle Status:</label>
+                            <input type="text" id="revStatus" readonly class="bg-gray-100 text-gray-500">
+                        </div>
+                        <div class="form-group">
+                            <label for="inspectionDocument">Upload Document:</label>
+                            <input type="file" id="inspectionDocument">
+                        </div>
+                        <div class="form-group col-span-full flex justify-end space-x-2">
+                            <button type="button" id="addUpdateButton" class="action-button" onclick="addUpdateInspectionDocument()">Add Document</button>
+                            <button type="button" class="secondary-button" onclick="clearInspectionsForm()">Clear Form</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="table-section mt-8">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-semibold text-gray-700">All Inspections</h3>
+                        <div class="flex space-x-2">
+                            <button class="secondary-button" id="toggleInspectionsTableBtn" onclick="toggleTableVisibility('inspectionsTableContainer', 'toggleInspectionsTableBtn')">Hide Table</button>
+                            <button class="action-button" onclick="downloadInspectionsCSV()">Download CSV</button>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-end gap-4 mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <div class="form-group m-0 flex-grow">
+                            <label for="inspectionsSearchField" class="text-sm">Search Field:</label>
+                            <select id="inspectionsSearchField" class="w-full">
+                                <option value="">All Fields</option>
+                                <option value="date">Date</option>
+                                <option value="discipline">Discipline</option>
+                                <option value="ins_number">INS Number</option>
+                                <option value="revision">Revision</option>
+                                <option value="location">Location</option>
+                                <option value="work_to_be_inspected">Work To Be Inspected</option>
+                                <option value="inspection_date">Inspection Date</option>
+                                <option value="inspection_time">Inspection Time</option>
+                                <option value="approved_drawing_ref">Approved Drawing Ref.</option>
+                                <option value="specification_ref">Specification Ref.</option>
+                                <option value="approved_method_statement_ref">Approved Method Statement Ref.</option>
+                                <option value="qcs_reference">QCS Reference</option>
+                                <option value="comment_received_date">Comment Received Date</option>
+                                <option value="document_status">Document Status</option>
+                                <option value="rev_status">Lifecycle Status</option>
+                                <option value="approval_summary_status">Approval Summary</option>
+                            </select>
+                        </div>
+                        <div class="form-group m-0 flex-grow-[2]">
+                            <label for="inspectionsSearchTerm" class="text-sm">Search Term:</label>
+                            <input type="text" id="inspectionsSearchTerm" placeholder="Enter search term" class="w-full">
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="action-button" onclick="performInspectionsSearch()"><i class="fas fa-search"></i> Search</button>
+                            <button class="secondary-button" onclick="clearInspectionsSearch()"><i class="fas fa-redo"></i> Reset</button>
+                        </div>
+                    </div>
+
+                    <div id="inspectionsTableContainer" class="table-container">
+                        <table id="inspectionsTable">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Discipline</th>
+                                    <th>INS No.</th>
+                                    <th>Rev.</th>
+                                    <th>Location</th>
+                                    <th>Work to be Inspected</th>
+                                    <th>Insp. Date</th>
+                                    <th>Insp. Time</th>
+                                    <th>Appr. Drawing Ref.</th>
+                                    <th>Spec. Ref.</th>
+                                    <th>Appr. MS Ref.</th>
+                                    <th>QCS Ref.</th>
+                                    <th>Comment Rec. Date</th>
+                                    <th>Doc. Status</th>
+                                    <th>Lifecycle Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="mirPage" class="page-content hidden">
+                <h2 class="text-2xl font-bold mb-4 text-gray-800">Material Inspection Request (MIR) Register</h2>
+
+                <div class="form-section">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-700">Add/Edit MIR</h3>
+                    <form id="mirForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="form-group">
+                            <label for="mirDate">MIR Date:</label>
+                            <input type="date" id="mirDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mirDiscipline">Discipline:</label>
+                            <select id="mirDiscipline" required>
+                                <option value="">--Select--</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mirNumber">MIR Number:</label>
+                            <input type="text" id="mirNumber" placeholder="e.g., CP837-MIR-CIV-0001" required>
+                            <span class="text-xs text-gray-500 mt-1">Next: <span id="nextMirNumber">Loading...</span></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="mirRevision">Revision:</label>
+                            <input type="text" id="mirRevision" placeholder="e.g., 0, 1, A" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateMaterialReceived">Date Material Received:</label>
+                            <input type="date" id="dateMaterialReceived">
+                        </div>
+                        <div class="form-group">
+                            <label for="mirInspectionDate">MIR Inspection Date:</label>
+                            <input type="date" id="mirInspectionDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="mirInspectionTime">MIR Inspection Time:</label>
+                            <input type="time" id="mirInspectionTime">
+                        </div>
+                        <div class="form-group">
+                            <label for="materialApprovalRef">Material Approval Ref.:</label>
+                            <input type="text" id="materialApprovalRef" placeholder="e.g., MAT-APP-001">
+                        </div>
+                        <div class="form-group">
+                            <label for="descriptionMaterial">Description of Material:</label>
+                            <textarea id="descriptionMaterial" rows="2" placeholder="Description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="deliveryNoteNumber">Delivery Note Number:</label>
+                            <input type="text" id="deliveryNoteNumber" placeholder="e.g., DN-12345">
+                        </div>
+                        <div class="form-group">
+                            <label for="manufacturer">Manufacturer:</label>
+                            <input type="text" id="manufacturer" placeholder="e.g., Company A">
+                        </div>
+                        <div class="form-group">
+                            <label for="supplier">Supplier:</label>
+                            <input type="text" id="supplier" placeholder="e.g., Supplier X">
+                        </div>
+                        <div class="form-group">
+                            <label for="countryOrigin">Country of Origin:</label>
+                            <input type="text" id="countryOrigin" placeholder="e.g., China">
+                        </div>
+                        <div class="form-group">
+                            <label for="mirSubmissionDate">MIR Submission Date:</label>
+                            <input type="date" id="mirSubmissionDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="mirResponseDate">MIR Response Date:</label>
+                            <input type="date" id="mirResponseDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="mirApprovalStatus">Approval Status:</label>
+                            <select id="mirApprovalStatus" required>
+                                <option value="">--Select--</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mirRevStatus">Lifecycle Status:</label>
+                            <input type="text" id="mirRevStatus" readonly class="bg-gray-100 text-gray-500">
+                        </div>
+                        <div class="form-group">
+                            <label for="mirDocument">Upload Document:</label>
+                            <input type="file" id="mirDocument">
+                        </div>
+                        <div class="form-group col-span-full flex justify-end space-x-2">
+                            <button type="button" id="addUpdateMirButton" class="action-button" onclick="addUpdateMirDocument()">Add Document</button>
+                            <button type="button" class="secondary-button" onclick="clearMirForm()">Clear Form</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="table-section mt-8">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-semibold text-gray-700">All MIRs</h3>
+                        <div class="flex space-x-2">
+                            <button class="secondary-button" id="toggleMirTableBtn" onclick="toggleTableVisibility('mirTableContainer', 'toggleMirTableBtn')">Hide Table</button>
+                            <button class="action-button" onclick="downloadMirCSV()">Download CSV</button>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-end gap-4 mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <div class="form-group m-0 flex-grow">
+                            <label for="mirSearchField" class="text-sm">Search Field:</label>
+                            <select id="mirSearchField" class="w-full">
+                                <option value="">All Fields</option>
+                                <option value="mir_date">MIR Date</option>
+                                <option value="mir_discipline">Discipline</option>
+                                <option value="mir_number">MIR Number</option>
+                                <option value="mir_revision">Revision</option>
+                                <option value="date_material_received">Date Material Received</option>
+                                <option value="mir_inspection_date">MIR Inspection Date</option>
+                                <option value="mir_inspection_time">MIR Inspection Time</option>
+                                <option value="material_approval_ref">Material Approval Ref.</option>
+                                <option value="description_material">Description of Material</option>
+                                <option value="delivery_note_number">Delivery Note Number</option>
+                                <option value="manufacturer">Manufacturer</option>
+                                <option value="supplier">Supplier</option>
+                                <option value="country_origin">Country of Origin</option>
+                                <option value="mir_submission_date">MIR Submission Date</option>
+                                <option value="mir_response_date">MIR Response Date</option>
+                                <option value="mir_approval_status">Approval Status</option>
+                                <option value="mir_rev_status">Lifecycle Status</option>
+                                <option value="mir_approval_summary_status">Approval Summary</option>
+                            </select>
+                        </div>
+                        <div class="form-group m-0 flex-grow-[2]">
+                            <label for="mirSearchTerm" class="text-sm">Search Term:</label>
+                            <input type="text" id="mirSearchTerm" placeholder="Enter search term" class="w-full">
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="action-button" onclick="performMirSearch()"><i class="fas fa-search"></i> Search</button>
+                            <button class="secondary-button" onclick="clearMirSearch()"><i class="fas fa-redo"></i> Reset</button>
+                        </div>
+                    </div>
+
+                    <div id="mirTableContainer" class="table-container">
+                        <table id="mirTable">
+                            <thead>
+                                <tr>
+                                    <th>MIR Date</th>
+                                    <th>Discipline</th>
+                                    <th>MIR No.</th>
+                                    <th>Rev.</th>
+                                    <th>Date Mat. Rec.</th>
+                                    <th>MIR Insp. Date</th>
+                                    <th>MIR Insp. Time</th>
+                                    <th>Mat. Appr. Ref.</th>
+                                    <th>Description of Material</th>
+                                    <th>Delivery Note No.</th>
+                                    <th>Manufacturer</th>
+                                    <th>Supplier</th>
+                                    <th>Country of Origin</th>
+                                    <th>MIR Sub. Date</th>
+                                    <th>MIR Resp. Date</th>
+                                    <th>Appr. Status</th>
+                                    <th>Lifecycle Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ncrPage" class="page-content hidden">
+                <h2 class="text-2xl font-bold mb-4 text-gray-800">Non-Conformance Report (NCR) Register</h2>
+
+                <div class="form-section">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-700">Add/Edit NCR</h3>
+                    <form id="ncrForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <h4 class="col-span-full text-lg font-semibold text-blue-700 mt-2 mb-2">Part A: Non-Conformance Details</h4>
+                        <div class="form-group">
+                            <label for="ncrDiscipline">Discipline:</label>
+                            <select id="ncrDiscipline" required onchange="autoFillNcrDetails()">
+                                <option value="">--Select--</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="ncrRefNumber">NCR Ref. Number:</label>
+                            <input type="text" id="ncrRefNumber" placeholder="e.g., CP837-NCR-CIV-0001" required onchange="autoFillNcrDetails()">
+                        </div>
+                        <div class="form-group">
+                            <label for="ncrDescription">NCR Description:</label>
+                            <textarea id="ncrDescription" rows="2" placeholder="Describe the non-conformance"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="partAReceivedDate">Part A Received Date:</label>
+                            <input type="date" id="partAReceivedDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="ncrDocument">Upload Document:</label>
+                            <input type="file" id="ncrDocument">
+                        </div>
+
+                        <h4 class="col-span-full text-lg font-semibold text-blue-700 mt-4 mb-2">Part B: Root Cause & Corrective Action</h4>
+                        <div class="form-group">
+                            <label for="ncrRev_PartB">Part B Revision:</label>
+                            <input type="text" id="ncrRev_PartB" placeholder="e.g., 0, 1, A" required readonly class="bg-gray-100 text-gray-500">
+                        </div>
+                        <div class="form-group">
+                            <label for="ncrRevisedParts_PartB">Revised Parts (Part B):</label>
+                            <input type="text" id="ncrRevisedParts_PartB" placeholder="e.g., Part A & B">
+                        </div>
+                        <div class="form-group">
+                            <label for="immediateAction">Immediate Action:</label>
+                            <textarea id="immediateAction" rows="2" placeholder="Action taken immediately"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="rootCause">Root Cause:</label>
+                            <textarea id="rootCause" rows="2" placeholder="Identify the root cause"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="correctiveAction">Corrective Action:</label>
+                            <textarea id="correctiveAction" rows="2" placeholder="Plan for corrective action"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="partBSubmittedDate">Part B Submitted Date:</label>
+                            <input type="date" id="partBSubmittedDate">
+                        </div>
+
+                        <h4 class="col-span-full text-lg font-semibold text-blue-700 mt-4 mb-2">Part C: GEC Review</h4>
+                        <div class="form-group">
+                            <label for="partCReceivedDate">Part C Received Date:</label>
+                            <input type="date" id="partCReceivedDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="partBAcceptedByGEC">Part B Accepted by GEC?:</label>
+                            <select id="partBAcceptedByGEC">
+                                <option value="">--Select--</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="ifPartBAccepted">If Part B Accepted:</label>
+                            <input type="text" id="ifPartBAccepted" readonly class="bg-gray-100 text-gray-500">
+                        </div>
+
+                        <h4 class="col-span-full text-lg font-semibold text-blue-700 mt-4 mb-2">Part D: Proposed Corrective Action Implementation</h4>
+                        <div class="form-group">
+                            <label for="partDRev">Part D Revision:</label>
+                            <input type="text" id="partDRev" placeholder="e.g., 0, 1, A">
+                        </div>
+                        <div class="form-group">
+                            <label for="partDRevisedParts">Revised Parts (Part D):</label>
+                            <input type="text" id="partDRevisedParts" placeholder="e.g., Part A, B & D">
+                        </div>
+                        <div class="form-group">
+                            <label for="partDSubmittedDate">Part D Submitted Date:</label>
+                            <input type="date" id="partDSubmittedDate">
+                        </div>
+
+                        <h4 class="col-span-full text-lg font-semibold text-blue-700 mt-4 mb-2">Part E: Verification of Corrective Action Effectiveness</h4>
+                        <div class="form-group">
+                            <label for="partEReceivedDate">Part E Received Date:</label>
+                            <input type="date" id="partEReceivedDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="partEStatus">Part E Status:</label>
+                            <input type="text" id="partEStatus" placeholder="e.g., Closed, Verified">
+                        </div>
+                        <div class="form-group">
+                            <label for="ncrCurrentStatus">NCR Current Status:</label>
+                            <select id="ncrCurrentStatus">
+                                <option value="">--Select--</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-span-full flex justify-end space-x-2">
+                            <button type="button" id="addUpdateNcrButton" class="action-button" onclick="handleNcrFormSubmission()">Add Document</button>
+                            <button type="button" class="secondary-button" onclick="clearNcrForm()">Clear Form</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="table-section mt-8">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-semibold text-gray-700">All NCRs</h3>
+                        <div class="flex space-x-2">
+                            <button class="secondary-button" id="toggleNcrTableBtn" onclick="toggleTableVisibility('ncrTableContainer', 'toggleNcrTableBtn')">Hide Table</button>
+                            <button class="action-button" onclick="downloadNcrCSV()">Download CSV</button>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-end gap-4 mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <div class="form-group m-0 flex-grow">
+                            <label for="ncrSearchField" class="text-sm">Search Field:</label>
+                            <select id="ncrSearchField" class="w-full">
+                                <option value="">All Fields</option>
+                                <option value="ncr_ref_number">NCR Ref. Number</option>
+                                <option value="ncr_discipline">Discipline</option>
+                                <option value="ncr_lifecycle_status">Lifecycle Status</option>
+                                <option value="ncr_description">NCR Description</option>
+                                <option value="part_a_received_date">Part A Received Date</option>
+                                <option value="ncr_rev_part_b">Part B Revision</option>
+                                <option value="ncr_revised_parts_part_b">Revised Parts (Part B)</option>
+                                <option value="immediate_action">Immediate Action</option>
+                                <option value="root_cause">Root Cause</option>
+                                <option value="corrective_action">Corrective Action</option>
+                                <option value="part_b_submitted_date">Part B Submitted Date</option>
+                                <option value="part_c_received_date">Part C Received Date</option>
+                                <option value="part_b_accepted_by_gec">Part B Acc. by GEC?</option>
+                                <option value="if_part_b_accepted">If Part B Accepted</option>
+                                <option value="part_d_rev">Part D Revision</option>
+                                <option value="part_d_revised_parts">Revised Parts (Part D)</option>
+                                <option value="part_d_submitted_date">Part D Submitted Date</option>
+                                <option value="part_e_received_date">Part E Received Date</option>
+                                <option value="part_e_status">Part E Status</option>
+                                <option value="ncr_current_status">NCR Current Status</option>
+                            </select>
+                        </div>
+                        <div class="form-group m-0 flex-grow-[2]">
+                            <label for="ncrSearchTerm" class="text-sm">Search Term:</label>
+                            <input type="text" id="ncrSearchTerm" placeholder="Enter search term" class="w-full">
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="action-button" onclick="performNcrSearch()"><i class="fas fa-search"></i> Search</button>
+                            <button class="secondary-button" onclick="clearNcrSearch()"><i class="fas fa-redo"></i> Reset</button>
+                        </div>
+                    </div>
+
+                    <div id="ncrTableContainer" class="table-container">
+                        <table id="ncrTable">
+                            <thead>
+                                <tr>
+                                    <th>NCR Ref. No.</th>
+                                    <th>Discipline</th>
+                                    <th>Lifecycle Status</th>
+                                    <th>Description</th>
+                                    <th>Part A Rec. Date</th>
+                                    <th>Part B Rev.</th>
+                                    <th>Rev. Parts (B)</th>
+                                    <th>Imm. Action</th>
+                                    <th>Root Cause</th>
+                                    <th>Corr. Action</th>
+                                    <th>Part B Sub. Date</th>
+                                    <th>Part C Rec. Date</th>
+                                    <th>Part B Acc. by GEC?</th>
+                                    <th>If Part B Acc.</th>
+                                    <th>Part D Rev.</th>
+                                    <th>Rev. Parts (D)</th>
+                                    <th>Part D Sub. Date</th>
+                                    <th>Part E Rec. Date</th>
+                                    <th>Part E Status</th>
+                                    <th>Current Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="submissionPage" class="page-content hidden">
+                <h2 class="text-2xl font-bold mb-4 text-gray-800">Submission Register</h2>
+
+                <div class="form-section">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-700">Add/Edit Submission Document</h3>
+                    <form id="submissionForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="form-group">
+                            <label for="newDocNumber">Document Number:</label>
+                            <input type="text" id="newDocNumber" placeholder="e.g., CP837-ENG-CIV-DRW-0001" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newRev">Revision:</label>
+                            <input type="text" id="newRev" placeholder="e.g., 0, A, B1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newDiscipline">Discipline:</label>
+                            <select id="newDiscipline" required>
+                                <option value="">--Select--</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="newDocType">Document Type:</label>
+                            <select id="newDocType" required>
+                                <option value="">--Select--</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="newSection">Section (Optional):</label>
+                            <input type="text" id="newSection" placeholder="e.g., Foundations">
+                        </div>
+                        <div class="form-group">
+                            <label for="newDocTitle">Document Title:</label>
+                            <textarea id="newDocTitle" rows="2" placeholder="Full title of the document" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="newSubRef">Submission Reference (Optional):</label>
+                            <input type="text" id="newSubRef" placeholder="e.g., SUB-001">
+                        </div>
+                        <div class="form-group">
+                            <label for="newSubmittedDate">Submitted Date:</label>
+                            <input type="date" id="newSubmittedDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gecDueDate">GEC Due Date (Auto):</label>
+                            <input type="date" id="gecDueDate" readonly class="bg-gray-100 text-gray-500">
+                        </div>
+                        <div class="form-group">
+                            <label for="newRespondedDate">Responded Date (Optional):</label>
+                            <input type="date" id="newRespondedDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="newStatus">Status:</label>
+                            <select id="newStatus">
+                                <option value="">--Select--</option>
+                                <option value="UR">UR - Under Review</option>
+                                <option value="A">A - Approved as Submitted</option>
+                                <option value="B">B - Approved with Comments</option>
+                                <option value="C">C - Revised and Resubmit</option>
+                                <option value="D">D - Returned</option>
+                                <option value="E">E - For Information</option>
+                                <option value="X">X - Cancelled</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="lifecycleStatus">Lifecycle Status:</label>
+                            <input type="text" id="lifecycleStatus" readonly class="bg-gray-100 text-gray-500">
+                        </div>
+                        <div class="form-group">
+                            <label for="daysOverdue">Days Overdue:</label>
+                            <input type="text" id="daysOverdue" readonly class="bg-gray-100 text-gray-500">
+                        </div>
+                        <div class="form-group">
+                            <label for="submissionDocument">Upload Document:</label>
+                            <input type="file" id="submissionDocument">
+                        </div>
+                        <div class="form-group col-span-full flex justify-end space-x-2">
+                            <button type="button" class="action-button" onclick="addNewSubmissionDocument()">Add Document</button>
+                            <button type="button" class="secondary-button" onclick="clearNewSubmissionDocumentForm()">Clear Form</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="submissionTableContainer" class="table-section mt-8">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-semibold text-gray-700">All Submissions</h3>
+                        <div class="flex space-x-2">
+                            <button class="secondary-button" id="toggleSubmissionsTableBtn" onclick="toggleTableVisibility('submissionTableContainer', 'toggleSubmissionsTableBtn')">Hide Table</button>
+                            <button class="action-button" onclick="downloadSubmissionCSV()">Download CSV</button>
+                            <button class="secondary-button" onclick="showPivotTableOptions()">Show Pivot</button>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-end gap-4 mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <div class="form-group m-0 flex-grow">
+                            <label for="submissionSearchInput" class="text-sm">Search All Fields:</label>
+                            <input type="text" id="submissionSearchInput" placeholder="Enter search term" class="w-full">
+                        </div>
+                        <div class="form-group m-0">
+                            <label for="statusFilter" class="text-sm">Filter by Status:</label>
+                            <select id="statusFilter" onchange="filterSubmissionByStatus(this.value)" class="w-full">
+                                <option value="">All Statuses</option>
+                                <option value="UR">UR - Under Review</option>
+                                <option value="A">A - Approved as Submitted</option>
+                                <option value="B">B - Approved with Comments</option>
+                                <option value="C">C - Revised and Resubmit</option>
+                                <option value="D">D - Returned</option>
+                                <option value="E">E - For Information</option>
+                                <option value="X">X - Cancelled</option>
+                            </select>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="action-button" onclick="searchSubmissionDocuments()"><i class="fas fa-search"></i> Search</button>
+                            <button class="secondary-button" onclick="clearSubmissionSearch()"><i class="fas fa-redo"></i> Reset Filters</button>
+                        </div>
+                    </div>
+
+                    <div id="submissionTableContainer" class="table-container">
+                        <table id="submissionDocumentTable">
+                            <thead>
+                                <tr>
+                                    <th>Doc. No.</th>
+                                    <th>Rev.</th>
+                                    <th>Discipline</th>
+                                    <th>Doc. Type</th>
+                                    <th>Section</th>
+                                    <th>Doc. Title</th>
+                                    <th>Sub. Ref.</th>
+                                    <th>Submitted Date</th>
+                                    <th>GEC Due Date</th>
+                                    <th>Responded Date</th>
+                                    <th>Status</th>
+                                    <th>Lifecycle Status</th>
+                                    <th>Days Overdue</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="pivotTableContainer" class="form-section mt-8 hidden">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-700">Submission Status Pivot Table</h3>
+                    <div class="form-group flex items-center gap-4 mb-4">
+                        <label for="pivotGroupingSelect" class="font-medium">Group By:</label>
+                        <select id="pivotGroupingSelect" onchange="generatePivotTable()" class="flex-grow">
+                            <option value="discipline">Discipline</option>
+                            <option value="doc_type">Document Type</option>
+                            <option value="section">Section</option>
+                        </select>
+                        <button class="secondary-button" onclick="hidePivotTable()">Hide Pivot</button>
+                        <button class="action-button" onclick="downloadPivotTableCSV()">Download Pivot CSV</button>
+                    </div>
+                    <div class="table-container">
+                        <table id="pivotTable">
+                            <thead>
+                                </thead>
+                            <tbody>
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="correspondencePage" class="page-content hidden">
+                <h2 class="text-2xl font-bold mb-4 text-gray-800">Correspondence Register</h2>
+
+                <div class="flex tab-buttons mt-4">
+                    <button class="tab-button active" onclick="showCorrespondenceSection('outgoingCorrespondenceSection')">Outgoing</button>
+                    <button class="tab-button" onclick="showCorrespondenceSection('incomingCorrespondenceSection')">Incoming</button>
+                </div>
+
+                <div id="outgoingCorrespondenceSection" class="correspondence-section">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-700">Add/Edit Outgoing Correspondence</h3>
+                    <form id="outgoingCorrespondenceForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="form-group">
+                            <label for="newOutgoingInitiator">Initiator:</label>
+                            <input type="text" id="newOutgoingInitiator" placeholder="e.g., GEC">
+                        </div>
+                        <div class="form-group">
+                            <label for="newOutgoingAddressee">Addressee:</label>
+                            <input type="text" id="newOutgoingAddressee" placeholder="e.g., Main Contractor">
+                        </div>
+                        <div class="form-group">
+                            <label for="newOutgoingLetterRef">Outgoing Letter Ref.:</label>
+                            <input type="text" id="newOutgoingLetterRef" placeholder="e.g., GEC-L-001" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newOutgoingLetterDate">Letter Date:</label>
+                            <input type="date" id="newOutgoingLetterDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="newOutgoingLetterSubject">Letter Subject:</label>
+                            <textarea id="newOutgoingLetterSubject" rows="2" placeholder="Subject of the letter" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="newOutgoingInReplyToRef">In Reply To Ref. (Optional):</label>
+                            <input type="text" id="newOutgoingInReplyToRef" placeholder="e.g., MC-L-001">
+                        </div>
+                        <div class="form-group">
+                            <label for="newOutgoingKeyword">Keyword:</label>
+                            <select id="newOutgoingKeyword">
+                                <option value="">--Select--</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="newOutgoingReplyRequired">Reply Required?:</label>
+                            <select id="newOutgoingReplyRequired" required>
+                                <option value="">--Select--</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="newOutgoingDateSent">Date Sent:</label>
+                            <input type="date" id="newOutgoingDateSent">
+                        </div>
+                        <div class="form-group">
+                            <label for="outgoingDocument">Upload Document:</label>
+                            <input type="file" id="outgoingDocument">
+                        </div>
+                        <div class="form-group col-span-full flex justify-end space-x-2">
+                            <button type="button" class="action-button" onclick="addNewOutgoingCorrespondence()">Add Outgoing</button>
+                            <button type="button" class="secondary-button" onclick="clearNewOutgoingCorrespondenceForm()">Clear Form</button>
+                        </div>
+                    </form>
+
+                    <div class="table-section mt-8">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-semibold text-gray-700">All Outgoing Correspondences</h3>
+                            <div class="flex space-x-2">
+                                <button class="secondary-button" id="toggleOutgoingTableBtn" onclick="toggleTableVisibility('outgoingCorrespondenceTableContainer', 'toggleOutgoingTableBtn')">Hide Table</button>
+                                <button class="action-button" onclick="downloadOutgoingCSV()">Download CSV</button>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap items-end gap-4 mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <div class="form-group m-0 flex-grow">
+                                <label for="outgoingSearchInput" class="text-sm">Search All Fields:</label>
+                                <input type="text" id="outgoingSearchInput" placeholder="Enter search term" class="w-full">
+                            </div>
+                            <div class="form-group m-0">
+                                <label for="outgoingStatusFilter" class="text-sm">Filter by Status:</label>
+                                <select id="outgoingStatusFilter" onchange="filterOutgoingByStatus(this.value)" class="w-full">
+                                    <option value="">All</option>
+                                    <option value="OPEN">OPEN</option>
+                                    <option value="CLOSED">CLOSED</option>
+                                </select>
+                            </div>
+                            <div class="form-group m-0">
+                                <label for="outgoingKeywordFilter" class="text-sm">Filter by Keyword:</label>
+                                <select id="outgoingKeywordFilter" onchange="filterOutgoingByKeyword(this.value)" class="w-full">
+                                    <option value="">All Keywords</option>
+                                </select>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="action-button" onclick="searchOutgoingCorrespondences()"><i class="fas fa-search"></i> Search</button>
+                                <button class="secondary-button" onclick="clearOutgoingSearch()"><i class="fas fa-redo"></i> Reset</button>
+                            </div>
+                        </div>
+
+                        <div id="outgoingCorrespondenceTableContainer" class="table-container">
+                            <table id="outgoingCorrespondenceTable">
+                                <thead>
+                                    <tr>
+                                        <th>Initiator</th>
+                                        <th>Addressee</th>
+                                        <th>Letter Ref.</th>
+                                        <th>Letter Date</th>
+                                        <th>Letter Subject</th>
+                                        <th>In Reply To Ref.</th>
+                                        <th>Keyword</th>
+                                        <th>Reply Required?</th>
+                                        <th>Date Sent</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="incomingCorrespondenceSection" class="correspondence-section hidden">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-700">Add/Edit Incoming Correspondence</h3>
+                    <form id="incomingCorrespondenceForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="form-group">
+                            <label for="newIncomingRef">Incoming Reference:</label>
+                            <input type="text" id="newIncomingRef" placeholder="e.g., MC-L-001" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newIncomingDateOfReceipt">Date of Receipt:</label>
+                            <input type="date" id="newIncomingDateOfReceipt">
+                        </div>
+                        <div class="form-group">
+                            <label for="newIncomingOriginator">Originator:</label>
+                            <input type="text" id="newIncomingOriginator" placeholder="e.g., Main Contractor">
+                        </div>
+                        <div class="form-group">
+                            <label for="newIncomingAddressee">Addressee:</label>
+                            <input type="text" id="newIncomingAddressee" placeholder="e.g., GEC">
+                        </div>
+                        <div class="form-group">
+                            <label for="newIncomingLetterSubject">Letter Subject:</label>
+                            <textarea id="newIncomingLetterSubject" rows="2" placeholder="Subject of the letter" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="newIncomingReplyToRef">Reply To Ref. (Optional):</label>
+                            <input type="text" id="newIncomingReplyToRef" placeholder="e.g., GEC-L-001">
+                        </div>
+                        <div class="form-group">
+                            <label for="newIncomingKeyword">Keyword:</label>
+                            <select id="newIncomingKeyword">
+                                <option value="">--Select--</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="newIncomingReplyRequired">Reply Required?:</label>
+                            <select id="newIncomingReplyRequired" required>
+                                <option value="">--Select--</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="incomingDocument">Upload Document:</label>
+                            <input type="file" id="incomingDocument">
+                        </div>
+                        <div class="form-group col-span-full flex justify-end space-x-2">
+                            <button type="button" class="action-button" onclick="addNewIncomingCorrespondence()">Add Incoming</button>
+                            <button type="button" class="secondary-button" onclick="clearNewIncomingCorrespondenceForm()">Clear Form</button>
+                        </div>
+                    </form>
+
+                    <div class="table-section mt-8">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-semibold text-gray-700">All Incoming Correspondences</h3>
+                            <div class="flex space-x-2">
+                                <button class="secondary-button" id="toggleIncomingTableBtn" onclick="toggleTableVisibility('incomingCorrespondenceTableContainer', 'toggleIncomingTableBtn')">Hide Table</button>
+                                <button class="action-button" onclick="downloadIncomingCSV()">Download CSV</button>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap items-end gap-4 mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <div class="form-group m-0 flex-grow">
+                                <label for="incomingSearchInput" class="text-sm">Search All Fields:</label>
+                                <input type="text" id="incomingSearchInput" placeholder="Enter search term" class="w-full">
+                            </div>
+                            <div class="form-group m-0">
+                                <label for="incomingStatusFilter" class="text-sm">Filter by Status:</label>
+                                <select id="incomingStatusFilter" onchange="filterIncomingByStatus(this.value)" class="w-full">
+                                    <option value="">All</option>
+                                    <option value="OPEN">OPEN</option>
+                                    <option value="CLOSED">CLOSED</option>
+                                </select>
+                            </div>
+                            <div class="form-group m-0">
+                                <label for="incomingKeywordFilter" class="text-sm">Filter by Keyword:</label>
+                                <select id="incomingKeywordFilter" onchange="filterIncomingByKeyword(this.value)" class="w-full">
+                                    <option value="">All Keywords</option>
+                                </select>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="action-button" onclick="searchIncomingCorrespondences()"><i class="fas fa-search"></i> Search</button>
+                                <button class="secondary-button" onclick="clearIncomingSearch()"><i class="fas fa-redo"></i> Reset</button>
+                            </div>
+                        </div>
+
+                        <div id="incomingCorrespondenceTableContainer" class="table-container">
+                            <table id="incomingCorrespondenceTable">
+                                <thead>
+                                    <tr>
+                                        <th>Incoming Ref.</th>
+                                        <th>Date of Receipt</th>
+                                        <th>Originator</th>
+                                        <th>Addressee</th>
+                                    <th>Letter Subject</th>
+                                        <th>Reply To Ref.</th>
+                                        <th>Keyword</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
    <script type="module">
@@ -1517,6 +1621,7 @@
         const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         // --- Global Variables ---
+        let projectsData = [];
         let inspectionsData = [];
         let mirData = [];
         let ncrData = [];
@@ -1546,6 +1651,7 @@
         let authMode = 'signIn';
         let userId = null;
         let welcomeMessageShown = false; // Add a flag to track if the welcome message has been shown
+        let activeProjectId = null; // New variable to store the active project ID
 
         let emailModalDocData = null;
         let emailModalDocType = '';
@@ -1641,7 +1747,6 @@
             { code: 'Pending Correction', description: 'Pending Correction' },
             { code: 'Check Latest Revision', description: 'Check Latest Revision' }
         ];
-
 
         function showPage(pageId) {
             document.querySelectorAll('.page-content').forEach(page => {
@@ -1952,7 +2057,7 @@
         }
 
         function disableSupabaseUI() {
-            const appContentElements = document.querySelectorAll('#appContainer input, #appContainer select, #appContainer textarea, #appContainer button, #appContainer .tab-button');
+            const appContentElements = document.querySelectorAll('#appContent input, #appContent select, #appContent textarea, #appContent button, #appContent .tab-button');
             appContentElements.forEach(element => {
                 element.style.opacity = '0.5';
                 element.style.pointerEvents = 'none';
@@ -1960,7 +2065,7 @@
         }
 
         function enableSupabaseUI() {
-            const appContentElements = document.querySelectorAll('#appContainer input, #appContainer select, #appContainer textarea, #appContainer button, #appContainer .tab-button');
+            const appContentElements = document.querySelectorAll('#appContent input, #appContent select, #appContent textarea, #appContent button, #appContent .tab-button');
             appContentElements.forEach(element => {
                 element.style.pointerEvents = 'auto';
                 element.style.opacity = '1';
@@ -1970,17 +2075,40 @@
         function toggleAppUI(isAuthenticated) {
             const authContainer = document.getElementById('authContainer');
             const appContainer = document.getElementById('appContainer');
+            const mainNavTabs = document.getElementById('main-nav-tabs');
 
             if (isAuthenticated) {
                 if (authContainer) authContainer.classList.add('hidden');
                 if (appContainer) appContainer.classList.remove('hidden');
+                
+                // Hide all project-related tabs by default
+                document.getElementById('inspectionsPageNav').classList.add('hidden');
+                document.getElementById('mirPageNav').classList.add('hidden');
+                document.getElementById('ncrPageNav').classList.add('hidden');
+                document.getElementById('submissionPageNav').classList.add('hidden');
+                document.getElementById('correspondencePageNav').classList.add('hidden');
+                
+                // Show only the top-level project and staff email pages
+                document.getElementById('projectsPageNav').classList.remove('hidden');
+                document.getElementById('staffEmailsPageNav').classList.remove('hidden');
+
+                // Set initial active page to projects
+                showPage('projectsPage');
+                
                 enableSupabaseUI();
+
+                // Only show the welcome message on the initial sign-in event
+                if (!welcomeMessageShown) {
+                    showMessageModal("Welcome! Your data is being loaded. Please select a project or manage your staff emails to begin.", "Welcome Back!");
+                    welcomeMessageShown = true;
+                }
             } else {
                 if (authContainer) authContainer.classList.remove('hidden');
                 if (appContainer) appContainer.classList.add('hidden');
                 disableSupabaseUI();
             }
         }
+
 
         function toggleAuthMode() {
             const authTitle = document.getElementById('authTitle');
@@ -2126,12 +2254,13 @@
                     loadAllDataListeners();
                     // Only show the welcome message on the initial sign-in event
                     if (event === 'SIGNED_IN' && !welcomeMessageShown) {
-                        showMessageModal("Welcome! Your data is being loaded.", "Welcome Back!");
+                        showMessageModal("Welcome! Your data is being loaded. Please select a project or manage your staff emails to begin.", "Welcome Back!");
                         welcomeMessageShown = true;
                     }
                 } else {
                     console.log("[Auth State] No user found or signed out. Displaying authentication options.");
                     userId = null;
+                    activeProjectId = null;
                     toggleAppUI(false);
                     welcomeMessageShown = false; // Reset the flag
                     if (displayUserIdSpan) displayUserIdSpan.textContent = 'Not Authenticated';
@@ -2178,12 +2307,26 @@
         }
 
         async function fetchAndRenderData(tableName) {
-            const { data, error } = await supabase.from(tableName).select('*').eq('user_id', userId);
+            if (!userId) {
+                console.warn(`Cannot fetch ${tableName}. User not authenticated.`);
+                return;
+            }
+
+            let query = supabase.from(tableName).select('*').eq('user_id', userId);
+            if (activeProjectId && tableName !== 'projects' && tableName !== 'staff_emails') {
+                query = query.eq('project_id', activeProjectId);
+            }
+
+            const { data, error } = await query;
             if (error) {
                 console.error(`[Supabase Error] Error fetching data for ${tableName}:`, error);
                 return;
             }
             switch (tableName) {
+                case 'projects':
+                    projectsData = data;
+                    renderProjects();
+                    break;
                 case 'inspections':
                     inspectionsData = data;
                     performInspectionsSearch();
@@ -2222,6 +2365,7 @@
                 console.warn("User not authenticated. Cannot load data listeners.");
                 return;
             }
+            subscribeToTable('projects');
             subscribeToTable('inspections');
             subscribeToTable('mir');
             subscribeToTable('ncr');
@@ -2230,17 +2374,138 @@
             subscribeToTable('incoming_correspondences');
             subscribeToTable('staff_emails');
             
-            await fetchAndRenderData('inspections');
-            await fetchAndRenderData('mir');
-            await fetchAndRenderData('ncr');
-            await fetchAndRenderData('submissions');
-            await fetchAndRenderData('outgoing_correspondences');
-            await fetchAndRenderData('incoming_correspondences');
+            await fetchAndRenderData('projects');
             await fetchAndRenderData('staff_emails');
 
             updateNextInsNumber();
             updateNextMirNumber();
         }
+
+        // --- New Project-specific functions ---
+        async function renderProjects() {
+            const projectsList = document.getElementById('projectsList');
+            const noProjectsMessage = document.getElementById('noProjectsMessage');
+            projectsList.innerHTML = '';
+
+            if (projectsData.length === 0) {
+                noProjectsMessage.classList.remove('hidden');
+            } else {
+                noProjectsMessage.classList.add('hidden');
+                projectsData.forEach(project => {
+                    const projectCard = document.createElement('div');
+                    projectCard.className = 'project-card cursor-pointer';
+                    projectCard.onclick = () => selectProject(project.id);
+                    projectCard.innerHTML = `
+                        <i class="fas fa-folder project-icon"></i>
+                        <h4>${escapeHtml(project.project_name)}</h4>
+                        <p>${escapeHtml(project.project_code)}</p>
+                    `;
+                    projectsList.appendChild(projectCard);
+                });
+            }
+        }
+
+        async function selectProject(projectId) {
+            if (activeProjectId === projectId) {
+                return;
+            }
+            activeProjectId = projectId;
+            const selectedProject = projectsData.find(p => p.id === projectId);
+            if (selectedProject) {
+                const projectName = selectedProject.project_name;
+                document.getElementById('activeProjectName').textContent = projectName;
+                document.getElementById('activeProjectBar').classList.remove('hidden');
+                document.getElementById('appContent').classList.remove('hidden');
+                document.getElementById('projectsPage').classList.add('hidden');
+                document.getElementById('projectsPageNav').classList.add('hidden');
+                document.getElementById('staffEmailsPageNav').classList.add('hidden');
+                document.getElementById('inspectionsPageNav').classList.remove('hidden');
+                document.getElementById('mirPageNav').classList.remove('hidden');
+                document.getElementById('ncrPageNav').classList.remove('hidden');
+                document.getElementById('submissionPageNav').classList.remove('hidden');
+                document.getElementById('correspondencePageNav').classList.remove('hidden');
+
+                // Set initial active page to inspections
+                document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
+                document.getElementById('inspectionsPageNav').classList.add('active');
+                showPage('inspectionsPage');
+                
+                // Fetch all data for the selected project
+                await fetchAndRenderData('inspections');
+                await fetchAndRenderData('mir');
+                await fetchAndRenderData('ncr');
+                await fetchAndRenderData('submissions');
+                await fetchAndRenderData('outgoing_correspondences');
+                await fetchAndRenderData('incoming_correspondences');
+                
+                showMessageModal(`You have selected project: ${projectName}.`, "Project Selected");
+            }
+        }
+
+        function returnToProjects() {
+            activeProjectId = null;
+            document.getElementById('appContent').classList.add('hidden');
+            document.getElementById('projectsPage').classList.remove('hidden');
+            document.getElementById('activeProjectBar').classList.add('hidden');
+            document.getElementById('projectsPageNav').classList.remove('hidden');
+            document.getElementById('staffEmailsPageNav').classList.remove('hidden');
+
+            document.getElementById('inspectionsPageNav').classList.add('hidden');
+            document.getElementById('mirPageNav').classList.add('hidden');
+            document.getElementById('ncrPageNav').classList.add('hidden');
+            document.getElementById('submissionPageNav').classList.add('hidden');
+            document.getElementById('correspondencePageNav').classList.add('hidden');
+            
+            document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
+            document.getElementById('projectsPageNav').classList.add('active');
+            
+            // Clear all data from tables
+            inspectionsData = [];
+            mirData = [];
+            ncrData = [];
+            submissionData = [];
+            outgoingCorrespondenceData = [];
+            incomingCorrespondenceData = [];
+
+            performInspectionsSearch();
+            performMirSearch();
+            performNcrSearch();
+            searchSubmissionDocuments();
+            searchOutgoingCorrespondences();
+            searchIncomingCorrespondences();
+        }
+
+        async function addNewProject() {
+            if (!userId) {
+                showMessageModal("You must be signed in to add a project.", "Authentication Required");
+                return;
+            }
+            const projectName = document.getElementById('projectName').value.trim();
+            const projectCode = document.getElementById('projectCode').value.trim();
+            if (!projectName || !projectCode) {
+                showMessageModal("Please enter both a project name and a project code.", "Missing Information");
+                return;
+            }
+
+            const newProject = { project_name: projectName, project_code: projectCode, user_id: userId };
+            showLoadingOverlay('Adding project...');
+            const { data, error } = await supabase
+                .from('projects')
+                .insert([newProject])
+                .select();
+            hideLoadingOverlay();
+            if (error) {
+                console.error("Error adding project:", error);
+                showMessageModal("Error adding project: " + error.message, "Error");
+            } else {
+                showMessageModal("Project added successfully!", "Success");
+                document.getElementById('projectName').value = '';
+                document.getElementById('projectCode').value = '';
+                await fetchAndRenderData('projects');
+            }
+        }
+
+        // --- Remaining functions (unchanged logic, but with project_id added to data objects) ---
 
         function compareRevisions(rev1, rev2) {
             if (!rev1 && !rev2) return 0;
@@ -2303,8 +2568,7 @@
 
 
         async function generateNextDocNumber(tableName, prefix, numberField, discipline = '') {
-            if (!supabase || !userId) {
-                console.warn("Supabase or User ID not ready for generating next doc number. Returning fallback message.");
+            if (!supabase || !userId || !activeProjectId) {
                 return 'Loading...';
             }
 
@@ -2314,7 +2578,8 @@
                 const { data, error } = await supabase
                     .from(tableName)
                     .select(numberField)
-                    .eq('user_id', userId);
+                    .eq('user_id', userId)
+                    .eq('project_id', activeProjectId);
                 if (error) throw error;
                 
                 data.forEach(item => {
@@ -2486,6 +2751,9 @@
             }
             showLoadingOverlay('Adding new document...');
             data.user_id = userId;
+            if (activeProjectId) {
+                data.project_id = activeProjectId;
+            }
             console.log(`[Supabase] Attempting to add document to table: ${tableName}`);
 
             try {
@@ -2535,8 +2803,8 @@
         // --- Specific Register Functions (Add/Update/Edit/Clear) ---
 
         async function addUpdateInspectionDocument() {
-            if (!userId) {
-                showMessageModal("You must be signed in to add a document.", "Authentication Required");
+            if (!userId || !activeProjectId) {
+                showMessageModal("You must be signed in and have a project selected to add a document.", "Authentication Required");
                 return;
             }
 
@@ -2568,7 +2836,8 @@
                 document_status: document.getElementById('documentStatus').value,
                 rev_status: '',
                 approval_summary_status: getApprovalSummaryText(document.getElementById('documentStatus').value),
-                user_id: userId
+                user_id: userId,
+                project_id: activeProjectId
             };
             if (!data.date || !data.ins_number || !data.revision || !data.discipline || !data.document_status) {
                 showMessageModal("Please fill in all required fields: Date, INS Number, Revision, Discipline, and Document Status.", "Missing Information");
@@ -2578,7 +2847,7 @@
 
             if (file) {
                 showLoadingOverlay('Uploading file...');
-                const filePath = `${userId}/inspections/${Date.now()}-${file.name}`;
+                const filePath = `${userId}/${activeProjectId}/inspections/${Date.now()}-${file.name}`;
                 const uploadResult = await uploadFileToSupabase(file, 'documents', filePath);
                 if (!uploadResult.success) {
                     return;
@@ -2645,7 +2914,7 @@
 
         async function editInspection(docId) {
             showLoadingOverlay('Loading inspection data...');
-            if (!supabase || !userId) {
+            if (!supabase || !userId || !activeProjectId) {
                 showMessageModal("Application not fully loaded or Supabase not connected. Please wait and try again.", "Error");
                 hideLoadingOverlay();
                 return;
@@ -2655,6 +2924,8 @@
                     .from('inspections')
                     .select('*')
                     .eq('id', docId)
+                    .eq('user_id', userId)
+                    .eq('project_id', activeProjectId)
                     .single();
                 if (error) throw error;
                 if (data) {
@@ -2692,8 +2963,8 @@
 
         // MIR Register
         async function addUpdateMirDocument() {
-            if (!userId) {
-                showMessageModal("You must be signed in to add a document.", "Authentication Required");
+            if (!userId || !activeProjectId) {
+                showMessageModal("You must be signed in and have a project selected to add a document.", "Authentication Required");
                 return;
             }
 
@@ -2729,7 +3000,8 @@
                 mir_approval_status: document.getElementById('mirApprovalStatus').value,
                 mir_rev_status: '',
                 mir_approval_summary_status: getApprovalSummaryText(document.getElementById('mirApprovalStatus').value),
-                user_id: userId
+                user_id: userId,
+                project_id: activeProjectId
             };
             if (!data.mir_date || !data.mir_number || !data.mir_revision || !data.mir_discipline || !data.mir_approval_status) {
                 showMessageModal("Please fill in all required fields: Date, MIR Number, Revision, Discipline, and Approval Status.", "Missing Information");
@@ -2739,7 +3011,7 @@
 
             if (file) {
                 showLoadingOverlay('Uploading file...');
-                const filePath = `${userId}/mirs/${Date.now()}-${file.name}`;
+                const filePath = `${userId}/${activeProjectId}/mirs/${Date.now()}-${file.name}`;
                 const uploadResult = await uploadFileToSupabase(file, 'documents', filePath);
                 if (!uploadResult.success) {
                     return;
@@ -2806,7 +3078,7 @@
 
         async function editMir(docId) {
             showLoadingOverlay('Loading MIR data...');
-            if (!supabase || !userId) {
+            if (!supabase || !userId || !activeProjectId) {
                 showMessageModal("Application not fully loaded or Supabase not connected. Please wait and try again.", "Error");
                 hideLoadingOverlay();
                 return;
@@ -2816,6 +3088,8 @@
                     .from('mir')
                     .select('*')
                     .eq('id', docId)
+                    .eq('user_id', userId)
+                    .eq('project_id', activeProjectId)
                     .single();
                 if (error) throw error;
                 if (data) {
@@ -2854,7 +3128,7 @@
         }
 
         async function updateNextInsNumber() {
-            if (!supabase || !userId) {
+            if (!supabase || !userId || !activeProjectId) {
                 document.getElementById('nextInsNumber').textContent = 'Loading...';
                 return;
             }
@@ -2869,7 +3143,7 @@
         }
 
         async function updateNextMirNumber() {
-            if (!supabase || !userId) {
+            if (!supabase || !userId || !activeProjectId) {
                 document.getElementById('nextMirNumber').textContent = 'Loading...';
                 return;
             }
@@ -2884,8 +3158,8 @@
         }
 
         async function handleNcrFormSubmission() {
-            if (!userId) {
-                showMessageModal("You must be signed in to add a document.", "Authentication Required");
+            if (!userId || !activeProjectId) {
+                showMessageModal("You must be signed in and have a project selected to add a document.", "Authentication Required");
                 return;
             }
             console.log("[NCR] Starting handleNcrFormSubmission...");
@@ -2921,7 +3195,8 @@
                 part_e_received_date: partEReceivedDateValue ? partEReceivedDateValue : null,
                 part_e_status: document.getElementById('partEStatus').value,
                 ncr_current_status: document.getElementById('ncrCurrentStatus').value,
-                user_id: userId
+                user_id: userId,
+                project_id: activeProjectId
             };
             if (!data.ncr_discipline || !data.ncr_ref_number || (data.ncr_rev_part_b === null || data.ncr_rev_part_b === undefined || data.ncr_rev_part_b === '')) {
                 showMessageModal("Please fill in required fields: Discipline, NCR Ref. Number, and Part B Revision.", "Missing Information");
@@ -2931,7 +3206,7 @@
 
             if (file) {
                 showLoadingOverlay('Uploading file...');
-                const filePath = `${userId}/ncrs/${Date.now()}-${file.name}`;
+                const filePath = `${userId}/${activeProjectId}/ncrs/${Date.now()}-${file.name}`;
                 const uploadResult = await uploadFileToSupabase(file, 'documents', filePath);
                 if (!uploadResult.success) {
                     return;
@@ -3066,8 +3341,8 @@
                 return;
             }
 
-            if (!supabase || !userId) {
-                console.warn("Supabase or User ID not ready for auto-fill.");
+            if (!supabase || !userId || !activeProjectId) {
+                console.warn("Supabase or User ID or Project ID not ready for auto-fill.");
                 showMessageModal("Application not fully loaded or Supabase not connected. Cannot auto-fill.", "Error");
                 return;
             }
@@ -3100,7 +3375,7 @@
 
         async function editNcr(docId) {
             showLoadingOverlay('Loading NCR data...');
-            if (!supabase || !userId) {
+            if (!supabase || !userId || !activeProjectId) {
                 showMessageModal("Application not fully loaded or Supabase not connected. Please wait and try again.", "Error");
                 hideLoadingOverlay();
                 return;
@@ -3110,6 +3385,8 @@
                     .from('ncr')
                     .select('*')
                     .eq('id', docId)
+                    .eq('user_id', userId)
+                    .eq('project_id', activeProjectId)
                     .single();
                 if (error) throw error;
                 if (data) {
@@ -3129,8 +3406,8 @@
 
         // Submission Register
         async function addNewSubmissionDocument() {
-            if (!userId) {
-                showMessageModal("You must be signed in to add a document.", "Authentication Required");
+            if (!userId || !activeProjectId) {
+                showMessageModal("You must be signed in and have a project selected to add a document.", "Authentication Required");
                 return;
             }
             console.log("[Submission] Starting addNewSubmissionDocument...");
@@ -3157,7 +3434,8 @@
                 status: document.getElementById('newStatus').value,
                 verify_rev: 'Latest',
                 days_overdue: calculateDaysOverdue(document.getElementById('newSubmittedDate').value, respondedDateValue),
-                user_id: userId
+                user_id: userId,
+                project_id: activeProjectId
             };
             if (!data.doc_number || !data.rev || !data.discipline || !data.doc_type || !data.doc_title || !data.submitted_date) {
                 showMessageModal("Please fill in all required fields for Submission: Document Number, Revision, Discipline, Document Type, Document Title, Submitted Date.", "Missing Information");
@@ -3167,7 +3445,7 @@
 
             if (file) {
                 showLoadingOverlay('Uploading file...');
-                const filePath = `${userId}/submissions/${Date.now()}-${file.name}`;
+                const filePath = `${userId}/${activeProjectId}/submissions/${Date.now()}-${file.name}`;
                 const uploadResult = await uploadFileToSupabase(file, 'documents', filePath);
                 if (!uploadResult.success) {
                     return;
@@ -3255,7 +3533,7 @@
 
         async function editSubmission(docId) {
             showLoadingOverlay('Loading submission data...');
-            if (!supabase || !userId) {
+            if (!supabase || !userId || !activeProjectId) {
                 showMessageModal("Application not fully loaded or Supabase not connected. Please wait and try again.", "Error");
                 hideLoadingOverlay();
                 return;
@@ -3265,6 +3543,8 @@
                     .from('submissions')
                     .select('*')
                     .eq('id', docId)
+                    .eq('user_id', userId)
+                    .eq('project_id', activeProjectId)
                     .single();
                 if (error) throw error;
                 if (data) {
@@ -3301,8 +3581,8 @@
 
         // Correspondence Register - Outgoing
         async function addNewOutgoingCorrespondence() {
-            if (!userId) {
-                showMessageModal("You must be signed in to add a document.", "Authentication Required");
+            if (!userId || !activeProjectId) {
+                showMessageModal("You must be signed in and have a project selected to add a document.", "Authentication Required");
                 return;
             }
             console.log("[Outgoing Correspondence] Starting addNewOutgoingCorrespondence...");
@@ -3326,7 +3606,8 @@
                 reply_required: document.getElementById('newOutgoingReplyRequired').value,
                 date_sent: newOutgoingDateSentValue ? newOutgoingDateSentValue : null,
                 status: document.getElementById('newOutgoingReplyRequired').value === 'Yes' ? 'OPEN' : 'CLOSED',
-                user_id: userId
+                user_id: userId,
+                project_id: activeProjectId
             };
             if (!data.letter_ref || !data.letter_subject || !data.reply_required) {
                 showMessageModal("Please fill in all required fields for Outgoing Correspondence: Outgoing Letter Ref., Letter Subject, Reply Required.", "Missing Information");
@@ -3336,7 +3617,7 @@
 
             if (file) {
                 showLoadingOverlay('Uploading file...');
-                const filePath = `${userId}/outgoing_correspondences/${Date.now()}-${file.name}`;
+                const filePath = `${userId}/${activeProjectId}/outgoing_correspondences/${Date.now()}-${file.name}`;
                 const uploadResult = await uploadFileToSupabase(file, 'documents', filePath);
                 if (!uploadResult.success) {
                     return;
@@ -3378,7 +3659,7 @@
 
         async function editOutgoing(docId) {
             showLoadingOverlay('Loading outgoing correspondence data...');
-            if (!supabase || !userId) {
+            if (!supabase || !userId || !activeProjectId) {
                 showMessageModal("Application not fully loaded or Supabase not connected. Please wait and try again.", "Error");
                 hideLoadingOverlay();
                 return;
@@ -3388,6 +3669,8 @@
                     .from('outgoing_correspondences')
                     .select('*')
                     .eq('id', docId)
+                    .eq('user_id', userId)
+                    .eq('project_id', activeProjectId)
                     .single();
                 if (error) throw error;
                 if (data) {
@@ -3420,8 +3703,8 @@
 
         // Correspondence Register - Incoming
         async function addNewIncomingCorrespondence() {
-            if (!userId) {
-                showMessageModal("You must be signed in to add a document.", "Authentication Required");
+            if (!userId || !activeProjectId) {
+                showMessageModal("You must be signed in and have a project selected to add a document.", "Authentication Required");
                 return;
             }
             console.log("[Incoming Correspondence] Starting addNewIncomingCorrespondence...");
@@ -3443,7 +3726,8 @@
                 keyword: document.getElementById('newIncomingKeyword').value,
                 reply_required: document.getElementById('newIncomingReplyRequired').value,
                 status: document.getElementById('newIncomingReplyRequired').value === 'Yes' ? 'OPEN' : 'CLOSED',
-                user_id: userId
+                user_id: userId,
+                project_id: activeProjectId
             };
             if (!data.incoming_ref || !data.letter_subject || !data.reply_required) {
                 showMessageModal("Please fill in all required fields for Incoming Correspondence: Incoming Reference, Letter Subject, Reply Required.", "Missing Information");
@@ -3453,7 +3737,7 @@
 
             if (file) {
                 showLoadingOverlay('Uploading file...');
-                const filePath = `${userId}/incoming_correspondences/${Date.now()}-${file.name}`;
+                const filePath = `${userId}/${activeProjectId}/incoming_correspondences/${Date.now()}-${file.name}`;
                 const uploadResult = await uploadFileToSupabase(file, 'documents', filePath);
                 if (!uploadResult.success) {
                     return;
@@ -3494,7 +3778,7 @@
 
         async function editIncoming(docId) {
             showLoadingOverlay('Loading incoming correspondence data...');
-            if (!supabase || !userId) {
+            if (!supabase || !userId || !activeProjectId) {
                 showMessageModal("Application not fully loaded or Supabase not connected. Please wait and try again.", "Error");
                 hideLoadingOverlay();
                 return;
@@ -3504,6 +3788,8 @@
                     .from('incoming_correspondences')
                     .select('*')
                     .eq('id', docId)
+                    .eq('user_id', userId)
+                    .eq('project_id', activeProjectId)
                     .single();
                 if (error) throw error;
                 if (data) {
@@ -4321,7 +4607,7 @@
             link.href = URL.createObjectURL(blob);
             link.setAttribute('download', 'submission_pivot_table.csv');
             document.body.appendChild(link);
-            link.removeChild(link);
+            document.body.removeChild(link);
         }
 
 
@@ -4331,13 +4617,11 @@
             console.log("DOMContentLoaded fired. Initializing UI elements and then Supabase.");
 
             populateFixedDropdowns();
-            showPage('inspectionsPage');
+            showPage('projectsPage');
             showCorrespondenceSection('outgoingCorrespondenceSection');
 
             document.getElementById('discipline').addEventListener('change', updateNextInsNumber);
-
             document.getElementById('mirDiscipline').addEventListener('change', updateNextMirNumber);
-
             document.getElementById('partBAcceptedByGEC').addEventListener('change', (e) => {
                 if (e.target.value === 'Yes') {
                     document.getElementById('ifPartBAccepted').value = 'Submit Part D';
@@ -4462,6 +4746,11 @@
         
         window.toggleTableVisibility = toggleTableVisibility;
         window.deleteDocument = deleteDocument;
+        
+        // New project functions
+        window.selectProject = selectProject;
+        window.returnToProjects = returnToProjects;
+        window.addNewProject = addNewProject;
     </script>
 </body>
 </html>
